@@ -1,0 +1,49 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm" ng-init="
+    app.settings.asideFolded = false; 
+    app.settings.asideDock = false;
+  ">
+  <!-- main -->
+  <div class="col">
+    <!-- main header -->
+    <div class="bg-light lter b-b wrapper-md">
+      <div class="row">
+        <div class="col-sm-6 col-xs-12">
+          <h1 class="m-n font-thin h3 text-black"  translate="aside.nav.AGENCY">Agency</h1>
+        </div>
+        <div class="col-sm-6 text-right hidden-xs">
+          
+        </div>
+      </div>
+    </div>
+    <!-- / main header -->
+    <div class="wrapper-md" ng-controller="FlotChartDemoCtrl">
+      <!-- stats -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="row row-sm text-center">
+            <div class="col-xs-3">
+              <a href class="block tile panel padder-v bg-info item">
+                <span class="text-white font-thin h2 block" translate='agency.SEARCH'></span>
+                <span class="text-muted text-xs">Uploads</span>
+                <span class="bottom text-right w-full">
+                  <i class="fa fa-search text-muted m-r-sm"></i>
+                </span>
+              </a>
+            </div>
+            <div class="col-xs-3">
+              <a href class="block tile panel padder-v bg-info item">
+                <span class="text-white font-thin h2 block" translate='agency.MANAGE'></span>
+                <span class="text-muted text-xs">Uploads</span>
+                <span class="bottom text-right w-full">
+                  <i class="fa fa-search text-muted m-r-sm"></i>
+                </span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- / stats -->
+    </div>
+  </div>
+  <!-- / main -->
+</div>
