@@ -1,0 +1,83 @@
+{
+	"items": [{
+		"group": "Partner",
+		"first": "Bertina",
+		"last": "Robert",
+		"company": "",
+		"mobile": "121 364 135",
+		"home": "(021) 1234 8755",
+		"work": "(021) 9000 9877",
+		"notes": "",
+		"avatar": "img/b0.jpg"
+	}, {
+		"group": "Coworkers",
+		"first": "Alexandra",
+		"last": "Galton",
+		"company": "Google Inc.",
+		"mobile": "102 394 821",
+		"home": "(021) 9876 9485",
+		"work": "(021) 2130 3049",
+		"notes": "",
+		"avatar": "img/b1.jpg"
+	}, {
+		"group": "Family",
+		"first": "Angela",
+		"last": "Oscar",
+		"company": "Max Inc.",
+		"mobile": "100 364 135",
+		"home": "(021) 1234 8755",
+		"work": "(021) 9000 9877",
+		"notes": "",
+		"avatar": "img/b1.jpg"
+	}, {
+		"group": "Friends",
+		"first": "Annabelle",
+		"last": "",
+		"company": "",
+		"mobile": "324 123 123",
+		"home": "(021) 1234 8755",
+		"work": "(021) 9000 9877",
+		"notes": "",
+		"avatar": "img/b3.jpg"
+	}, {
+		"group": "Friends",
+		"first": "Brenda",
+		"last": "Lanny",
+		"company": "",
+		"mobile": "765 434 565",
+		"home": "(021) 1234 8755",
+		"work": "(021) 9000 9877",
+		"notes": "",
+		"avatar": "img/b2.jpg"
+	}, {
+		"group": "Group",
+		"first": "Britney",
+		"last": "Patricia",
+		"company": "",
+		"mobile": "432 364 455",
+		"home": "(021) 1234 8755",
+		"work": "(021) 9000 9877",
+		"notes": "",
+		"avatar": "img/b1.jpg"
+	}, {
+		"group": "Friends",
+		"first": "Blanche",
+		"last": "Julian",
+		"company": "",
+		"mobile": "433 364 234",
+		"home": "(021) 1234 8755",
+		"work": "(021) 9000 9877",
+		"notes": "",
+		"avatar": "img/b0.jpg"
+	}, {
+		"group": "Group",
+		"first": "Deborah",
+		"last": "Darryl",
+		"company": "",
+		"mobile": "332 431 223",
+		"home": "(021) 1234 8755",
+		"work": "(021) 9000 9877",
+		"notes": "",
+		"avatar": "img/b0.jpg"
+	}]
+}

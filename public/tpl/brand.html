@@ -1,1 +1,64 @@
-Brand
+<div class="hbox hbox-auto-xs hbox-auto-sm fade-in-up" ui-view>
+	<!-- main -->
+	<div class="col" ng-init="app.fullScreen = false;" >
+		<!-- main header -->
+		<div class="bg-light lter b-b wrapper-md">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<h1 class="m-n font-thin h3 text-black"  translate="aside.nav.BRAND">BRAND</h1>
+				</div>
+				<div class="col-sm-6 text-right hidden-xs">
+
+				</div>
+			</div>
+		</div>
+		<!-- / main header -->
+		<div class="wrapper-md" >
+			<!-- stats -->
+			<div class="row">
+				<div class="col-md-12">					
+					<div class="row row-sm text-left">品牌方账号</div>
+					<div class="row row-sm text-center">						
+						<div class="col-xs-3">
+							<a href class="block tile panel padder-v bg-default item">
+								<span class="font-thin h2 block">账号审核中...</span>
+							</a>
+						</div>
+					</div>					
+					<div class="row row-sm text-left">品牌管理者</div>
+					<div class="row row-sm text-center">
+						<div class="col-xs-3">
+							<a ui-sref="app.brand.create" class="block tile panel padder-v bg-info item">
+								<span class="text-white font-thin h2 block" translate='brand.CREATE'></span>
+								<span class="bottom text-right w-full">
+									<i class="fa fa-plus-square text-muted m-r-sm"></i>
+								</span>
+							</a>
+						</div>
+						<div class="col-xs-3">
+							<a ui-sref="app.brand.manage" class="block tile panel padder-v bg-info item">
+								<span class="text-white font-thin h2 block" translate='brand.MANAGE'></span>
+								<span class="bottom text-right w-full">
+									<i class="fa fa-bars text-muted m-r-sm"></i>
+								</span>
+							</a>
+						</div>
+					</div>					
+					<div class="row row-sm text-left">其他用户</div>
+					<div class="row row-sm text-center">
+						<div class="col-xs-3">
+							<a ui-sref="app.brand.search" class="block tile panel padder-v bg-info item">
+								<span class="text-white font-thin h2 block" translate='brand.SEARCH'></span>
+								<span class="bottom text-right w-full">
+									<i class="fa fa-search text-muted m-r-sm"></i>
+								</span>
+							</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- / stats -->
+		</div>
+	</div>
+	<!-- / main -->
+</div>

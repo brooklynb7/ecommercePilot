@@ -83,6 +83,24 @@
 		"SEARCH": "Search agency",
 		"ALL": "All angency",
 		"MANAGE": "Manage angency"
+	},
+	"brand":{
+		"CREATE":"Create brand",
+		"SEARCH": "Search brand",
+		"ALL": "All brand",
+		"MANAGE": "Manage brand"
+	},
+	"profile": {
+		"ENTER_PROFILE":"Please enter the following infomation",
+		"USER_NAME":"User name",
+		"EMAIL":"Email",
+		"COMPANY_NAME":"Company name",
+		"COMPANY_DESC":"Company description",
+		"BIZ_LISENCE": "Business lisence"
+	},
+	"common":{
+		"SAVE":"Save",
+		"CANCEL":"Cancel"
 	}
 
 }

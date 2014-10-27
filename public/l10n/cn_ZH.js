@@ -25,7 +25,7 @@
 			"APPS": "应用",
 			"GENERAL":"常规",
 			"YOUR_PROFILE": "个人信息",
-			"PRICE": "价格",
+			"PRICE": "年费",
 			"SYSTEM":"系统",
 			"WIDGETS": "工具",
 			"SETTING":"设置",
@@ -82,5 +82,22 @@
 		"SEARCH": "搜索经销商",
 		"ALL": "经销商列表",
 		"MANAGE": "经销商管理"
+	},
+	"brand":{
+		"CREATE":"创建品牌",
+		"SEARCH": "搜索品牌",
+		"MANAGE": "管理品牌"
+	},
+	"profile": {
+		"ENTER_PROFILE":"请填写以下信息",
+		"USER_NAME":"用户名",
+		"EMAIL":"邮箱",
+		"COMPANY_NAME":"公司名称",
+		"COMPANY_DESC":"公司描述",
+		"BIZ_LISENCE": "营业执照"
+	},
+	"common":{
+		"SAVE":"保存",
+		"CANCEL":"取消"
 	}
 }

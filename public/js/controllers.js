@@ -3,8 +3,8 @@
 /* Controllers */
 
 angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
-	.controller('AppCtrl', ['$scope', '$translate', '$localStorage', '$window',
-		function($scope, $translate, $localStorage, $window) {
+	.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES', 'AuthService', 'AUTH_EVENTS',
+		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES, AuthService, AUTH_EVENTS) {
 			// add 'ie' classes to html
 			var isIE = !!navigator.userAgent.match(/MSIE/i);
 			isIE && angular.element($window.document.body).addClass('ie');
@@ -12,7 +12,7 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
 			// config
 			$scope.app = {
-				name: 'E-commerce',
+				name: '电子商务平台',
 				version: '1.3.1',
 				// for chart colors
 				color: {
@@ -32,11 +32,56 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 					asideColor: 'bg-black',
 					headerFixed: true,
 					asideFixed: false,
-					asideFolded: false,
-					asideDock: false,
+					asideFolded: true,
+					asideDock: true,
 					container: false
-				}
+				},
+				userType: [{
+					'value': '1',
+					'text': '经销商'
+				}, {
+					'value': '2',
+					'text': '品牌公司'
+				}]
+			};
+			$scope.currentUser = {
+				"id": "1111",
+				"active": true,
+				"type": "1",
+				"name": "Test1",
+				"password": "11",
+				"fund": "30000",
+				"address": "Test",
+				"phone": "43123",
+				"category": "asdf"
+			};
+			$scope.userRoles = USER_ROLES;
+			$scope.isAuthorized = AuthService.isAuthorized;
+
+			$scope.isBrandUser = function(type) {
+				return type == '2';
+			};
+			$scope.isAgencyUser = function(type) {
+				return type == '1';
+			};
+
+			$scope.setCurrentUser = function(user) {
+				$scope.currentUser = user;
+			};
+
+			var showLoginDialog = function() {
+				$state.go('access.signin');
+			};
+
+			var showNotAuthorized = function() {
+				alert("Not Authorized");
 			}
+
+			//listen to events of unsuccessful logins, to run the login dialog
+			$rootScope.$on(AUTH_EVENTS.notAuthorized, showNotAuthorized);
+			$rootScope.$on(AUTH_EVENTS.notAuthenticated, showLoginDialog);
+			$rootScope.$on(AUTH_EVENTS.sessionTimeout, showLoginDialog);
+			$rootScope.$on(AUTH_EVENTS.logoutSuccess, showLoginDialog);
 
 			// save settings to local storage
 			if (angular.isDefined($localStorage.settings)) {
@@ -58,10 +103,10 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 				isopen: false
 			};
 			$scope.langs = {
-				en: 'English',
+				//en: 'English',
 				cn_ZH: '中文'
 			};
-			$scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "English";
+			$scope.selectLang = $scope.langs[$translate.proposedLanguage()] || "中文";
 			$scope.setLang = function(langKey, $event) {
 				// set the current lang
 				$scope.selectLang = $scope.langs[langKey];
@@ -79,6 +124,50 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 
 		}
 	])
+
+// signin controller
+.controller('SigninFormController', ['$scope', '$http', '$state', '$rootScope', 'AUTH_EVENTS', 'AuthService',
+	function($scope, $http, $state, $rootScope, AUTH_EVENTS, AuthService) {
+		$scope.authError = null;
+		$scope.credentials = {
+			name: '',
+			password: ''
+		};
+		$scope.login = function(credentials) {
+			AuthService.login(credentials).then(function(user) {
+				$scope.setCurrentUser(user);
+				$state.go('app.page.profile');
+			}, function() {
+				$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+			});
+		};
+	}
+])
+
+// signup controller
+.controller('SignupFormController', ['$scope', '$http', '$state', '$rootScope', 'AUTH_EVENTS', 'AuthService',
+	function($scope, $http, $state, $rootScope, AUTH_EVENTS, AuthService) {
+		$scope.authError = null;
+		$scope.userInfo = {
+			active: true,
+			type: '1',
+			name: '',
+			password: '',
+			fund: '',
+			address: '',
+			phone: '',
+			category: ''
+		};
+		$scope.signup = function(userInfo) {
+			AuthService.signup(userInfo).then(function(user) {
+				$scope.setCurrentUser(userInfo);
+				$state.go('app.page.profile');
+			}, function() {
+				$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
+			});
+		};
+	}
+])
 
 // bootstrap controller
 .controller('AccordionDemoCtrl', ['$scope',
@@ -673,65 +762,6 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 			latLng: [37.36, -122.03],
 			name: 'Silicon Valley'
 		}];
-	}
-])
-
-// signin controller
-.controller('SigninFormController', ['$scope', '$http', '$state', '$rootScope',
-	function($scope, $http, $state, $rootScope) {
-		$scope.user = {};
-		$scope.authError = null;
-		$scope.login = function() {
-			$scope.authError = null;
-			// Try to login
-			if($scope.user.name == 'test' && $scope.user.password == 'test'){
-				$rootScope.loggedUser = {
-					name:'test'
-				};
-				$state.go('app.dashboard-v1');
-			} else {
-				$scope.authError = 'Email or Password not right';
-			}
-			/*$http.post('api/login', {
-				email: $scope.user.email,
-				password: $scope.user.password
-			})
-				.then(function(response) {
-					if (!response.data.user) {
-						$scope.authError = 'Email or Password not right';
-					} else {
-						$state.go('app.dashboard-v1');
-					}
-				}, function(x) {
-					$scope.authError = 'Server Error';
-				});*/
-		};
-	}
-])
-
-// signup controller
-.controller('SignupFormController', ['$scope', '$http', '$state',
-	function($scope, $http, $state) {
-		$scope.user = {};
-		$scope.authError = null;
-		$scope.signup = function() {
-			$scope.authError = null;
-			// Try to create
-			$http.post('api/signup', {
-				name: $scope.user.name,
-				email: $scope.user.email,
-				password: $scope.user.password
-			})
-				.then(function(response) {
-					if (!response.data.user) {
-						$scope.authError = response;
-					} else {
-						$state.go('app.dashboard-v1');
-					}
-				}, function(x) {
-					$scope.authError = 'Server Error';
-				});
-		};
 	}
 ])
 // tab controller
