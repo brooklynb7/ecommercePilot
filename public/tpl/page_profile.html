@@ -1,7 +1,7 @@
-<div class="bg-light lter b-b wrapper-md" ng-init="app.fullScreen = false;">
+<div class="bg-light lter b-b wrapper-md"  ng-init="app.fullScreen = false;" >
 	<h1 class="m-n font-thin h3">个人信息</h1>
 </div>
-<div class="wrapper-md"  ng-controller="FormDemoCtrl">
+<div class="wrapper-md" ng-controller="ProfileController">
 	<div class="panel panel-default">
 		<div class="panel-heading font-bold">基本信息</div>
 		<div class="panel-body">
@@ -46,9 +46,9 @@
 				<div class="line line-dashed b-b line-lg pull-in"></div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label" >经营范围</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" ng-model='currentUser.category' />
-					</div>
+					<div class="col-sm-10" ui-module="select2">
+						<input type="hidden" ui-select2="app.categorySelect2Options" ng-model='currentUser.category' class="form-control" />
+					</div>	
 				</div>
 				<!-- <div class="line line-dashed b-b line-lg pull-in"></div>
 				     <div class="form-group">

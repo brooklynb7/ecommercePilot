@@ -20,22 +20,28 @@ var app = angular.module('app', [
 		'app.controllers'
 	])
 	.run(
-		['$rootScope', '$state', '$stateParams', '$location',
-			function($rootScope, $state, $stateParams, $location) {
+		['$rootScope', '$state', '$stateParams', '$location', 'AuthService', 'AUTH_EVENTS',
+			function($rootScope, $state, $stateParams, $location, AuthService, AUTH_EVENTS) {
 				$rootScope.$state = $state;
 				$rootScope.$stateParams = $stateParams;
-
-
 				//Config login module
-
-				/*$rootScope.$on('$stateChangeStart', function(e, nextState, currentState) {
-					if ($rootScope.loggedUser == null) {
-						if (nextState.name.indexOf('access') != 0) {
-							e.preventDefault();
-							$state.go('access.signin');
+				$rootScope.$on('$stateChangeStart', function(e, nextState, currentState) {					
+					/*var authorizedRoles = nextState.data ? nextState.data.authorizedRoles : null;
+					if (!AuthService.isAuthorized(authorizedRoles)) {							
+						if (AuthService.isAuthenticated()) {
+							// user is not allowed
+							//e.preventDefault();
+							//$rootScope.$broadcast(AUTH_EVENTS.notAuthorized);
+						} else {
+							// user is not logged in
+							if (nextState.name.indexOf('access') != 0) {
+								e.preventDefault();
+								$state.go('access.signin');
+								//$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
+							}
 						}
-					}
-				});*/
+					}*/
+				});
 			}
 		]
 	)

@@ -96,22 +96,18 @@ app.controller('BrandManageCtrl', ['$scope', '$http', '$filter',
 	}
 ]);
 
-app.controller('BrandCreateCtrl', ['$scope',
-	function($scope) {
-		$scope.mail = {
-			to: '',
-			subject: '',
-			content: ''
-		}
-		$scope.tolist = [{
-			name: 'James',
-			email: 'james@gmail.com'
-		}, {
-			name: 'Luoris Kiso',
-			email: 'luoris.kiso@hotmail.com'
-		}, {
-			name: 'Lucy Yokes',
-			email: 'lucy.yokes@gmail.com'
-		}];
+app.controller('BrandCreateCtrl', ['$scope', '$http', '$filter',
+	function($scope, $http, $filter) {
+		$scope.brandInfo = {
+			name: "dd",
+			desc: "",
+			category: [],
+			style: "",
+			matieral: ""
+		};
+
+		$scope.create = function(){
+			console.log($scope.brandInfo);
+		};
 	}
 ]);

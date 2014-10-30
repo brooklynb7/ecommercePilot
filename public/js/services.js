@@ -18,27 +18,29 @@ angular.module('app.services', [])
 		};
 		return this;
 	})
-	.factory('AuthService', function($http, Session) {
+	.factory('AuthService',['$http', 'Session', function($http, Session) {
 		var authService = {};
 
 		authService.signup = function(userInfo) {
 			return $http
-				.get('../api/signup', userInfo)
+				.get('api/signup.json', userInfo)
 				.then(function(res) {
-					Session.create(res.data.id, res.data.user.id,
-						res.data.user.role);
+					Session.create(res.data.id, res.data.user.id,res.data.user.role);
 					return res.data.user;
 				});
 		};
 
 		authService.login = function(credentials) {
 			return $http
-				.get('../api/login.json', credentials)
+				.get('api/login.json', credentials)
 				.then(function(res) {
-					console.log(res)
-					Session.create(res.data.id, res.data.id, res.data.role);
+					Session.create(res.data.id, res.data.id, res.data.type);
 					return res.data;
 				});
+		};
+
+		authService.logout = function() {
+			Session.destroy();
 		};
 
 		authService.isAuthenticated = function() {
@@ -54,4 +56,4 @@ angular.module('app.services', [])
 		};
 
 		return authService;
-	});
+	}]);

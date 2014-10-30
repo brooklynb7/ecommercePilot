@@ -1,11 +1,11 @@
 {
-	"id":"1111",
+	"id":"1",
 	"active": true,
 	"type": "1",
-	"name": "Test1",
-	"password": "11",
+	"name": "test",
+	"password": "test",
 	"fund": "30000",
 	"address": "Test",
 	"phone": "43123",
-	"category": "asdf"
+	"category": ["沙发"]
 }

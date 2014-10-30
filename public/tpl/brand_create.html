@@ -14,37 +14,46 @@
 			<div class="panel-heading font-bold">
 				品牌信息
 			</div>
-			<div class="panel-body">
-				<form class="form-horizontal" method="get">                  
+			<div class="panel-body" ng-controller="BrandCreateCtrl">
+				<form name="form" class="form-validation form-horizontal">                  
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="input-id-1">品牌名称</label>
+						<label class="col-sm-2 control-label">品牌名称</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="input-id-1">
+							<input type="text" class="form-control" ng-model='brandInfo.name' required>
 						</div>
 					</div>
 					<div class="line line-dashed b-b line-lg pull-in"></div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label" for="input-id-1">品牌描述</label>
+						<label class="col-sm-2 control-label">品牌描述</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="input-id-2">
+							<input type="text" class="form-control" ng-model='brandInfo.desc' required>
 						</div>
 					</div>
 					<div class="line line-dashed b-b line-lg pull-in"></div>
 					<div class="form-group">
-						<label class="col-sm-2 control-label">品牌分类</label>
+						<label class="col-sm-2 control-label">产品线</label>
+						<div class="col-sm-10" ui-module="select2">
+							<input type="hidden" ui-select2="app.categorySelect2Options" required data-placeholder='品牌产品线' ng-model='brandInfo.category' class="form-control" />
+						</div>
+					</div>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">产品风格</label>
 						<div class="col-sm-10">
-							<select name="category" class="form-control">
-								<option>家具</option>
-								<option>厨卫</option>
-								<option>瓷砖</option>
-								<option>地板</option>
-							</select>
+							<input type="text" class="form-control" ng-model='brandInfo.style' required>
+						</div>
+					</div>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label">产品材料</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" ng-model='brandInfo.matieral' required>
 						</div>
 					</div>
 					<div class="line line-dashed b-b line-lg pull-in"></div>
 					<div class="form-group">
 						<div class="col-sm-4 col-sm-offset-2">
-							<button type="submit" class="btn btn-primary">创建</button>
+							<button type="submit" class="btn btn-primary" ng-click="create()" ng-disabled='form.$invalid'>创建</button>
 						</div>
 					</div>
 				</form>

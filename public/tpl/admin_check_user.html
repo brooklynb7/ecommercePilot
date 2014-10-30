@@ -7,39 +7,52 @@
 	<tabset class="tab-container">
 		<tab>
 			<tab-heading>
-				品牌<span class="badge bg-danger badge-sm m-l-xs">6</span>
+				品牌<span class="badge  badge-sm m-l-xs" ng-class="{'bg-danger': brandAgentItems.length != 0}">{{brandAgentItems.length}}</span>
 			</tab-heading>
-			<ul class="list-group list-group-alt list-group-lg no-borders pull-in m-b-none">
-				<li class="list-group-item" ng-repeat="item in items">
-					<div class="clear">
-						<a ui-sref="app.admin.checkUser.detail({id:item.id})" class="h4 text-primary m-b-sm block">{{item.name}} <span class="label label-sm bg-info">Editor</span></a>
-						<div>{{item.address}}</div>
+			<accordion close-others="oneAtATime">
+				<accordion-group is-open="status.open" ng-repeat="item in brandAgentItems">
+					<accordion-heading>
+						{{item.name}}/{{item.email}}
+						<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
+					</accordion-heading>
+					<div>用户名: {{item.name}}</div>
+					<div>邮箱: {{item.email}}</div>
+					<div>注册资金: {{item.fund}}</div>
+					<br/>
+					<div>
+						<button class="btn btn-sm btn-success" ng-click="approve(item, brandAgentItems)">通过</button>
+						<button class="btn btn-sm btn-danger"  ng-click="reject(item, brandAgentItems)">拒绝</button>
 					</div>
-				</li>				
-			</ul>
+				</accordion-group>
+			</accordion>
 		</tab>
 		<tab>
 			<tab-heading>
-				经销商 <span class="badge bg-danger badge-sm m-l-xs">1</span>
+				经销商 <span class="badge badge-sm m-l-xs"  ng-class="{'bg-danger': salesAgentItems.length != 0}">{{salesAgentItems.length}}</span>
 			</tab-heading>
-			<ul class="list-group list-group-alt list-group-lg no-borders pull-in m-b-none">
-				<li class="list-group-item">
-					<a href="#" class="pull-left thumb-md m-r">
-						<img src="img/a2.jpg" alt="..." class="img-circle">
-					</a>
-					<div class="clear">
-						<a href="#" class="h4 text-primary m-b-sm block">Jocob</a>
-						<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam. Aliquam sollicitudin egestas dui nec, fermentum diam. Vivamus vel tincidunt libero</div>
+			<accordion close-others="oneAtATime">
+				<accordion-group is-open="status.open" ng-repeat="item in salesAgentItems">
+					<accordion-heading>
+						{{item.name}}/{{item.email}}
+						<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
+					</accordion-heading>
+					<div>用户名: {{item.name}}</div>
+					<div>邮箱: {{item.email}}</div>
+					<div>注册资金: {{item.fund}}</div>
+					<br/>
+					<div>
+						<button class="btn btn-sm btn-success" ng-click="approve(item, salesAgentItems)">通过</button>
+						<button class="btn btn-sm btn-danger"  ng-click="reject(item, salesAgentItems)">拒绝</button>
 					</div>
-				</li>
-			</ul>
+				</accordion-group>
+			</accordion>
 		</tab>
 		<tab>
 			<tab-heading>
 				卖场 <span class="badge bg-default badge-sm m-l-xs">0</span>
 			</tab-heading>
 			<ul class="list-group list-group-alt list-group-lg no-borders pull-in m-b-none">				
-				
+
 			</ul>
 		</tab>
 	</tabset>
