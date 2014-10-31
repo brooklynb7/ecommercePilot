@@ -1,3 +1,24 @@
+app.controller('BrandCreateCtrl', ['$scope', '$http', '$filter',
+	function($scope, $http, $filter) {
+		$scope.brandInfo = {
+			"logo": "",
+			"productseries_set": null,
+			"name": "",
+			"brand_agent": null,
+			"web_site": "",
+			"description": "",
+			"phone": null,
+			"factory": null,
+			"selling_cities": null,
+			"expanding_cities": null
+		};
+
+		$scope.create = function() {
+			console.log($scope.brandInfo);
+		};
+	}
+]);
+
 app.controller('BrandManageCtrl', ['$scope', '$http', '$filter',
 	function($scope, $http, $filter) {
 		$http.get('js/app/brand/brand.json').then(function(resp) {
@@ -93,21 +114,5 @@ app.controller('BrandManageCtrl', ['$scope', '$http', '$filter',
 			item.editing = false;
 		};
 
-	}
-]);
-
-app.controller('BrandCreateCtrl', ['$scope', '$http', '$filter',
-	function($scope, $http, $filter) {
-		$scope.brandInfo = {
-			name: "dd",
-			desc: "",
-			category: [],
-			style: "",
-			matieral: ""
-		};
-
-		$scope.create = function(){
-			console.log($scope.brandInfo);
-		};
 	}
 ]);

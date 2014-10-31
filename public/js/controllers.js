@@ -1,10 +1,11 @@
 'use strict';
 
-/* Controllers */
+(function() {
 
-angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
-	.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES', 'AuthService', 'AUTH_EVENTS',
-		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES, AuthService, AUTH_EVENTS) {
+	var appController = angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies']);
+
+	appController.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES','UserService', 'AuthService', 'AUTH_EVENTS',
+		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES,UserService, AuthService, AUTH_EVENTS) {
 			// add 'ie' classes to html
 			var isIE = !!navigator.userAgent.match(/MSIE/i);
 			isIE && angular.element($window.document.body).addClass('ie');
@@ -50,10 +51,14 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 					'tags': ['沙发', '卫浴', '地板']
 				}
 			};
-			$scope.currentUser = null;
-			AuthService.login().then(function(user) {
+			$scope.currentUser = {};	
+			UserService.getUser(1).then(function(user) {
 				$scope.setCurrentUser(user);
 			});
+			/*AuthService.login().then(function(user) {
+				//$scope.setCurrentUser(user);
+			});*/
+
 			$scope.userRoles = USER_ROLES;
 			$scope.isAuthorized = AuthService.isAuthorized;
 
@@ -123,10 +128,10 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 				// Checks for iOs, Android, Blackberry, Opera Mini, and Windows mobile devices
 				return (/iPhone|iPod|iPad|Silk|Android|BlackBerry|Opera Mini|IEMobile/).test(ua);
 			}
-
 		}
-	])
-	.controller('SigninFormController', ['$scope', '$state', '$rootScope', 'AUTH_EVENTS', 'AuthService',
+	]);
+
+	appController.controller('SigninFormController', ['$scope', '$state', '$rootScope', 'AUTH_EVENTS', 'AuthService',
 		function($scope, $state, $rootScope, AUTH_EVENTS, AuthService) {
 			$scope.authError = null;
 			$scope.credentials = {
@@ -142,8 +147,9 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 				});
 			};
 		}
-	])
-	.controller('SignupFormController', ['$scope', '$http', '$state', '$rootScope', 'AUTH_EVENTS', 'AuthService',
+	]);
+
+	appController.controller('SignupFormController', ['$scope', '$http', '$state', '$rootScope', 'AUTH_EVENTS', 'AuthService',
 		function($scope, $http, $state, $rootScope, AUTH_EVENTS, AuthService) {
 			$scope.authError = null;
 			$scope.userInfo = {
@@ -166,21 +172,24 @@ angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies'])
 				});
 			};
 		}
-	])
-	.controller('LogoutController', ['$scope', '$state', 'AuthService',
+	]);
+
+	appController.controller('LogoutController', ['$scope', '$state', 'AuthService',
 		function($scope, $state, AuthService) {
 			$scope.logout = function() {
 				AuthService.logout();
 				$state.go('access.signin');
 			};
 		}
-	])
-	.controller('ProfileController', ['$scope', '$http',
-		function($scope, $http) {
+	]);
+
+	appController.controller('ProfileController', ['$scope', 'UserService',
+		function($scope, UserService) {
 			//test apo
-			$http.get('http://121.40.72.71:8080/rest/province/?format=json')
-				.then(function(res) {
-					console.log(res);
-				});
+			UserService.getUserList().then(function(users) {
+			});
+
+			
 		}
 	]);
+})();
