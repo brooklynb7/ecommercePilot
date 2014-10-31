@@ -13,11 +13,15 @@
 		<div class="col w-lg lter b-r">
 			<div class="vbox">
 				<div class="wrapper-xs b-b">
-					<div class="input-group m-b-xxs">
+					<!-- <div class="input-group m-b-xxs text-center">
 						<span class="input-group-addon input-sm no-border no-bg"><i class="icon-magnifier text-md m-t-xxs"></i></span>
 						<input type="text" class="form-control input-sm no-border no-bg text-md" placeholder="搜索" ng-model="query">
+					</div> -->
+					<div class="text-center m-b-xxs">
+						<a href class="btn btn-sm btn-default btn-addon" ng-click="createItem()"><i class="fa fa-plus fa-fw m-r-xs"></i> 创建品牌</a>
 					</div>
 				</div>
+
 				<div class="row-row">
 					<div class="cell scrollable hover">
 						<div class="cell-inner">
@@ -25,19 +29,16 @@
 								<div class="list-group list-group-lg no-radius no-border no-bg m-b-none">
 									<a ng-repeat="item in items | filter:{group:filter} | filter:query | orderBy:'first'" class="list-group-item m-l" ng-class="{'select m-l-none': item.selected }" ng-click="selectItem(item)">
 										<span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.selected }">
-											{{ item.first }} <strong>{{ item.last }}</strong>
-											<span ng-hide="item.first || item.last">No Name</span>
+											<strong>{{ item.name }}</strong>
+											<span ng-hide="item.name">暂无名称</span>
 										</span>
 									</a>
 								</div>
 							</div>
-							<div class="text-center pos-abt w-full" style="top:50%;" ng-hide="(items | filter:{group:filter} | filter:query).length">没有相关品牌</div>
 						</div>
 					</div>
 				</div>
-				<!-- <div class="wrapper b-t text-center">
-					<a href class="btn btn-sm btn-default btn-addon" ng-click="createItem()"><i class="fa fa-plus fa-fw m-r-xs"></i> New Contact</a>
-				</div> -->
+				
 			</div>
 		</div>
 		<!-- /column -->
@@ -56,40 +57,32 @@
 					<div class="cell">
 						<div class="cell-inner">
 							<div class="wrapper-lg">
-								<div class="hbox h-auto m-b-lg">
-									<div class="col text-center w-sm">
-										<div class="thumb-lg avatar inline">
-											<img ng-src="{{item.avatar}}" ng-show="item.avatar">
+								<form name="form" class="form-validation form-horizontal">                  
+									<div class="form-group">
+										<label class="col-sm-2 control-label">品牌名称</label>
+										<div class="col-sm-10">
+											<p class="form-control-static" ng-hide="item.editing">{{item.name}}</p>
+											<input type="text" class="form-control" ng-show="item.editing" ng-model='item.name' required>
 										</div>
 									</div>
-									<div class="col v-middle h1 font-thin">
-										<div ng-hide="item.editing">{{item.first}}</div>
-										<div ng-show="item.editing">
-											<input type="text" placeholder="First" class="form-control w-auto input-lg m-b-n-xxs font-bold" ng-model="item.first" >
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<div class="form-group">
+										<label class="col-sm-2 control-label">品牌描述</label>
+										<div class="col-sm-10">
+											<p class="form-control-static" ng-hide="item.editing">{{item.description}}</p>
+											<input type="text" class="form-control"  ng-show="item.editing" ng-model='item.description' required>
 										</div>
 									</div>
-								</div>
-								<!-- fields -->
-								<div class="form-horizontal">
-									<div class="form-group m-b-sm">
-										<label class="col-sm-3 control-label">品牌分类</label>
-										<div class="col-sm-9">
-											<p class="form-control-static" ng-hide="item.editing">{{item.companyId}}</p>	
-											<select class="form-control" ng-show="item.editing" ng-model="item.companyId" >
-												<option value='1'>家具</option>
-												<option value='2'>厨卫</option>
-											</select>
+									<div class="line line-dashed b-b line-lg pull-in"></div>
+									<!-- <div class="form-group">
+										<label class="col-sm-2 control-label">品牌Logo</label>
+										<div class="col-sm-10">
+											<img ng-src="{{item.logo}}" ng-show="item.logo || !item.editing">
+											<input ui-jq="filestyle" type="file" ng-show="item.editing" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s">
 										</div>
-									</div>
-									<div class="form-group m-b-sm">
-										<label class="col-sm-3 control-label">品牌描述</label>
-										<div class="col-sm-9">
-											<p class="form-control-static" ng-hide="item.editing">{{item.note}}</p>
-											<textarea class="form-control" ng-show="item.editing" ng-model="item.note" rows="5"></textarea>
-										</div>
-									</div>
-								</div>
-								<!-- / fields -->
+									</div> 
+									<div class="line line-dashed b-b line-lg pull-in"></div>-->
+								</form>
 							</div>
 						</div>
 					</div>

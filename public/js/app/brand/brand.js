@@ -1,16 +1,18 @@
-app.controller('BrandCreateCtrl', ['$scope', '$http', '$filter',
-	function($scope, $http, $filter) {
+app.controller('BrandCreateCtrl', ['$scope', 'BrandService', '$filter',
+	function($scope, BrandService, $filter) {
 		$scope.brandInfo = {
-			"logo": "",
-			"productseries_set": null,
 			"name": "",
-			"brand_agent": null,
-			"web_site": "",
 			"description": "",
-			"phone": null,
-			"factory": null,
-			"selling_cities": null,
-			"expanding_cities": null
+			"logo": "",
+			"productseries_set": [],
+			"brand_agent": $scope.currentUser.username,
+			"web_site": "",
+			"phone": '',
+			"factory": '',
+			"selling_cities": [],
+			"expanding_cities": [],			
+			"created_by": $scope.currentUser.username,
+			"updated_by": $scope.currentUser.username
 		};
 
 		$scope.create = function() {
@@ -19,65 +21,13 @@ app.controller('BrandCreateCtrl', ['$scope', '$http', '$filter',
 	}
 ]);
 
-app.controller('BrandManageCtrl', ['$scope', '$http', '$filter',
-	function($scope, $http, $filter) {
-		$http.get('js/app/brand/brand.json').then(function(resp) {
-			$scope.items = resp.data.items;
-			angular.forEach($scope.items, function(value, key) {
-				value.companyId = "2";
-			});
+app.controller('BrandManageCtrl', ['$scope', 'BrandService', '$filter',
+	function($scope, BrandService, $filter) {
+		BrandService.getBrandList().then(function(items) {
+			$scope.items = items;
 			$scope.item = $filter('orderBy')($scope.items, 'first')[0];
 			$scope.item.selected = true;
 		});
-
-		$scope.filter = '';
-		$scope.groups = [{
-			name: 'Coworkers'
-		}, {
-			name: 'Family'
-		}, {
-			name: 'Friends'
-		}, {
-			name: 'Partners'
-		}, {
-			name: 'Group'
-		}];
-
-		$scope.createGroup = function() {
-			var group = {
-				name: 'New Group'
-			};
-			group.name = $scope.checkItem(group, $scope.groups, 'name');
-			$scope.groups.push(group);
-		};
-
-		$scope.checkItem = function(obj, arr, key) {
-			var i = 0;
-			angular.forEach(arr, function(item) {
-				if (item[key].indexOf(obj[key]) == 0) {
-					var j = item[key].replace(obj[key], '').trim();
-					if (j) {
-						i = Math.max(i, parseInt(j) + 1);
-					} else {
-						i = 1;
-					}
-				}
-			});
-			return obj[key] + (i ? ' ' + i : '');
-		};
-
-		$scope.deleteGroup = function(item) {
-			$scope.groups.splice($scope.groups.indexOf(item), 1);
-		};
-
-		$scope.selectGroup = function(item) {
-			angular.forEach($scope.groups, function(item) {
-				item.selected = false;
-			});
-			$scope.group = item;
-			$scope.group.selected = true;
-			$scope.filter = item.name;
-		};
 
 		$scope.selectItem = function(item) {
 			angular.forEach($scope.items, function(item) {
@@ -95,10 +45,7 @@ app.controller('BrandManageCtrl', ['$scope', '$http', '$filter',
 		};
 
 		$scope.createItem = function() {
-			var item = {
-				group: 'Friends',
-				avatar: 'img/a0.jpg'
-			};
+			var item = {};
 			$scope.items.push(item);
 			$scope.selectItem(item);
 			$scope.item.editing = true;

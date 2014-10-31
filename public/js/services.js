@@ -70,19 +70,42 @@
 
 			var userService = {};
 
-			userService.getUserList = function(){
-				return UserResource.get().$promise.then(function(res){
+			userService.getUserList = function() {
+				return UserResource.get().$promise.then(function(res) {
 					return res.results;
 				});
 			};
 
-			userService.getUser = function(id){
-				return UserResource.get({id:id}).$promise.then(function(res){
+			userService.getUser = function(id) {
+				return UserResource.get({
+					id: id
+				}).$promise.then(function(res) {
 					return res;
 				});
 			};
 
 			return userService;
+		}
+	]);
+
+	appService.factory('BrandService', ['$resource',
+		function($resource) {
+			var BrandResource = $resource(getRestApiUrl('/brand'));
+			var BrandFactoryResource = $resource(getRestApiUrl('/brand-factory'));
+
+			var Mock_BrandResource = $resource('js/app/brand/brand.json');
+
+			var brandService = {};
+
+			brandService.getBrandList = function(){
+				return Mock_BrandResource.get().$promise.then(function(res){
+					return res.items;
+				});
+			};
+			brandService.createBrand = function(){};
+			brandService.updateBrand = function(){};
+
+			return brandService;
 		}
 	]);
 
