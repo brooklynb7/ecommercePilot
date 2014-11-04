@@ -5,7 +5,7 @@
 		<div class="bg-light lter b-b wrapper-md">
 			<div class="row">
 				<div class="col-sm-6 col-xs-12">
-					<h1 class="m-n font-thin h3 text-black"  translate="aside.nav.BRAND">BRAND</h1>
+					<h1 class="m-n font-thin h3 text-black" >品牌公司</h1>
 				</div>
 				<div class="col-sm-6 text-right hidden-xs">
 
@@ -15,48 +15,53 @@
 		<!-- / main header -->
 		<div class="wrapper-md" >
 			<!-- stats -->
-			<div class="row">
-				<div class="col-md-12">					
-					<div class="row row-sm text-left">品牌方账号</div>
-					<div class="row row-sm text-center">						
+			<div class="row">				
+				<div class="col-md-12">
+					<div class="row row-sm text-center" ng-if="!isApproved() ">						
 						<div class="col-xs-3">
 							<a href class="block tile panel padder-v bg-default item">
 								<span class="font-thin h2 block">账号审核中...</span>
 							</a>
 						</div>
-					</div>					
-					<div class="row row-sm text-left">品牌管理者</div>
-					<div class="row row-sm text-center">
-						<div class="col-xs-3">
-							<a ui-sref="app.brand.factory" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">维护工厂信息</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-xs-3">
+					</div>
+					<div class="row row-sm text-center">						
+						<div class="col-xs-3" ng-if="isBrandAgent() && isApproved() ">
 							<a ui-sref="app.brand.manage" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">维护品牌信息</span>
+								<span class="text-white font-thin h2 block">在营品牌管理</span>
 								<span class="bottom text-right w-full">
 									<i class="fa fa-bars text-muted m-r-sm"></i>
 								</span>
 							</a>
 						</div>
-						<div class="col-xs-3">
-							<a ui-sref="app.brand.manage" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">维护产品信息</span>
+						<div class="col-xs-3" ng-if="isBrandAgent() && isApproved() ">
+							<a ui-sref="app.brand.expandCity" class="block tile panel padder-v bg-info item">
+								<span class="text-white font-thin h2 block">发布招商城市</span>
+								<span class="bottom text-right w-full">
+									<i class="fa fa-bars text-muted m-r-sm"></i>
+								</span>
+							</a>
+						</div>
+						<div class="col-xs-3" ng-if="isBrandAgent() && isApproved() ">
+							<a ui-sref="app.brand.sellingCity" class="block tile panel padder-v bg-info item">
+								<span class="text-white font-thin h2 block">发布已有实体店</span>
+								<span class="bottom text-right w-full">
+									<i class="fa fa-bars text-muted m-r-sm"></i>
+								</span>
+							</a>
+						</div>
+						<div class="col-xs-3" ng-if="isBrandAgent() && isApproved() ">
+							<a ui-sref="app.brand.productSeries" class="block tile panel padder-v bg-info item">
+								<span class="text-white font-thin h2 block">产品系列管理</span>
 								<span class="bottom text-right w-full">
 									<i class="fa fa-bars text-muted m-r-sm"></i>
 								</span>
 							</a>
 						</div>
 					</div>					
-					<div class="row row-sm text-left">其他用户</div>
-					<div class="row row-sm text-center">
+					<div class="row row-sm text-center" ng-if="isApproved() ">
 						<div class="col-xs-3">
 							<a ui-sref="app.brand.search" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block" translate='brand.SEARCH'></span>
+								<span class="text-white font-thin h2 block">搜索品牌公司</span>
 								<span class="bottom text-right w-full">
 									<i class="fa fa-search text-muted m-r-sm"></i>
 								</span>

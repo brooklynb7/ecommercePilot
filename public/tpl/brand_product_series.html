@@ -1,0 +1,113 @@
+<div class="bg-light lter b-b wrapper-md">
+	<h1 class="m-n font-thin h3">
+		<a ui-sref="app.brand">
+			<i class="icon-arrow-left i-sm m-r-sm"></i>
+		</a>
+		产品系列管理
+	</h1>
+</div>
+<!-- / main header -->
+
+<div class="hbox hbox-auto-xs hbox-auto-sm bg-light" ng-init="app.fullScreen = true;" ng-controller="BrandProductSeriesCtrl">
+	<!-- column -->
+	<div class="col w-lg lter b-r">
+		<div class="vbox">
+			<div class="wrapper-sm b-b">
+				<!-- <div class="input-group m-b-xxs text-center">
+					<span class="input-group-addon input-sm no-border no-bg"><i class="icon-magnifier text-md m-t-xxs"></i></span>
+					<input type="text" class="form-control input-sm no-border no-bg text-md" placeholder="搜索" ng-model="query">
+				</div> -->
+				<div class="text-center ">
+					选择品牌
+				</div>
+			</div>
+
+			<div class="row-row">
+				<div class="cell scrollable hover">
+					<div class="cell-inner">
+						<div class="m-t-n-xxs">
+							<div class="list-group list-group-lg no-radius no-border no-bg m-b-none">
+								<a ng-repeat="item in items | filter:{group:filter} | filter:query | orderBy:'first'" class="list-group-item m-l" ng-class="{'select m-l-none': item.selected }" ng-click="selectItem(item)">
+									<span class="block text-ellipsis m-l-n text-md" ng-class="{'m-l-none': item.selected }">
+										<strong>{{ item.name }}</strong>
+										<span ng-hide="item.name">暂无名称</span>
+									</span>
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	<!-- /column -->
+
+	<!-- column -->
+	<div class="col bg-white-only">
+		<div class="vbox">
+			<div class="wrapper-sm b-b">
+				<div>
+					编辑已有产品系列
+				</div>
+			</div>
+			<div class="row-row">
+				<div class="cell">
+					<div class="cell-inner">
+						<div class="wrapper-lg">				
+							<accordion close-others="oneAtATime">
+								<accordion-group is-open="status.open" >
+									<accordion-heading>
+										添加产品
+										<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
+									</accordion-heading>
+									<form role="form">
+										<div class="form-group">
+											<input type="text" class="form-control" ng-model='newProduct.name' placeholder="名称">
+										</div>
+										<div class="form-group">
+											<input type="text" class="form-control" ng-model='newProduct.short_description'  placeholder="短描述">
+										</div>
+										<div class="form-group">
+											<input type="text" class="form-control" ng-model='newProduct.description' placeholder="长描述">
+										</div>
+										<div class="form-group">
+											<select class="form-control m-b" ng-model='newProduct.category' >
+												<option ng-repeat="item in app.categoryList" value="{{item.id}}">{{item.name}}</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<select class="form-control m-b" ng-model='newProduct.decoration_styles' > 
+												<option ng-repeat="item in app.decorationStyleList" value="{{item.id}}">{{item.name}}</option>
+											</select>
+										</div>
+										<div class="form-group">
+											<select class="form-control m-b" ng-model='newProduct.material_types' >
+												<option ng-repeat="item in app.materialList" value="{{item.id}}">{{item.name}}</option>
+											</select>
+										</div>
+
+										<button type="submit" class="btn btn-sm btn-primary" ng-click='addProduct(newProduct)'>添加</button>
+									</form>
+								</accordion-group>
+							</accordion>			
+							<accordion close-others="oneAtATime">
+								<accordion-group is-open="status.open" ng-repeat="product in item.productseries_set">
+									<accordion-heading>
+										{{product.name}}
+										<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
+									</accordion-heading>
+									<div>名称: {{product.name}}</div>
+									<div>描述: {{product.description}}</div>
+									<div>材料: {{product.material_types}}</div>
+									<div>风格: {{product.decoration_styles}}</div>
+								</accordion-group>
+							</accordion>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- /column -->
+</div>

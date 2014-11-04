@@ -3,13 +3,56 @@
 		"name": "Test",
 		"description": "Test desc",
 		"logo": "",
+		"productseries_set": [{
+			"category": 1,
+			"name": "Test product",
+			"short_description": "12",
+			"description": "12",
+			"selling_cities": null,
+			"expanding_cities": null,
+			"photos": null,
+			"material_types": null,
+			"decoration_styles": null
+		},{
+			"category": 2,
+			"name": "Test product 2",
+			"short_description": "122",
+			"description": "122",
+			"selling_cities": null,
+			"expanding_cities": null,
+			"photos": null,
+			"material_types": null,
+			"decoration_styles": null
+		}],
+		"brand_agent": "",
+		"web_site": "",
+		"phone": "",
+		"style": "",
+		"matieral": [1, 2],
+		"factory": "",
+		"category": [1, 2],
+		"selling_cities": [{
+			"city": "上海市",
+			"address": "上海市晨晖路1001号",
+			"name": "SAP Labs China"
+		}],
+		"expanding_cities": ["上海市", "江苏省扬州市", "浙江省杭州市"],
+		"created_by": "",
+		"updated_by": ""
+	}, {
+		"name": "Test2",
+		"description": "Test desc",
+		"logo": "",
 		"productseries_set": [],
 		"brand_agent": "",
 		"web_site": "",
 		"phone": "",
+		"style": "",
+		"matieral": [],
 		"factory": "",
+		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": [],
+		"expanding_cities": ["北京市"],
 		"created_by": "",
 		"updated_by": ""
 	}]

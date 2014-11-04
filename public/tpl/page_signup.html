@@ -14,26 +14,17 @@
 					</select>
 				</div>
 				<div class="list-group-item">
-					<input placeholder="用户名" class="form-control no-border" ng-model="userInfo.name" required>
+					<input placeholder="用户名" class="form-control no-border" ng-model="userInfo.username" required>
 				</div>
-				<!-- <div class="list-group-item">
-					<input type="email" placeholder="邮箱" class="form-control no-border" ng-model="useInfo.email" required>
-				</div> -->
+				<div class="list-group-item">
+					<input type="email" placeholder="邮箱" class="form-control no-border" ng-model="userInfo.email" required>
+				</div>
 				<div class="list-group-item">
 					<input type="password" placeholder="密码" class="form-control no-border" ng-model="userInfo.password" required>
 				</div>
 				<div class="list-group-item">
-					<input placeholder="注册资金" class="form-control no-border" ng-model="userInfo.fund" required>
-				</div>
-				<div class="list-group-item">
-					<input placeholder="所在地" class="form-control no-border" ng-model="userInfo.address" required>
-				</div>
-				<div class="list-group-item">
 					<input placeholder="电话" class="form-control no-border" ng-model="userInfo.phone" required>
-				</div>
-				<div class="list-group-item" ui-module="select2">
-					<input type="hidden" ui-select2="app.categorySelect2Options" ng-model="userInfo.category" required class="form-control">
-				</div>		
+				</div>	
 			</div>			
 			<button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="signup(userInfo)" ng-disabled='form.$invalid'>注册</button>
 			<div class="line line-dashed"></div>

@@ -4,8 +4,8 @@
 
 	var appController = angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies']);
 
-	appController.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES','UserService', 'AuthService', 'AUTH_EVENTS',
-		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES,UserService, AuthService, AUTH_EVENTS) {
+	appController.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES', 'UserService', 'AuthService', 'AUTH_EVENTS', 'TaxonomyService',
+		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES, UserService, AuthService, AUTH_EVENTS, TaxonomyService) {
 			// add 'ie' classes to html
 			var isIE = !!navigator.userAgent.match(/MSIE/i);
 			isIE && angular.element($window.document.body).addClass('ie');
@@ -43,33 +43,70 @@
 					'value': '2',
 					'text': '品牌公司'
 				}],
-				categoryType: [],
-				categorySelect2Options: {
-					'placeholder': '经营范围',
-					'multiple': true,
-					'simple_tags': true,
-					'tags': ['沙发', '卫浴', '地板']
-				}
+				categoryList: [],
+				provinceList: [],
+				materialList: [],
+				decorationStyleList: []
 			};
-			$scope.currentUser = {};	
-			UserService.getUser(1).then(function(user) {
+
+			TaxonomyService.getCategoryList({
+				//root:"True"
+			}).then(function(categoryList) {
+				$scope.app.categoryList = categoryList;
+			});
+
+			TaxonomyService.getProvinceList({
+				//page: 1
+			}).then(function(provinceList) {
+				$scope.app.provinceList = provinceList;
+			});
+
+			TaxonomyService.getMaterialList().then(function(materialList) {
+				$scope.app.materialList = materialList;
+			});
+
+			TaxonomyService.getDecorationStyleList({
+				//page: 1
+			}).then(function(decorationStyleList) {
+				$scope.app.decorationStyleList = decorationStyleList;
+			});
+
+			$scope.currentUser = {};
+			/*UserService.getUser(1).then(function(user) {
+				$scope.setCurrentUser(user);
+			});*/
+			AuthService.login({
+				name: "test2"
+			}).then(function(user) {
 				$scope.setCurrentUser(user);
 			});
-			/*AuthService.login().then(function(user) {
-				//$scope.setCurrentUser(user);
-			});*/
 
 			$scope.userRoles = USER_ROLES;
 			$scope.isAuthorized = AuthService.isAuthorized;
 
-			$scope.isBrandUser = function(type) {
-				return type == '2';
+			$scope.isBrandAgent = function() {
+				return $scope.currentUser.type == '2';
 			};
-			$scope.isAgencyUser = function(type) {
-				return type == '1';
+			$scope.isSalesAgent = function() {
+				return $scope.currentUser.type == '1';
 			};
-			$scope.isAdmin = function(type) {
-				return type == '99';
+			$scope.isAdmin = function() {
+				return $scope.currentUser.type == '99';
+			};
+			$scope.isApproved = function() {
+				return $scope.currentUser["approval_state"] == "A";
+			};
+			$scope.getApprovalText = function() {
+				if ($scope.currentUser["approval_state"] == "A") {
+					return "已审核通过";
+				}
+				if ($scope.currentUser["approval_state"] == "B") {
+					return "待审核";
+				}
+				if ($scope.currentUser["approval_state"] == "C") {
+					return "未通过审核";
+				}
+				return "";
 			};
 
 			$scope.setCurrentUser = function(user) {
@@ -153,19 +190,23 @@
 		function($scope, $http, $state, $rootScope, AUTH_EVENTS, AuthService) {
 			$scope.authError = null;
 			$scope.userInfo = {
-				active: false,
-				type: '1',
-				name: '',
-				password: '',
-				fund: '',
-				address: '',
-				phone: '',
-				category: []
+				"id": new Date().valueOf(),
+				"is_active": true,
+				"type": "1",
+				"username": "",
+				"email": "",
+				"password": "",
+				"fund": "",
+				"address": "",
+				"phone": "",
+				"approval_state": "B",
+				"category": []
 			};
 
 			$scope.signup = function(userInfo) {
 				AuthService.signup(userInfo).then(function(user) {
-					$scope.setCurrentUser(userInfo);
+					console.log(user);
+					$scope.setCurrentUser(user);
 					$state.go('app.page.profile');
 				}, function() {
 					$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
@@ -186,10 +227,9 @@
 	appController.controller('ProfileController', ['$scope', 'UserService',
 		function($scope, UserService) {
 			//test apo
-			UserService.getUserList().then(function(users) {
-			});
+			UserService.getUserList().then(function(users) {});
 
-			
+
 		}
 	]);
 })();

@@ -32,15 +32,31 @@
 
 			authService.signup = function(userInfo) {
 				return Mock_SignUpRsc.get().$promise.then(function(res) {
-					Session.create(res.user.id, res.user.id, res.user.role);
-					return res.user;
+					Session.create(userInfo.id, userInfo.id, userInfo.type);
+					return userInfo;
 				});
 			};
 
 			authService.login = function(credentials) {
-				return Mock_SignInRsc.get().$promise.then(function(res) {
-					Session.create(res.id, res.id, res.type);
-					return res;
+				return Mock_SignInRsc.query().$promise.then(function(res) {
+					var rst = {};
+					if (credentials.name == 'test1') {
+						rst = res[0];
+					}
+					if (credentials.name == 'test2') {
+						rst = res[1];
+					}
+					if (credentials.name == 'test3') {
+						rst = res[2];
+					}
+					if (credentials.name == 'test4') {
+						rst = res[3];
+					}
+					if (credentials.name == 'admin') {
+						rst = res[4];
+					}
+					Session.create(rst.id, rst.id, rst.type);
+					return rst;
 				});
 			};
 
@@ -97,15 +113,52 @@
 
 			var brandService = {};
 
-			brandService.getBrandList = function(){
-				return Mock_BrandResource.get().$promise.then(function(res){
+			brandService.getBrandList = function() {
+				return Mock_BrandResource.get().$promise.then(function(res) {
 					return res.items;
 				});
 			};
-			brandService.createBrand = function(){};
-			brandService.updateBrand = function(){};
+			brandService.createBrand = function() {};
+			brandService.updateBrand = function() {};
 
 			return brandService;
+		}
+	]);
+
+	appService.factory('TaxonomyService', ['$resource',
+		function($resource) {
+			var CategoryResource = $resource(getRestApiUrl('/category/?root=:root'),{root:'@root'});
+			var ProvinceResource = $resource(getRestApiUrl('/province/?page=:page'),{page:'@page'});
+			var MaterialResource = $resource(getRestApiUrl('/material-type/'));
+			var DecorationStyleResource = $resource(getRestApiUrl('/decoration-style/?page=:page'), {page:'@page'});
+
+			var taxonomyService = {};
+
+			taxonomyService.getCategoryList = function(queries){
+				return CategoryResource.get(queries).$promise.then(function(res){
+					return res.results;
+				});
+			};
+
+			taxonomyService.getProvinceList = function(queries){
+				return ProvinceResource.get(queries).$promise.then(function(res){
+					return res.results;
+				});
+			};
+
+			taxonomyService.getMaterialList = function(queries){
+				return MaterialResource.get(queries).$promise.then(function(res){
+					return res.results;
+				});
+			};
+
+			taxonomyService.getDecorationStyleList = function(queries){
+				return DecorationStyleResource.get(queries).$promise.then(function(res){
+					return res.results;
+				});
+			};
+
+			return taxonomyService;
 		}
 	]);
 

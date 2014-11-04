@@ -10,11 +10,23 @@
 					<label class="col-sm-2 control-label" >账号类型</label>
 					<div class="col-sm-10">
 						<p class="form-control-static">
-							<span ng-if="isBrandUser(currentUser.type)">品牌公司</span>
-							<span ng-if="isAgencyUser(currentUser.type)">经销商</span>
+							<span ng-if="isAdmin()">管理员</span>
+							<span ng-if="isBrandAgent()">品牌公司</span>
+							<span ng-if="isSalesAgent()">经销商</span>
 						</p>
 					</div>
-				</div> 
+				</div>
+				<div ng-if="!isAdmin()">
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group" >
+						<label class="col-sm-2 control-label" >账号状态</label>
+						<div class="col-sm-10">
+							<p class="form-control-static">
+								{{getApprovalText()}}
+							</p>
+						</div>
+					</div> 
+				</div>
 				<div class="line line-dashed b-b line-lg pull-in"></div>
 				<div class="form-group">
 					<label class="col-sm-2 control-label"  translate='profile.USER_NAME'></label>
@@ -29,46 +41,51 @@
 						<p class="form-control-static">{{currentUser.email}}</p>
 					</div>
 				</div>
-				<div class="line line-dashed b-b line-lg pull-in"></div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label" >注册资金</label>
-					<div class="col-sm-10">
-						{{currentUser.fund}}
+				<div ng-if="!isAdmin()">
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" >所在地</label>
+						<div class="col-sm-10">
+							<span ng-show="isApproved()">{{currentUser.address}}</span>
+							<input ng-show="!isApproved()" type="text" class="form-control" ng-model='currentUser.address'/>
+						</div>
 					</div>
-				</div>
-				<div class="line line-dashed b-b line-lg pull-in"></div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label" >所在地</label>
-					<div class="col-sm-10">
-						{{currentUser.address}}
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" >电话</label>
+						<div class="col-sm-10">
+							<span ng-show="isApproved()">{{currentUser.phone}}</span>
+							<input ng-show="!isApproved()" type="text" class="form-control" ng-model='currentUser.phone'/>
+						</div>
 					</div>
-				</div>
-				<div class="line line-dashed b-b line-lg pull-in"></div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label" >电话</label>
-					<div class="col-sm-10">
-						<input type="text" class="form-control" ng-model='currentUser.phone'/>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" >电话</label>
+						<div class="col-sm-10">
+							<span ng-show="isApproved()">{{currentUser.fund}}</span>
+							<input ng-show="!isApproved()" type="text" class="form-control" ng-model='currentUser.fund'/>
+						</div>
 					</div>
-				</div>
-				<div class="line line-dashed b-b line-lg pull-in"></div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label" >经营范围</label>
-					<div class="col-sm-10" ui-module="select2">
-						<input type="hidden" ui-select2="app.categorySelect2Options" ng-model='currentUser.category' class="form-control" />
-					</div>	
-				</div>
-				<!-- <div class="line line-dashed b-b line-lg pull-in"></div>
-				     <div class="form-group">
-				     	<label class="col-sm-2 control-label" translate="profile.BIZ_LISENCE">File input</label>
-				     	<div class="col-sm-10">
-				     		<input ui-jq="filestyle" type="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s">
-				     	</div>
-				     </div>    -->     
-				<div class="line line-dashed b-b line-lg pull-in"></div>
-				<div class="form-group">
-					<div class="col-sm-4 col-sm-offset-2">
-						<button type="submit" class="btn btn-default" translate="common.CANCEL">Cancel</button>
-						<button type="submit" class="btn btn-primary" translate="common.SAVE">Save changes</button>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" >经营范围</label>
+						<div class="col-sm-10" ui-module="select2">							
+							<span ng-show="isApproved()">{{currentUser.category.join(',')}}</span>
+							<input  ng-show="!isApproved()" type="hidden" ui-select2="app.categorySelect2Options" ng-model='currentUser.category' class="form-control" />
+						</div>	
+					</div>
+					<!-- <div class="line line-dashed b-b line-lg pull-in"></div>
+					     <div class="form-group">
+					     	<label class="col-sm-2 control-label" translate="profile.BIZ_LISENCE">File input</label>
+					     	<div class="col-sm-10">
+					     		<input ui-jq="filestyle" type="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s">
+					     	</div>
+					     </div>    -->     
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group" ng-show="!isApproved()">
+						<div class="col-sm-4 col-sm-offset-2">
+							<button type="submit" class="btn btn-primary">更新待审核信息</button>
+						</div>
 					</div>
 				</div>
 			</form>
