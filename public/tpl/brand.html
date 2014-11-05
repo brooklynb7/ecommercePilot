@@ -25,7 +25,7 @@
 						</div>
 					</div>
 					<div class="row row-sm text-center">						
-						<div class="col-xs-3" ng-if="isBrandAgent() && isApproved() ">
+						<div class="col-xs-6 col-sm-3" ng-if="isBrandAgent() && isApproved() ">
 							<a ui-sref="app.brand.manage" class="block tile panel padder-v bg-info item">
 								<span class="text-white font-thin h2 block">在营品牌管理</span>
 								<span class="bottom text-right w-full">
@@ -33,7 +33,7 @@
 								</span>
 							</a>
 						</div>
-						<div class="col-xs-3" ng-if="isBrandAgent() && isApproved() ">
+						<div class="col-xs-6 col-sm-3" ng-if="isBrandAgent() && isApproved() ">
 							<a ui-sref="app.brand.expandCity" class="block tile panel padder-v bg-info item">
 								<span class="text-white font-thin h2 block">发布招商城市</span>
 								<span class="bottom text-right w-full">
@@ -41,7 +41,7 @@
 								</span>
 							</a>
 						</div>
-						<div class="col-xs-3" ng-if="isBrandAgent() && isApproved() ">
+						<div class="col-xs-6 col-sm-3" ng-if="isBrandAgent() && isApproved() ">
 							<a ui-sref="app.brand.sellingCity" class="block tile panel padder-v bg-info item">
 								<span class="text-white font-thin h2 block">发布已有实体店</span>
 								<span class="bottom text-right w-full">
@@ -49,7 +49,7 @@
 								</span>
 							</a>
 						</div>
-						<div class="col-xs-3" ng-if="isBrandAgent() && isApproved() ">
+						<div class="col-xs-6 col-sm-3" ng-if="isBrandAgent() && isApproved() ">
 							<a ui-sref="app.brand.productSeries" class="block tile panel padder-v bg-info item">
 								<span class="text-white font-thin h2 block">产品系列管理</span>
 								<span class="bottom text-right w-full">
@@ -58,14 +58,24 @@
 							</a>
 						</div>
 					</div>					
-					<div class="row row-sm text-center" ng-if="isApproved() ">
-						<div class="col-xs-3">
-							<a ui-sref="app.brand.search" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">搜索品牌公司</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-search text-muted m-r-sm"></i>
+					<div ng-controller="BrandSearchCtrl">
+						<form ng-submit="searchBrand(searchKey)" class="m-b-md">
+							<div class="input-group">
+								<input type="text" class="form-control input-lg" ng-model='searchKey' placeholder="搜索品牌">
+								<span class="input-group-btn">
+									<input class="btn btn-lg btn-default" value="搜索品牌" type="submit"></input>
 								</span>
-							</a>
+							</div>
+						</form>
+						<div class="row">
+							<div class="col-xs-6 col-sm-3" ng-repeat="item in brandResults">
+								<div class="thumbnail" >
+									<img style='width:100%' src="{{item.logo}}" />
+									<div class="caption text-center">
+										<a  ui-sref="app.brand.detail({brandId:item.id})" class="h4 text-primary m-b-sm m-t-sm block" role="button">{{item.name}}</a>
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
