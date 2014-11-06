@@ -109,6 +109,10 @@ var app = angular.module('app', [
 						url: '/search',
 						templateUrl: 'tpl/brand_search.html'
 					})
+					.state('app.brand.detail', {
+						url: '/{brandId:[0-9]{1,9}}',
+						templateUrl: 'tpl/brand_detail.html'
+					})
 					.state('app.brand.expandCity', {
 						url: '/expand/city',
 						templateUrl: 'tpl/brand_expand_city.html'

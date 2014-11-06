@@ -12,3 +12,7 @@ delete /rest/brand/:id/productseries_set/:id
 品牌需要添加字段:
 产品线，产品风格?，材料，city code, required,
 selling city address, store, name?
+
+
+现在user，profile，brand-agent，sales-agent有一些数据了
+密码默认都是1234

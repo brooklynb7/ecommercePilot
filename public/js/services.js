@@ -111,7 +111,7 @@
 
 	appService.factory('BrandService', ['$resource',
 		function($resource) {
-			var BrandResource = $resource(getRestApiUrl('/brand'));
+			var BrandResource = $resource(getRestApiUrl('/brand/:id',{id:"@id"}));
 			var BrandFactoryResource = $resource(getRestApiUrl('/brand-factory'));
 
 			var Mock_BrandResource = $resource('js/app/brand/brand.json');
@@ -123,6 +123,25 @@
 					return res.items;
 				});
 			};
+			brandService.getBrand = function(brandId){
+				return Mock_BrandResource.get().$promise.then(function(res) {
+					if(brandId == 1){
+						return res.items[0];
+					} else {
+						return res.items[1];
+					}
+				});
+			}
+
+
+				/*
+					return BrandResource.get({
+						id: brandId
+					}).$promise.then(function(res) {
+						return res;
+					});
+				*/
+
 			brandService.createBrand = function() {};
 			brandService.updateBrand = function() {};
 
