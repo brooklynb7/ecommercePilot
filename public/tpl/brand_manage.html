@@ -85,7 +85,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">产品材料</label>
 									<div class="col-sm-10" ui-module="select2">
-										<p class="form-control-static" ng-hide="item.editing">{{item.material.join(', ')}}</p>
+										<p class="form-control-static" ng-hide="item.editing">{{getMaterialName()}}</p>
 										<select multiple  ng-show="item.editing" ui-select2 ng-model='item.material' class="form-control">
 											<option ng-repeat="item in app.materialList" value="{{item.id}}">{{item.name}}</option>
 										</select>
@@ -95,7 +95,7 @@
 								<div class="form-group">
 									<label class="col-sm-2 control-label">产品线</label>
 									<div class="col-sm-10"  ui-module="select2">
-										<p class="form-control-static" ng-hide="item.editing">{{item.category.join(', ')}}</p>
+										<p class="form-control-static" ng-hide="item.editing">{{getCategoryName()}}</p>
 										<select multiple  ng-show="item.editing" ui-select2 ng-model='item.category' class="form-control">
 											<option ng-repeat="item in app.categoryList" value="{{item.id}}">{{item.name}}</option>
 										</select>

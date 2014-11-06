@@ -1,6 +1,6 @@
 (function() {
 	function getBrandList(BrandService, $scope, $filter) {
-		BrandService.getBrandList().then(function(items) {
+		return BrandService.getBrandList().then(function(items) {
 			$scope.items = items;
 			$scope.item = $filter('orderBy')($scope.items, 'first')[0];
 			$scope.item.selected = true;
@@ -9,7 +9,33 @@
 
 	app.controller('BrandManageCtrl', ['$scope', 'BrandService', '$filter',
 		function($scope, BrandService, $filter) {
-			getBrandList(BrandService, $scope, $filter)
+			getBrandList(BrandService, $scope, $filter);
+
+			$scope.getMaterialName = function(){
+				if($scope.item){
+					var text = "";
+					_.each($scope.item.material, function(material,idx){
+						text += $scope.app.getMaterialText(material);
+						if(idx < $scope.item.material.length -1){
+							text += ",";
+						}						
+					});
+					return text;
+				}
+			};
+
+			$scope.getCategoryName = function(){
+				if($scope.item){
+					var text = "";
+					_.each($scope.item.category, function(category,idx){
+						text += $scope.app.getCategoryText(category);
+						if(idx < $scope.item.category.length -1){
+							text += ",";
+						}						
+					});
+					return text;
+				}
+			};
 
 			$scope.selectItem = function(item) {
 				angular.forEach($scope.items, function(item) {
@@ -48,7 +74,20 @@
 
 	app.controller('BrandExpandCityCtrl', ['$scope', 'BrandService', '$filter',
 		function($scope, BrandService, $filter) {
-			$scope.newCity = "";
+			$scope.newCity = {
+				province: "100011",
+				city: "110100"
+			};
+			$scope.province = $scope.app.provinceList[0];
+
+			var self = this;
+
+			$scope.changeProvince = function(){
+				$scope.province = _.find($scope.app.provinceList, function(province){
+					return province.code == $scope.newCity.province;
+				});
+				$scope.newCity.city = $scope.province.cities[0].code;
+			}
 
 			getBrandList(BrandService, $scope, $filter)
 
@@ -66,8 +105,7 @@
 
 			$scope.addCity = function(city) {
 				if (city) {
-					$scope.item.expanding_cities.push(city);
-					$scope.newCity = "";
+					$scope.item.expanding_cities.push($scope.app.getProvinceCityText(city.province,city.city));
 				}
 			};
 		}

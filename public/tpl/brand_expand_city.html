@@ -57,10 +57,15 @@
 						<div class="wrapper-lg">
 							<form name="form" class="form-inline ng-pristine ng-valid form-validation" style='margin-bottom:10px' role="form">
 								<div class="form-group">
-									<label class="sr-only" for="exampleInputEmail2">招商城市:</label>
-									<input type="text" class="form-control"  ng-model="newCity" placeholder="招商城市">
+									<select class="form-control" ng-model='newCity.province' ng-change="changeProvince()">
+										<option ng-repeat="item in app.provinceList" value="{{item.code}}">{{item.name}}</option>
+									</select>
 								</div>
-
+								<div class="form-group">
+									<select class="form-control" ng-model='newCity.city' >
+										<option ng-repeat="item in province.cities" value="{{item.code}}">{{item.name}}</option>
+									</select>
+								</div>								
 								<button type="submit" class="btn btn-info" ng-click='addCity(newCity)' ng-disabled='form.$invalid'>添加</button>
 							</form>
 							<div class="panel panel-default">
@@ -86,5 +91,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- /column -->
+</div>
+<!-- /column -->
 </div>

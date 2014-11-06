@@ -42,6 +42,25 @@
 			</tab>
 			<tab>
 				<tab-heading>
+					招商城市
+				</tab-heading>
+				<div class="panel panel-default">
+					<div class="panel-heading">
+						城市列表
+					</div>								
+					<div class="table-responsive">
+						<table class="table table-striped b-t b-light">
+							<tbody>
+								<tr ng-repeat="city in brand.expanding_cities">
+									<td>{{city}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</tab>
+			<tab>
+				<tab-heading>
 					品牌信息
 				</tab-heading>
 				<form class="form-horizontal" method="get">
@@ -95,26 +114,7 @@
 						</div>
 					</div>
 				</form>
-			</tab>
-			<tab>
-				<tab-heading>
-					招商城市
-				</tab-heading>
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						城市列表
-					</div>								
-					<div class="table-responsive">
-						<table class="table table-striped b-t b-light">
-							<tbody>
-								<tr ng-repeat="city in brand.expanding_cities">
-									<td>{{city}}</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
-			</tab>
+			</tab>			
 			<tab>
 				<tab-heading>
 					产品系列
@@ -151,7 +151,7 @@
 								<div class="input-group">
 									<input type="text" class="form-control" ng-model='newComment.text' placeholder="说些什么">
 									<span class="input-group-btn">
-										<input type='submit' class="btn btn-default">评价</button>
+										<input type='submit' class="btn btn-default" value='评价'/>
 									</span>
 								</div>
 							</form>

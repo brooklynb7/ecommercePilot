@@ -49,6 +49,37 @@
 				decorationStyleList: []
 			};
 
+			$scope.app.getProvinceCityText = function(provinceId, cityId){
+				var provinceObj = _.find($scope.app.provinceList, function(province){
+					return province.code == provinceId;
+				});
+				var cityObj = _.find(provinceObj.cities, function(city){
+					return city.code == cityId;
+				});
+
+				return provinceObj.name + cityObj.name;
+			};
+
+			$scope.app.getMaterialText = function(id){
+				var materialObj = _.find($scope.app.materialList, function(material){
+					return material.id == id;
+				});
+				if(materialObj) {
+					return materialObj.name;
+				}
+				return "";
+			};
+
+			$scope.app.getCategoryText = function(id){
+				var categoryObj = _.find($scope.app.categoryList, function(category){
+					return category.id == id;
+				});
+				if(categoryObj) {
+					return categoryObj.name;
+				}
+				return "";
+			};
+
 			TaxonomyService.getCategoryList({
 				//root:"True"
 			}).then(function(categoryList) {
@@ -77,7 +108,7 @@
 			});*/
 
 			AuthService.login({
-				name: "test2"
+				username: "test2"
 			}).then(function(user) {
 				$scope.setCurrentUser(user);
 			});

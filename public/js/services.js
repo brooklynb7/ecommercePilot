@@ -53,19 +53,19 @@
 			authService.login = function(credentials) {
 				return Mock_SignInRsc.query(credentials).$promise.then(function(res) {
 					var rst = {};
-					if (credentials.name == 'test1') {
+					if (credentials.username == 'test1') {
 						rst = res[0];
 					}
-					if (credentials.name == 'test2') {
+					if (credentials.username == 'test2') {
 						rst = res[1];
 					}
-					if (credentials.name == 'test3') {
+					if (credentials.username == 'test3') {
 						rst = res[2];
 					}
-					if (credentials.name == 'test4') {
+					if (credentials.username == 'test4') {
 						rst = res[3];
 					}
-					if (credentials.name == 'admin') {
+					if (credentials.username == 'admin') {
 						rst = res[4];
 					}
 					Session.create(rst.id, rst.id, rst.type);
