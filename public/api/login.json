@@ -1,7 +1,7 @@
 [{
 	"id": "1",
 	"is_active": true,
-	"type": "1",
+	"type": "S",
 	"username": "test1",
 	"email": "test@test.com",
 	"password": "test",
@@ -13,7 +13,7 @@
 }, {
 	"id": "2",
 	"is_active": true,
-	"type": "2",
+	"type": "B",
 	"username": "test2",
 	"email": "test@test.com",
 	"password": "test",
@@ -25,7 +25,7 @@
 }, {
 	"id": "3",
 	"is_active": true,
-	"type": "1",
+	"type": "S",
 	"username": "test3",
 	"email": "test3@test.com",
 	"password": "test",
@@ -37,7 +37,7 @@
 }, {
 	"id": "4",
 	"is_active": true,
-	"type": "2",
+	"type": "B",
 	"username": "test4",
 	"email": "test4@test.com",
 	"password": "test",
@@ -49,7 +49,7 @@
 }, {
 	"id": "99",
 	"is_active": true,
-	"type": "99",
+	"type": "A",
 	"username": "admin",
 	"email": "test@test.com",
 	"password": "test"

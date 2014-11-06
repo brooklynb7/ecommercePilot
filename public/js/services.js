@@ -2,7 +2,7 @@
 /* Services */
 // Demonstrate how to register services
 (function() {
-	var service_path = "http://121.40.72.71:8080/rest";
+	var service_path = "http://127.0.0.1:8000/rest";
 	var getRestApiUrl = function(path) {
 		return service_path + path;
 	};
@@ -25,20 +25,25 @@
 
 	appService.factory('AuthService', ['$resource', 'Session',
 		function($resource, Session) {
-			var Mock_SignUpRsc = $resource('api/signup.json');
-			var Mock_SignInRsc = $resource('api/login.json');
+			var SignUpResource = $resource(getRestApiUrl('/user/register/'), {},
+				{signup: {method:'POST', params:{}}}
+			);
+			var SignInResource = $resource(getRestApiUrl('/user/login/'), {},
+				{login: {method:'POST', params:{}}}
+			);
 
 			var authService = {};
 
 			authService.signup = function(userInfo) {
-				return Mock_SignUpRsc.get().$promise.then(function(res) {
-					Session.create(userInfo.id, userInfo.id, userInfo.type);
+				return SignUpResource.signup(userInfo).$promise.then(function(res) {
+					//Session.create(userInfo.id, userInfo.id, userInfo.type);
 					return userInfo;
 				});
 			};
 
 			authService.login = function(credentials) {
-				return Mock_SignInRsc.query().$promise.then(function(res) {
+				return SignInResource.login(credentials).$promise.then(function(res) {
+					console.log("Service : " + credentials);
 					var rst = {};
 					if (credentials.name == 'test1') {
 						rst = res[0];

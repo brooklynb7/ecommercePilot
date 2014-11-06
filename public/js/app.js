@@ -57,6 +57,7 @@ var app = angular.module('app', [
 				app.constant = $provide.constant;
 				app.value = $provide.value;
 
+
 				$urlRouterProvider
 					.otherwise('/app/page/profile');
 				$stateProvider
@@ -172,11 +173,11 @@ var app = angular.module('app', [
 						templateUrl: 'tpl/page_404.html'
 					})
 			}
-		]
-	)
-	.config(['$translateProvider',
-		function($translateProvider) {
-
+		])
+		.config(function($resourceProvider) {
+			$resourceProvider.defaults.stripTrailingSlashes = false;
+		})
+		.config(['$translateProvider', function($translateProvider) {
 			// Register a loader for the static files
 			// So, the module will search missing translation tables under the specified urls.
 			// Those urls are [prefix][langKey][suffix].

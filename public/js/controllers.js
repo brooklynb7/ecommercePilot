@@ -37,10 +37,10 @@
 					container: false
 				},
 				userType: [{
-					'value': '1',
+					'value': 'S',
 					'text': '经销商'
 				}, {
-					'value': '2',
+					'value': 'B',
 					'text': '品牌公司'
 				}],
 				categoryList: [],
@@ -75,23 +75,24 @@
 			/*UserService.getUser(1).then(function(user) {
 				$scope.setCurrentUser(user);
 			});*/
-			AuthService.login({
+
+			/*AuthService.login({
 				name: "test2"
 			}).then(function(user) {
 				$scope.setCurrentUser(user);
-			});
+			});*/
 
 			$scope.userRoles = USER_ROLES;
 			$scope.isAuthorized = AuthService.isAuthorized;
 
 			$scope.isBrandAgent = function() {
-				return $scope.currentUser.type == '2';
+				return $scope.currentUser.type == 'B';
 			};
 			$scope.isSalesAgent = function() {
-				return $scope.currentUser.type == '1';
+				return $scope.currentUser.type == 'S';
 			};
 			$scope.isAdmin = function() {
-				return $scope.currentUser.type == '99';
+				return $scope.currentUser.type == 'A';
 			};
 			$scope.isApproved = function() {
 				return $scope.currentUser["approval_state"] == "A";
@@ -172,7 +173,7 @@
 		function($scope, $state, $rootScope, AUTH_EVENTS, AuthService) {
 			$scope.authError = null;
 			$scope.credentials = {
-				name: '',
+				username: '',
 				password: ''
 			};
 			$scope.login = function(credentials) {
@@ -192,7 +193,7 @@
 			$scope.userInfo = {
 				"id": new Date().valueOf(),
 				"is_active": true,
-				"type": "1",
+				"type": "S",
 				"username": "",
 				"email": "",
 				"password": "",
