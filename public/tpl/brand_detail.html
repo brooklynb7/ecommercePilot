@@ -9,7 +9,6 @@
 	</div>
 	<div class="wrapper-md">
 		<tabset class="tab-container">
-			
 			<tab>
 				<tab-heading>
 					已有店铺
@@ -18,16 +17,12 @@
 				<div class="col w-lg lt b-r">
 					<div class="vbox">
 						<div class="row-row">
-							<div class="cell scrollable hover">
-								<div class="cell-inner">
-									<div class="padder">
-										<div class="list-group">
-											<a ng-repeat="city in brand.selling_cities" class="list-group-item b-l-3x hover-anchor" ng-class="{'hover': city.selected }" ng-click="selectCity(city)">
-												<span class="block text-ellipsis">{{ city.name }}</span>
-												<small class="text-muted">{{ city.address }}</small>
-											</a>
-										</div>
-									</div>
+							<div class="padder" style='height:600px;overflow-y:auto'>
+								<div class="list-group">
+									<a ng-repeat="city in brand.selling_cities" class="list-group-item b-l-3x hover-anchor" ng-class="{'hover': city.selected }" ng-click="selectCity(city)">
+										<span class="block text-ellipsis">{{ city.name }}</span>
+										<small class="text-muted">{{ city.address }}</small>
+									</a>
 								</div>
 							</div>
 						</div>
@@ -39,7 +34,7 @@
 				<div class="col" style="width:80%">
 					<div class="vbox">
 						<div class="row-row">
-							<div id='baiduMap' style="width:100%; height:600px;">map</div>
+							<div id='baiduMap' style="width:100%; height:600px;"></div>
 						</div>
 					</div>
 				</div>
@@ -124,6 +119,45 @@
 				<tab-heading>
 					产品系列
 				</tab-heading>
+				<accordion close-others="oneAtATime">
+					<accordion-group is-open="status.open" ng-repeat="product in brand.productseries_set">
+						<accordion-heading>
+							{{product.name}}
+							<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
+						</accordion-heading>
+						<div>名称: {{product.name}}</div>
+						<div>描述: {{product.description}}</div>
+						<div>材料: {{product.material_types}}</div>
+						<div>风格: {{product.decoration_styles}}</div>
+					</accordion-group>
+				</accordion>
+			</tab>
+			<tab>
+				<tab-heading>
+					评价
+				</tab-heading>
+				<div class="panel b-a">
+					<ul class="list-group list-group-lg no-bg auto">
+						<li class="list-group-item clearfix" ng-repeat='comment in brand.comment'>							
+							<span class="clear">
+								<small class="text-muted clear text-ellipsis">({{comment.created_at}}) - {{comment.created_by}}</small>
+								<span>{{comment.text}}</span>
+							</span>
+						</li>
+					</ul>
+					<div class="clearfix panel-footer">
+						<div>
+							<form class="m-b-none" ng-submit="addComment(newComment)">
+								<div class="input-group">
+									<input type="text" class="form-control" ng-model='newComment.text' placeholder="说些什么">
+									<span class="input-group-btn">
+										<input type='submit' class="btn btn-default">评价</button>
+									</span>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>  
 			</tab>
 		</tabset>
 	</div>

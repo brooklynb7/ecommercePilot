@@ -149,6 +149,7 @@
 			$scope.brand = {};
 			$scope.city = {};
 			$scope.map = null;
+			$scope.newComment = {};
 
 			BrandService.getBrand($stateParams.brandId).then(function(brand) {
 				$scope.brand = brand;
@@ -169,6 +170,14 @@
 				$scope.city = city;
 				$scope.city.selected = true;
 				$scope.map.centerToPoint(city.point);
+			};
+
+			$scope.addComment = function(comment){
+				comment.created_at = new Date();
+				comment.created_by = $scope.currentUser.username;
+				$scope.brand.comment.push(comment);
+				$scope.newComment = {};
+			
 			};
 		}
 	]);
