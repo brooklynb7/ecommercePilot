@@ -76,11 +76,11 @@
 				$scope.setCurrentUser(user);
 			});*/
 
-			/*AuthService.login({
+			AuthService.login({
 				name: "test2"
 			}).then(function(user) {
 				$scope.setCurrentUser(user);
-			});*/
+			});
 
 			$scope.userRoles = USER_ROLES;
 			$scope.isAuthorized = AuthService.isAuthorized;
@@ -95,19 +95,19 @@
 				return $scope.currentUser.type == 'A';
 			};
 			$scope.isApproved = function() {
-				return $scope.currentUser["approval_state"] == "A";
+				return $scope.currentUser.profile.approval == "A";
 			};
 			$scope.getApprovalText = function() {
-				if ($scope.currentUser["approval_state"] == "A") {
+				if ($scope.currentUser.profile.approval == "A") {
 					return "已审核通过";
 				}
-				if ($scope.currentUser["approval_state"] == "B") {
-					return "待审核";
+				if ($scope.currentUser.profile.approval == "C") {
+					return "初始状态";
 				}
-				if ($scope.currentUser["approval_state"] == "C") {
+				if ($scope.currentUser.profile.approval == "D") {
 					return "未通过审核";
 				}
-				return "";
+				return "待审核";
 			};
 
 			$scope.setCurrentUser = function(user) {
@@ -192,16 +192,10 @@
 			$scope.authError = null;
 			$scope.userInfo = {
 				"id": new Date().valueOf(),
-				"is_active": true,
 				"type": "S",
 				"username": "",
 				"email": "",
-				"password": "",
-				"fund": "",
-				"address": "",
-				"phone": "",
-				"approval_state": "B",
-				"category": []
+				"password": ""
 			};
 
 			$scope.signup = function(userInfo) {

@@ -2,7 +2,8 @@
 /* Services */
 // Demonstrate how to register services
 (function() {
-	var service_path = "http://127.0.0.1:8000/rest";
+	//var service_path = "http://127.0.0.1:8000/rest";
+	var service_path = "http://121.40.72.71:8080/rest";
 	var getRestApiUrl = function(path) {
 		return service_path + path;
 	};
@@ -25,12 +26,20 @@
 
 	appService.factory('AuthService', ['$resource', 'Session',
 		function($resource, Session) {
-			var SignUpResource = $resource(getRestApiUrl('/user/register/'), {},
-				{signup: {method:'POST', params:{}}}
-			);
-			var SignInResource = $resource(getRestApiUrl('/user/login/'), {},
-				{login: {method:'POST', params:{}}}
-			);
+			var Mock_SignUpRsc = $resource('api/signup.json');
+			var Mock_SignInRsc = $resource('api/login.json');
+			var SignUpResource = $resource(getRestApiUrl('/user/register/'), {}, {
+				signup: {
+					method: 'POST',
+					params: {}
+				}
+			});
+			var SignInResource = $resource(getRestApiUrl('/user/login/'), {}, {
+				login: {
+					method: 'POST',
+					params: {}
+				}
+			});
 
 			var authService = {};
 
@@ -42,8 +51,7 @@
 			};
 
 			authService.login = function(credentials) {
-				return SignInResource.login(credentials).$promise.then(function(res) {
-					console.log("Service : " + credentials);
+				return Mock_SignInRsc.query(credentials).$promise.then(function(res) {
 					var rst = {};
 					if (credentials.name == 'test1') {
 						rst = res[0];
@@ -63,6 +71,13 @@
 					Session.create(rst.id, rst.id, rst.type);
 					return rst;
 				});
+
+				/*	remote
+					return SignInResource.login(credentials).$promise.then(function(res) {
+						Session.create(res.url, res.url, res.type);
+					return res;
+				});
+				*/
 			};
 
 			authService.logout = function() {
@@ -111,7 +126,9 @@
 
 	appService.factory('BrandService', ['$resource',
 		function($resource) {
-			var BrandResource = $resource(getRestApiUrl('/brand/:id',{id:"@id"}));
+			var BrandResource = $resource(getRestApiUrl('/brand/:id', {
+				id: "@id"
+			}));
 			var BrandFactoryResource = $resource(getRestApiUrl('/brand-factory'));
 
 			var Mock_BrandResource = $resource('js/app/brand/brand.json');
@@ -123,9 +140,9 @@
 					return res.items;
 				});
 			};
-			brandService.getBrand = function(brandId){
+			brandService.getBrand = function(brandId) {
 				return Mock_BrandResource.get().$promise.then(function(res) {
-					if(brandId == 1){
+					if (brandId == 1) {
 						return res.items[0];
 					} else {
 						return res.items[1];
@@ -134,7 +151,7 @@
 			}
 
 
-				/*
+			/*
 					return BrandResource.get({
 						id: brandId
 					}).$promise.then(function(res) {
@@ -151,33 +168,39 @@
 
 	appService.factory('TaxonomyService', ['$resource',
 		function($resource) {
-			var CategoryResource = $resource(getRestApiUrl('/category/?root=:root'),{root:'@root'});
-			var ProvinceResource = $resource(getRestApiUrl('/province/?page=:page'),{page:'@page'});
+			var CategoryResource = $resource(getRestApiUrl('/category/?root=:root'), {
+				root: '@root'
+			});
+			var ProvinceResource = $resource(getRestApiUrl('/province/?page=:page'), {
+				page: '@page'
+			});
 			var MaterialResource = $resource(getRestApiUrl('/material-type/'));
-			var DecorationStyleResource = $resource(getRestApiUrl('/decoration-style/?page=:page'), {page:'@page'});
+			var DecorationStyleResource = $resource(getRestApiUrl('/decoration-style/?page=:page'), {
+				page: '@page'
+			});
 
 			var taxonomyService = {};
 
-			taxonomyService.getCategoryList = function(queries){
-				return CategoryResource.get(queries).$promise.then(function(res){
+			taxonomyService.getCategoryList = function(queries) {
+				return CategoryResource.get(queries).$promise.then(function(res) {
 					return res.results;
 				});
 			};
 
-			taxonomyService.getProvinceList = function(queries){
-				return ProvinceResource.get(queries).$promise.then(function(res){
+			taxonomyService.getProvinceList = function(queries) {
+				return ProvinceResource.get(queries).$promise.then(function(res) {
 					return res.results;
 				});
 			};
 
-			taxonomyService.getMaterialList = function(queries){
-				return MaterialResource.get(queries).$promise.then(function(res){
+			taxonomyService.getMaterialList = function(queries) {
+				return MaterialResource.get(queries).$promise.then(function(res) {
 					return res.results;
 				});
 			};
 
-			taxonomyService.getDecorationStyleList = function(queries){
-				return DecorationStyleResource.get(queries).$promise.then(function(res){
+			taxonomyService.getDecorationStyleList = function(queries) {
+				return DecorationStyleResource.get(queries).$promise.then(function(res) {
 					return res.results;
 				});
 			};

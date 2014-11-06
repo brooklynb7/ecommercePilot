@@ -147,9 +147,79 @@
 	app.controller('BrandDetailCtrl', ['$scope', 'BrandService', '$filter', '$stateParams',
 		function($scope, BrandService, $filter, $stateParams) {
 			$scope.brand = {};
-			BrandService.getBrand($stateParams.brandId).then(function(brand){
+			$scope.city = {};
+			$scope.map = null;
+
+			BrandService.getBrand($stateParams.brandId).then(function(brand) {
 				$scope.brand = brand;
+				$scope.city = $scope.brand.selling_cities[0];
+				$scope.city.selected = true;
+				$scope.map = new Map();
+				_.each($scope.brand.selling_cities, function(city){
+					city.point = $scope.map.generatePoint(city.lon, city.lat, city);
+				});
+				$scope.map.centerZoom();
+				$scope.map.centerToPoint($scope.map.points[0]);
 			});
+
+			$scope.selectCity = function(city) {
+				angular.forEach($scope.brand.selling_cities, function(city) {
+					city.selected = false;
+				});
+				$scope.city = city;
+				$scope.city.selected = true;
+				$scope.map.centerToPoint(city.point);
+			};
 		}
 	]);
-}())
+}());
+
+
+var Map = function() {
+	this.map = new BMap.Map("baiduMap");
+	this.map.enableScrollWheelZoom(true);
+	this.zoomSize = 14;
+	this.points = [];
+	/*this.map.centerAndZoom(new BMap.Point(116.404, 39.915), this.zoomSize);  // 初始化地图,设置中心点坐标和地图级别
+	this.map.addControl(new BMap.MapTypeControl());   //添加地图类型控件*/
+	//this.map.setCurrentCity("北京");   
+	//this.map.addControl(new BMap.NavigationControl());
+};
+Map.prototype.generatePoint = function(lng, lat, infoObj) {
+	var that = this;
+	var point = new BMap.Point(lng, lat);
+	this.points.push(point);
+	var marker = new BMap.Marker(point);
+	marker.addEventListener("click", function() {
+
+	});
+	this.map.addOverlay(marker);
+
+	point.labelAddress = new BMap.Label(infoObj.name, {
+		position: point,
+		offset: new BMap.Size(10, -30)
+	});
+	var labelStyle = {		
+		fontSize: "20px",
+		color: "#0075c7"
+	};
+	point.labelAddress.setStyle(labelStyle);
+
+	//this.map.addOverlay(point.labelAddress);
+
+	return point;
+};
+Map.prototype.centerZoom = function() {
+	if (this.points.length > 0) {
+		this.map.centerAndZoom(this.points[0], this.zoomSize);
+	}
+};
+
+Map.prototype.centerToPoint = function(point) {
+	var that = this;
+	this.map.panTo(point);
+	$.each(this.points, function() {
+		that.map.removeOverlay(this.labelAddress);
+	})
+	this.map.addOverlay(point.labelAddress);
+};

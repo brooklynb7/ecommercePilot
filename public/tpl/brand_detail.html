@@ -9,6 +9,42 @@
 	</div>
 	<div class="wrapper-md">
 		<tabset class="tab-container">
+			
+			<tab>
+				<tab-heading>
+					已有店铺
+				</tab-heading>
+				<!-- column -->
+				<div class="col w-lg lt b-r">
+					<div class="vbox">
+						<div class="row-row">
+							<div class="cell scrollable hover">
+								<div class="cell-inner">
+									<div class="padder">
+										<div class="list-group">
+											<a ng-repeat="city in brand.selling_cities" class="list-group-item b-l-3x hover-anchor" ng-class="{'hover': city.selected }" ng-click="selectCity(city)">
+												<span class="block text-ellipsis">{{ city.name }}</span>
+												<small class="text-muted">{{ city.address }}</small>
+											</a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- /column -->
+
+				<!-- column -->
+				<div class="col" style="width:80%">
+					<div class="vbox">
+						<div class="row-row">
+							<div id='baiduMap' style="width:100%; height:600px;">map</div>
+						</div>
+					</div>
+				</div>
+				<!-- /column -->
+			</tab>
 			<tab>
 				<tab-heading>
 					品牌信息
@@ -83,11 +119,6 @@
 						</table>
 					</div>
 				</div>
-			</tab>
-			<tab>
-				<tab-heading>
-					已有店铺
-				</tab-heading>
 			</tab>
 			<tab>
 				<tab-heading>

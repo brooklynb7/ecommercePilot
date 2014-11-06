@@ -5,11 +5,11 @@
 	"username": "test1",
 	"email": "test@test.com",
 	"password": "test",
-	"fund": "30000",
-	"address": "Test",
-	"phone": "43123",
-	"approval_state": "B",
-	"category": ["沙发"]
+	"profile":{
+		"address": "Test",
+		"phone": "43123",
+		"approval": "C"
+	}
 }, {
 	"id": "2",
 	"is_active": true,
@@ -17,11 +17,11 @@
 	"username": "test2",
 	"email": "test@test.com",
 	"password": "test",
-	"fund": "30000",
-	"address": "Test",
-	"phone": "43123",
-	"approval_state": "A",
-	"category": ["沙发"]
+	"profile":{
+		"address": "Test",
+		"phone": "43123",
+		"approval": "A"
+	}
 }, {
 	"id": "3",
 	"is_active": true,
@@ -29,11 +29,11 @@
 	"username": "test3",
 	"email": "test3@test.com",
 	"password": "test",
-	"fund": "10000",
-	"address": "Test",
-	"phone": "43123",
-	"approval_state": "A",
-	"category": ["沙发"]
+	"profile":{
+		"address": "Test",
+		"phone": "43123",
+		"approval": "A"
+	}
 }, {
 	"id": "4",
 	"is_active": true,
@@ -41,11 +41,11 @@
 	"username": "test4",
 	"email": "test4@test.com",
 	"password": "test",
-	"fund": "10000",
-	"address": "Test",
-	"phone": "43123",
-	"approval_state": "B",
-	"category": ["沙发"]
+	"profile":{
+		"address": "Test",
+		"phone": "43123",
+		"approval": "A"
+	}
 }, {
 	"id": "99",
 	"is_active": true,

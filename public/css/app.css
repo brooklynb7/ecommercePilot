@@ -5046,3 +5046,6 @@ a.text-#000000:hover {
 .app-content-full{
   top:166px;
 }
+label.BMapLabel{
+  max-width: 500px;
+}
