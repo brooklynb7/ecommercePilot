@@ -1,12 +1,32 @@
 'use strict';
-/* Services */
-// Demonstrate how to register services
+
 (function() {
 	//var service_path = "http://127.0.0.1:8000/rest";
 	var service_path = "http://121.40.72.71:8080/rest";
 	var getRestApiUrl = function(path) {
 		return service_path + path;
 	};
+	var _setLocalStorage = function(field, json){
+		localStorage.setItem(field, JSON.stringify(json));
+	};
+	var _getLocalStorage = function(field){
+		return JSON.parse(localStorage.getItem(field));
+	};
+
+	var dataStorage = {
+		getUsers: function(){
+			return _getLocalStorage("users");
+		},
+		setUsers: function(usersJson){
+			_setLocalStorage("users", usersJson);
+		},
+		getBrands: function(){
+			return _getLocalStorage("brands");	
+		},
+		setBrands: function(brandsJSON){
+			_setLocalStorage("brands", brandsJSON);
+		}
+	}
 
 	var appService = angular.module('app.services', ['ngResource']);
 
@@ -45,6 +65,9 @@
 
 			authService.signup = function(userInfo) {
 				return SignUpResource.signup(userInfo).$promise.then(function(res) {
+					var users = dataStorage.getUsers();
+					users.push(userInfo);
+					dataStorage.setUsers(users);
 					//Session.create(userInfo.id, userInfo.id, userInfo.type);
 					return userInfo;
 				});
@@ -103,12 +126,22 @@
 	appService.factory('UserService', ['$resource',
 		function($resource) {
 			var UserResource = $resource(getRestApiUrl('/user/:id'));
+			var Mock_UserResource = $resource('api/login.json');
 
 			var userService = {};
 
+			userService.loadUsers = function(){
+				if(!dataStorage.getUsers()){
+					Mock_UserResource.query().$promise.then(function(res) {
+						dataStorage.setUsers(res);
+					});
+				}
+			};
+
 			userService.getUserList = function() {
 				return UserResource.get().$promise.then(function(res) {
-					return res.results;
+					return dataStorage.getUsers();
+					//return res.results;
 				});
 			};
 
@@ -119,6 +152,15 @@
 					return res;
 				});
 			};
+
+			userService.getToBeApprovedUsers = function(){
+				return UserResource.get().$promise.then(function(res) {
+					var users = dataStorage.getUsers();
+					return _.filter(users, function(user){
+						return user.profile && user.profile.approval == "B";
+					});
+				});
+			}
 
 			return userService;
 		}
@@ -135,29 +177,29 @@
 
 			var brandService = {};
 
+			brandService.loadBrands = function(){
+				if(!dataStorage.getBrands()){
+					Mock_BrandResource.get().$promise.then(function(res) {
+						dataStorage.setBrands(res.items);
+					});
+				}
+			};
+
 			brandService.getBrandList = function() {
 				return Mock_BrandResource.get().$promise.then(function(res) {
-					return res.items;
+					console.log(dataStorage.getBrands());
+					return dataStorage.getBrands();
+					//return res.items;
 				});
 			};
 			brandService.getBrand = function(brandId) {
 				return Mock_BrandResource.get().$promise.then(function(res) {
-					if (brandId == 1) {
-						return res.items[0];
-					} else {
-						return res.items[1];
-					}
+					var brands = dataStorage.getBrands();
+					return _.find(brands, function(brand){
+						return brand.id == brandId;
+					});
 				});
 			}
-
-
-			/*
-					return BrandResource.get({
-						id: brandId
-					}).$promise.then(function(res) {
-						return res;
-					});
-				*/
 
 			brandService.createBrand = function() {};
 			brandService.updateBrand = function() {};
@@ -208,5 +250,4 @@
 			return taxonomyService;
 		}
 	]);
-
 })();

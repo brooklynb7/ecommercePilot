@@ -11,27 +11,27 @@
 		function($scope, BrandService, $filter) {
 			getBrandList(BrandService, $scope, $filter);
 
-			$scope.getMaterialName = function(){
-				if($scope.item){
+			$scope.getMaterialName = function() {
+				if ($scope.item) {
 					var text = "";
-					_.each($scope.item.material, function(material,idx){
+					_.each($scope.item.material, function(material, idx) {
 						text += $scope.app.getMaterialText(material);
-						if(idx < $scope.item.material.length -1){
+						if (idx < $scope.item.material.length - 1) {
 							text += ",";
-						}						
+						}
 					});
 					return text;
 				}
 			};
 
-			$scope.getCategoryName = function(){
-				if($scope.item){
+			$scope.getCategoryName = function() {
+				if ($scope.item) {
 					var text = "";
-					_.each($scope.item.category, function(category,idx){
+					_.each($scope.item.category, function(category, idx) {
 						text += $scope.app.getCategoryText(category);
-						if(idx < $scope.item.category.length -1){
+						if (idx < $scope.item.category.length - 1) {
 							text += ",";
-						}						
+						}
 					});
 					return text;
 				}
@@ -82,8 +82,8 @@
 
 			var self = this;
 
-			$scope.changeProvince = function(){
-				$scope.province = _.find($scope.app.provinceList, function(province){
+			$scope.changeProvince = function() {
+				$scope.province = _.find($scope.app.provinceList, function(province) {
 					return province.code == $scope.newCity.province;
 				});
 				$scope.newCity.city = $scope.province.cities[0].code;
@@ -105,7 +105,7 @@
 
 			$scope.addCity = function(city) {
 				if (city) {
-					$scope.item.expanding_cities.push($scope.app.getProvinceCityText(city.province,city.city));
+					$scope.item.expanding_cities.push($scope.app.getProvinceCityText(city.province, city.city));
 				}
 			};
 		}
@@ -192,13 +192,15 @@
 			BrandService.getBrand($stateParams.brandId).then(function(brand) {
 				$scope.brand = brand;
 				$scope.city = $scope.brand.selling_cities[0];
-				$scope.city.selected = true;
-				$scope.map = new Map();
-				_.each($scope.brand.selling_cities, function(city){
-					city.point = $scope.map.generatePoint(city.lon, city.lat, city);
-				});
-				$scope.map.centerZoom();
-				$scope.map.centerToPoint($scope.map.points[0]);
+				if ($scope.city) {
+					$scope.city.selected = true;
+					$scope.map = new Map();
+					_.each($scope.brand.selling_cities, function(city) {
+						city.point = $scope.map.generatePoint(city.lon, city.lat, city);
+					});
+					$scope.map.centerZoom();
+					$scope.map.centerToPoint($scope.map.points[0]);
+				}
 			});
 
 			$scope.selectCity = function(city) {
@@ -210,26 +212,30 @@
 				$scope.map.centerToPoint(city.point);
 			};
 
-			$scope.addComment = function(comment){
+			$scope.addComment = function(comment) {
 				comment.created_at = new Date();
 				comment.created_by = $scope.currentUser.username;
+				if(!$scope.brand.comment){
+					$scope.brand.comment = [];
+				}
 				$scope.brand.comment.push(comment);
 				$scope.newComment = {};
-			
+
 			};
 		}
 	]);
 
 	app.controller('CarouselCtrl', ['$scope', function($scope) {
+		console.log($scope.brand);
 		$scope.myInterval = 2000;
 		var slides = $scope.slides = [];
 		$scope.addSlide = function() {
 			slides.push({
 				image: 'img/furniture/1000' + (slides.length + 1) + '.jpg',
-				text: ['description','description', 'description', 'description'][slides.length % 4]
+				text: ['description', 'description', 'description', 'description'][slides.length % 4]
 			});
 		};
-		for (var i=0; i<4; i++) {
+		for (var i = 0; i < 4; i++) {
 			$scope.addSlide();
 		}
 	}]);
@@ -262,7 +268,7 @@ Map.prototype.generatePoint = function(lng, lat, infoObj) {
 		position: point,
 		offset: new BMap.Size(10, -30)
 	});
-	var labelStyle = {		
+	var labelStyle = {
 		fontSize: "20px",
 		color: "#0075c7"
 	};

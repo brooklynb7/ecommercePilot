@@ -1,11 +1,11 @@
-app.controller('AdminCheckUserCtrl', ['$scope', '$http', '$filter',
-	function($scope, $http, $filter) {
+app.controller('AdminCheckUserCtrl', ['$scope', '$http', '$filter', 'UserService',
+	function($scope, $http, $filter, UserService) {
 		$scope.oneAtATime = true;
-
-		$http.get('js/app/admin/check_list.json').then(function(resp) {
-			$scope.items = resp.data;
-			$scope.brandAgentItems = $filter('filter')($scope.items, {type:'2'});
-			$scope.salesAgentItems = $filter('filter')($scope.items, {type:'1'});
+		
+		UserService.getToBeApprovedUsers().then(function(resp){
+			$scope.items = resp;
+			$scope.brandAgentItems = $filter('filter')($scope.items, {type:'B'});
+			$scope.salesAgentItems = $filter('filter')($scope.items, {type:'S'});
 
 			$scope.approve = function(item, items){
 				items.splice(items.indexOf(item),1);

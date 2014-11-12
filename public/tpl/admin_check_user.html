@@ -12,12 +12,11 @@
 			<accordion close-others="oneAtATime">
 				<accordion-group is-open="status.open" ng-repeat="item in brandAgentItems">
 					<accordion-heading>
-						{{item.name}}/{{item.email}}
+						{{item.username}}/{{item.email}}
 						<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
 					</accordion-heading>
-					<div>用户名: {{item.name}}</div>
+					<div>用户名: {{item.username}}</div>
 					<div>邮箱: {{item.email}}</div>
-					<div>注册资金: {{item.fund}}</div>
 					<br/>
 					<div>
 						<button class="btn btn-sm btn-success" ng-click="approve(item, brandAgentItems)">通过</button>
@@ -33,12 +32,11 @@
 			<accordion close-others="oneAtATime">
 				<accordion-group is-open="status.open" ng-repeat="item in salesAgentItems">
 					<accordion-heading>
-						{{item.name}}/{{item.email}}
+						{{item.username}}/{{item.email}}
 						<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
 					</accordion-heading>
-					<div>用户名: {{item.name}}</div>
-					<div>邮箱: {{item.email}}</div>
-					<div>注册资金: {{item.fund}}</div>
+					<div>用户名: {{item.username}}</div>
+					<div>邮箱: {{item.email}}</div>					
 					<br/>
 					<div>
 						<button class="btn btn-sm btn-success" ng-click="approve(item, salesAgentItems)">通过</button>

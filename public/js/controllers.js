@@ -4,8 +4,8 @@
 
 	var appController = angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies']);
 
-	appController.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES', 'UserService', 'AuthService', 'AUTH_EVENTS', 'TaxonomyService',
-		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES, UserService, AuthService, AUTH_EVENTS, TaxonomyService) {
+	appController.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES', 'UserService', 'BrandService','AuthService', 'AUTH_EVENTS', 'TaxonomyService',
+		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES, UserService, BrandService,AuthService, AUTH_EVENTS, TaxonomyService) {
 			// add 'ie' classes to html
 			var isIE = !!navigator.userAgent.match(/MSIE/i);
 			isIE && angular.element($window.document.body).addClass('ie');
@@ -48,6 +48,9 @@
 				materialList: [],
 				decorationStyleList: []
 			};
+
+			UserService.loadUsers();
+			BrandService.loadBrands();
 
 			$scope.app.getProvinceCityText = function(provinceId, cityId){
 				var provinceObj = _.find($scope.app.provinceList, function(province){
@@ -131,6 +134,9 @@
 			$scope.getApprovalText = function() {
 				if ($scope.currentUser.profile.approval == "A") {
 					return "已审核通过";
+				}
+				if ($scope.currentUser.profile.approval == "B") {
+					return "待审核";
 				}
 				if ($scope.currentUser.profile.approval == "C") {
 					return "初始状态";
@@ -226,7 +232,12 @@
 				"type": "S",
 				"username": "",
 				"email": "",
-				"password": ""
+				"password": "",
+				"profile": {
+					"address": "",
+					"phone": "",
+					"approval": "B"
+				}
 			};
 
 			$scope.signup = function(userInfo) {
