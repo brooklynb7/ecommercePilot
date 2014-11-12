@@ -11,7 +11,7 @@
 			"description": "12",
 			"selling_cities": null,
 			"expanding_cities": null,
-			"photos": null,
+			"photos": ["img/furniture/10001.jpg", "img/furniture/10002.jpg"],
 			"material_types": null,
 			"decoration_styles": null
 		}, {
@@ -58,12 +58,12 @@
 			"id": 10101,
 			"created_at": "2014-10-21T04:00:00Z",
 			"updated_at": "2014-10-21T04:01:00Z",
-			"created_by": 201,
-			"updated_by": 201,
+			"created_by": "test1",
+			"updated_by": "test1",
 			"content_type": 13,
 			"object_id": 101,
-			"text": "Comment1",
-			"rating": 5
+			"text": "Comment1 Text....\nlooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong text",
+			"rating": 4
 		}, {
 			"id": 10102,
 			"created_at": "2014-10-21T04:00:00Z",
@@ -73,7 +73,7 @@
 			"content_type": 13,
 			"object_id": 101,
 			"text": "Comment12",
-			"rating": 5
+			"rating": 2
 		}]
 	}, {
 		"id": "2",

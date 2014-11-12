@@ -119,18 +119,71 @@
 				<tab-heading>
 					产品系列
 				</tab-heading>
-				<accordion close-others="oneAtATime">
-					<accordion-group is-open="status.open" ng-repeat="product in brand.productseries_set">
-						<accordion-heading>
-							{{product.name}}
-							<i class="pull-right fa fa-angle-right" ng-class="{'fa-angle-down': status.open, 'fa-angle-right': !status.open}"></i>
-						</accordion-heading>
-						<div>名称: {{product.name}}</div>
-						<div>描述: {{product.description}}</div>
-						<div>材料: {{product.material_types}}</div>
-						<div>风格: {{product.decoration_styles}}</div>
-					</accordion-group>
-				</accordion>
+				<table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="1">
+					<thead>
+						<tr>
+							<td colspan="5" class="text-center">
+								<ul class="pagination"></ul>
+							</td>
+						</tr>
+					</thead>
+					<tbody>
+					<tr ng-repeat="product in brand.productseries_set">
+						<td>
+							<div>名称: {{product.name}}</div>
+							<div>描述: {{product.description}}</div>
+							<div>材料: {{product.material_types}}</div>
+							<div>风格: {{product.decoration_styles}}</div>
+							<hr>
+							<div ng-controller="CarouselCtrl" class="panel b-a col-lg-8" set-ng-animate="false">
+								<div class="panel-heading">
+									照片
+								</div>
+								<carousel interval="myInterval">
+									<slide ng-repeat="slide in slides" active="slide.active">
+										<img ng-src="{{slide.image}}" class="img-full">
+										<div class="carousel-caption">
+											<h4>系列名称</h4>
+											<p>{{slide.description}}</p>
+										</div>
+									</slide>
+								</carousel>
+							</div>
+							<!-- Comments for product Series, using brand comments data currently-->
+							<div class="panel col-lg-4">
+								<ul class="list-group list-group-lg no-bg auto">
+									<li class="list-group-item clearfix" ng-repeat='comment in brand.comment'>
+										<span class="clear">
+											<div class="m-b text-lg pull-right">
+												<rating ng-model="comment.rating" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'" readonly="true"></rating>
+											</div>
+											<small class="text-muted clear text-ellipsis">({{comment.created_at}}) - {{comment.created_by}}</small>
+											<span>{{comment.text}}</span>
+										</span>
+									</li>
+								</ul>
+								<div class="clearfix panel-footer">
+									<div>发表评论：
+										<form class="m-b-none" ng-submit="addComment(newComment)">
+											<div class="input-group">
+												<textarea class="form-control" rows="4" cols="40" ng-model='newComment.text' placeholder="……"></textarea>
+												<div>
+													<div class="m-b text-lg" ng-init="newComment.rating=5">
+														<rating ng-model="newComment.rating" max="5" state-on="'fa fa-starx text-warning'" state-off="'fa fa-star-o'"></rating>
+													</div>
+													<div class="input-group-btn">
+														<input type='submit' class="btn btn-default" value='提交'/>
+													</div>
+												</div>
+											</div>
+										</form>
+									</div>
+								</div>
+							</div>
+						</td>
+					</tr>
+					</tbody>
+				</table>
 			</tab>
 			<tab>
 				<tab-heading>

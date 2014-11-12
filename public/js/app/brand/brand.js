@@ -219,6 +219,22 @@
 			};
 		}
 	]);
+
+	app.controller('CarouselCtrl', ['$scope', function($scope) {
+		$scope.myInterval = 2000;
+		var slides = $scope.slides = [];
+		$scope.addSlide = function() {
+			slides.push({
+				image: 'img/furniture/1000' + (slides.length + 1) + '.jpg',
+				text: ['description','description', 'description', 'description'][slides.length % 4]
+			});
+		};
+		for (var i=0; i<4; i++) {
+			$scope.addSlide();
+		}
+	}]);
+
+
 }());
 
 
