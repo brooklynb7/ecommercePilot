@@ -59,12 +59,20 @@ var app = angular.module('app', [
 
 
 				$urlRouterProvider
-					.otherwise('/app/page/profile');
+					.otherwise('/app/home');
 				$stateProvider
 					.state('app', {
 						abstract: true,
 						url: '/app',
 						templateUrl: 'tpl/app.html'
+					})
+					.state('app.home', {
+						url: '/home',
+						templateUrl: 'tpl/home.html'
+					})
+					.state('app.home.brand', {
+						url: '/brand',
+						templateUrl: 'tpl/brand_list.html'
 					})
 					.state('app.mall', {
 						url: '/mall',
@@ -82,9 +90,9 @@ var app = angular.module('app', [
 							]
 						}
 					})
-					.state('app.agency.manage', {
-						url: '/agency/manage',
-						templateUrl: '/'
+					.state('app.agency.workCenter', {
+						url: '/workcenter',
+						templateUrl: 'tpl/agency_work_center.html'
 					})
 					.state('app.brand', {
 						url: '/brand',
@@ -109,6 +117,10 @@ var app = angular.module('app', [
 						url: '/search',
 						templateUrl: 'tpl/brand_search.html'
 					})
+					.state('app.brand.list', {
+						url: '/list',
+						templateUrl: 'tpl/brand_list.html'
+					})
 					.state('app.brand.detail', {
 						url: '/{brandId:[0-9]{1,9}}',
 						templateUrl: 'tpl/brand_detail.html'
@@ -124,6 +136,10 @@ var app = angular.module('app', [
 					.state('app.brand.productSeries', {
 						url: '/product/series',
 						templateUrl: 'tpl/brand_product_series.html'
+					})
+					.state('app.brand.workCenter', {
+						url: '/workcenter',
+						templateUrl: 'tpl/brand_work_center.html'
 					})
 					.state('app.system', {
 						url: '/system',

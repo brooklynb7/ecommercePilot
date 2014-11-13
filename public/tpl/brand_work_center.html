@@ -1,0 +1,55 @@
+<div class="hbox hbox-auto-xs hbox-auto-sm fade-in-up" ui-view>
+	<!-- main -->
+	<div class="col" ng-init="app.fullScreen = false;" >
+		<!-- main header -->
+		<div class="bg-light lter b-b wrapper-md">
+			<div class="row">
+				<div class="col-sm-6 col-xs-12">
+					<h1 class="m-n font-thin h3 text-black" >品牌管理</h1>
+				</div>
+				<div class="col-sm-6 text-right hidden-xs">
+
+				</div>
+			</div>
+		</div>
+		<!-- / main header -->
+		<div class="wrapper-md" >
+			<!-- stats -->
+			<div class="row">				
+				<div class="col-md-12">
+					<div class="row row-sm text-center" ng-if="!isApproved() ">						
+						<div class="col-xs-3">
+							<a href class="block tile panel padder-v bg-default item">
+								<span class="font-thin h2 block">账号审核中...</span>
+							</a>
+						</div>
+					</div>
+					<div class="row row-sm text-center">
+						<div class="wrapper-md">
+							<tabset class="tab-container">
+								<tab><tab-heading>维护公司信息</tab-heading>
+									<div data-ng-include=" 'tpl/page_profile.html'"></div>
+								</tab>
+								<tab ng-if="isApproved()"><tab-heading>维护品牌信息</tab-heading>
+									<div data-ng-include=" 'tpl/brand_manage.html'"></div>
+								</tab>
+								<tab ng-if="isApproved()"><tab-heading>管理产品系列</tab-heading>
+									<div data-ng-include=" 'tpl/brand_product_series.html'"></div>
+								</tab>
+								<tab ng-if="isApproved()"><tab-heading>维护实体店信息</tab-heading>
+									<div data-ng-include=" 'tpl/brand_selling_city.html'"></div>
+								</tab>
+								<tab ng-if="isApproved()"><tab-heading>发布招商城市</tab-heading>
+									<div data-ng-include=" 'tpl/brand_expand_city.html'"></div>
+								</tab>
+							</tabset>
+						</div>
+
+					</div>
+				</div>
+			</div>
+			<!-- / stats -->
+		</div>
+	</div>
+	<!-- / main -->
+</div>

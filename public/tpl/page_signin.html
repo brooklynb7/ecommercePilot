@@ -1,27 +1,95 @@
-<div class="container w-xxl w-auto-xs" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
-  <a href class="navbar-brand block m-t">{{app.name}}</a>
-  <div class="m-b-lg">
-    <div class="wrapper text-center">
-      <strong></strong>
+<div class="app-header navbar ng-scope">
+    <div class="panel panel-default  bg-dark" ng-controller="SigninFormController" ng-init="app.settings.container = false;">
+        <div class="panel-body">
+            <form class="form-inline pull-right form-validation" role="form" name="form">
+                <div class="form-group">
+                  <div class="wrapper text-center" ng-show="authError">
+                    <strong>{{authError}}</strong>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <input type="text" placeholder="用户名" class="form-control" ng-model="credentials.username" required autofocus>
+                </div>
+                <div class="form-group">
+                  <input type="password" placeholder="密码" class="form-control" ng-model="credentials.password" required>
+                </div>
+                <button type="submit" class="btn btn-primary" ng-click="login(credentials)" ng-disabled='form.$invalid'>登录</button>
+            </form>
+        </div>
     </div>
-    <form name="form" class="form-validation">
-      <div class="text-danger wrapper text-center" ng-show="authError">
-          {{authError}}
-      </div>
-      <div class="list-group list-group-sm">
-        <div class="list-group-item">
-          <input type="text" placeholder="用户名" class="form-control no-border" ng-model="credentials.username" required>
-        </div>
-        <div class="list-group-item">
-           <input type="password" placeholder="密码" class="form-control no-border" ng-model="credentials.password" required>
-        </div>
-      </div>
-      <button type="submit" class="btn btn-lg btn-primary btn-block" ng-click="login(credentials)" ng-disabled='form.$invalid'>登入</button>
-      <div class="text-center m-t m-b"><a ui-sref="access.forgotpwd">忘记了密码?</a></div>
-      <div class="line line-dashed"></div>
-      <p class="text-center"><small>您还没有账号?</small></p>
-      <a ui-sref="access.signup" class="btn btn-lg btn-default btn-block">注册</a>
-    </form>
-  </div>
-  <div class="text-center" ng-include="'tpl/blocks/page_footer.html'"></div>
 </div>
+<div class="wrapper-md"></div>
+<div class="wrapper-md">
+  <div class="row">
+    <div class="col-sm-6">
+      <div class="panel panel-default">
+          <div class="panel-body" style="background-image: url('img/furniture/10007.jpg');height:475px;"></div>
+      </div>
+    </div>
+    <div class="col-sm-6" ng-controller="SignupFormController" ng-init="app.settings.container = false;">
+      <div class="panel panel-default">
+        <div class="panel-heading font-bold">用户注册</div>
+        <div class="panel-body">
+          <form name="form" class="form-horizontal form-validation">
+            <div class="text-danger wrapper text-center" ng-show="authError">
+              {{authError}}
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">帐号</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" placeholder="帐号" ng-model="userInfo.username">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">密码</label>
+              <div class="col-lg-10">
+                <input type="password" class="form-control" placeholder="密码" ng-model="userInfo.password">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">邮箱</label>
+              <div class="col-lg-10">
+                <input type="email" class="form-control" placeholder="邮箱" ng-model="userInfo.email">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">电话</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" placeholder="电话" ng-model="userInfo.phone">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">公司全称</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" placeholder="公司全称">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">地址</label>
+              <div class="col-lg-10">
+                <input type="text" class="form-control" placeholder="地址">
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="col-lg-2 control-label">类型</label>
+              <div class="col-lg-10">
+                <select  class="form-control"  ng-model="userInfo.type" ng-options="m.value as m.text for m in app.userType">
+                </select>
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="col-lg-offset-2 col-lg-10">
+                <button type="submit" class="btn btn-lg btn-dark btn-block" ng-click="signup(userInfo)" ng-disabled='form.$invalid'>注册</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- app-footer -->
+<div class="app-footer wrapper b-t ng-scope btn-dark">
+  <span class="pull-right ng-binding">0.0.1 </span>&copy; 2014.
+</div>
+<!-- app-footer -->

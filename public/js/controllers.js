@@ -216,7 +216,7 @@
 			$scope.login = function(credentials) {
 				AuthService.login(credentials).then(function(user) {
 					$scope.setCurrentUser(user);
-					$state.go('app.page.profile');
+					$state.go('app.home');
 				}, function() {
 					$rootScope.$broadcast(AUTH_EVENTS.loginFailed);
 				});

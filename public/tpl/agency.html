@@ -23,7 +23,8 @@
 								<span class="font-thin h2 block">账号审核中...</span>
 							</a>
 						</div>
-					</div>	
+					</div>
+					<!--
 					<div class="row row-sm text-center">
 						<div class="col-xs-3" ng-if="isSalesAgent() && isApproved()">
 							<a href class="block tile panel padder-v bg-info item">
@@ -34,12 +35,13 @@
 							</a>
 						</div>
 					</div>
+					-->
 					<div ng-controller="AgencySearchCtrl">
 						<form ng-submit="searchAgency(searchKey)" class="m-b-md">
 							<div class="input-group">
 								<input type="text" class="form-control input-lg" ng-model='searchKey' placeholder="搜索经销商">
 								<span class="input-group-btn">
-									<input class="btn btn-lg btn-default" value="搜索经销商" type="submit"></input>
+									<input class="btn btn-lg btn-default" value="搜索经销商" type="submit">
 								</span>
 							</div>
 						</form>
