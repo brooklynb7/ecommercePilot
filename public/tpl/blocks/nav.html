@@ -5,42 +5,57 @@
 		<span translate="aside.nav.ENTRY">Entry</span>
 	</li>
 	<li ui-sref-active="active" ng-if="!isAdmin() && isApproved()">
-		<a ui-sref="app.mall">
+		<a ui-sref="app.home">
 			<i class="glyphicon glyphicon-shopping-cart icon"></i>
-			<span class="font-bold" translate="aside.nav.MALL">Mall</span>
+			<span class="font-bold">产品分类</span>
 		</a>
 	</li>
-	<li ng-class="{active:$state.includes('app.agency')}" ng-if="!isAdmin() && isApproved()">
+	<!-- <li ng-class="{active:$state.includes('app.agency')}" ng-if="!isAdmin() && isApproved()">-->
+	<li ng-if="!isAdmin() && isApproved()">
 		<a ui-sref="app.agency">
 			<i class="glyphicon glyphicon-briefcase icon"></i>
-			<span class="font-bold" translate="aside.nav.AGENCY">Agency</span>
+			<span class="font-bold">经销商列表</span>
 		</a>
 	</li>
+	<!--
 	<li ui-sref-active="active" ng-if="!isAdmin() && isApproved()">
 		<a ui-sref="app.brand">
 			<i class="glyphicon glyphicon-star icon"></i>
 			<span class="font-bold">品牌公司</span>
 		</a>
+	</li>-->
+
+	<!-- brand user only -->
+	<li ui-sref-active="active" class="pull-right" ng-if="isBrandAgent()">
+		<a ui-sref="app.brand.workCenter">
+			<i class="icon-user icon text-success-lter"></i>
+			<span>管理公司信息</span>
+		</a>
 	</li>
-	
+
+	<!-- sales agency only -->
+	<li ui-sref-active="active" class="pull-right" ng-if="isSalesAgent()">
+		<a ui-sref="app.agency.workCenter">
+			<i class="icon-user icon text-success-lter"></i>
+			<span>管理公司信息</span>
+		</a>
+	</li>
+
+
 	<li class="line dk hidden-folded"></li>
 
 	<!--General-->
 	<li class="hidden-folded padder m-t m-b-sm text-muted text-xs">
 		<span translate="aside.nav.GENERAL">General</span>
 	</li>
-	<li ui-sref-active="active">
-		<a ui-sref="app.page.profile">
-			<i class="icon-user icon text-success-lter"></i>
-			<span translate="aside.nav.YOUR_PROFILE">Your profile</span>
-		</a>
-	</li>
-	<li ui-sref-active="active" ng-if="!isAdmin()">
+
+
+	<li ui-sref-active="active" ng-if="!isAdmin()" class="pull-right">
 		<a ui-sref="app.system.price">
 			<i class="icon-wallet icon"></i>
 			<span translate="aside.nav.PRICE">Price</span>
 		</a>
-	</li>	
+	</li>
 
 	<!--Admin-->
 	<li class="hidden-folded padder m-t m-b-sm text-muted text-xs" ng-if="isAdmin()">
