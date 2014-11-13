@@ -1,0 +1,84 @@
+<div ng-controller="AgencyDetailCtrl">
+	<div class="bg-light lter b-b wrapper-md" ng-init="app.fullScreen = false;">
+		<h1 class="m-n font-thin h3">
+			<a ui-sref="app.agency">
+				<i class="icon-arrow-left i-sm m-r-sm"></i>
+			</a>
+			{{agency.name || "Loading..."}}
+		</h1>
+	</div>
+	<div class="wrapper-md">
+		<tabset class="tab-container">
+			<tab>
+				<tab-heading>
+					经销商信息
+				</tab-heading>
+				<form class="form-horizontal" method="get">
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 text-right" >经销商</label>
+						<div class="col-sm-10">
+							<span>{{agency.name}}</span>
+						</div>
+					</div>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 text-right" >经销商描述</label>
+						<div class="col-sm-10">
+							<span>{{agency.description}}</span>
+						</div>
+					</div>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 text-right" >经销商网站</label>
+						<div class="col-sm-10">
+							<span>{{agency.web_site}}</span>
+						</div>
+					</div>
+					<div class="line line-dashed b-b line-lg pull-in"></div>
+					<div class="form-group">
+						<label class="col-sm-2 text-right" >经销商电话</label>
+						<div class="col-sm-10">
+							<span>{{agency.phone}}</span>
+						</div>
+					</div>
+				</form>
+			</tab>			
+			<tab>
+				<tab-heading>
+					已代理品牌
+				</tab-heading>
+			</tab>
+			<tab>
+				<tab-heading>
+					经销商评价
+				</tab-heading>
+				<div class="panel b-a">
+					<ul class="list-group list-group-lg no-bg auto">
+						<li class="list-group-item clearfix" ng-repeat='comment in agency.comment'>							
+							<span class="clear">
+								<small class="text-muted clear text-ellipsis">
+									({{comment.created_at}}) - {{comment.created_by}}
+									<rating ng-model="comment.rating" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'"></rating>
+								</small>
+								<span>{{comment.text}}</span>
+							</span>
+						</li>
+					</ul>
+					<div class="clearfix panel-footer">
+						<div>
+							<form class="m-b-none" ng-submit="addComment(newComment)">
+								<div class="input-group">
+									<input type="text" class="form-control" ng-model='newComment.text' placeholder="说些什么">
+									<span class="input-group-btn">
+										<input type='submit' class="btn btn-default" value='评价'/>
+									</span>
+								</div>
+							</form>
+						</div>
+					</div>
+				</div>  
+			</tab>
+		</tabset>
+	</div>
+</div>

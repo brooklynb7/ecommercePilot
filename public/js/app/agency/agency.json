@@ -1,0 +1,65 @@
+{
+	"items": [{
+		"id": "1",
+		"name": "经销商1",
+		"description": "经销商1描述",
+		"logo": "img/b2.jpg",
+		"web_site": "http://www.nike.com",
+		"phone": "110",
+		"created_by": "",
+		"updated_by": "",
+		"brands":[],
+		"comment": [{
+			"id": 10101,
+			"created_at": "2014-10-21T04:00:00Z",
+			"updated_at": "2014-10-21T04:01:00Z",
+			"created_by": "test1",
+			"updated_by": "test1",
+			"content_type": 13,
+			"object_id": 101,
+			"text": "Comment1 Text...looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong text",
+			"rating": 4
+		}, {
+			"id": 10102,
+			"created_at": "2014-10-21T04:00:00Z",
+			"updated_at": "2014-10-21T04:01:00Z",
+			"created_by": 201,
+			"updated_by": 201,
+			"content_type": 13,
+			"object_id": 101,
+			"text": "Comment12",
+			"rating": 2
+		}]
+	}, {
+		"id": "2",
+		"name": "经销商2",
+		"description": "经销商2描述",
+		"logo": "img/b5.jpg",
+		"web_site": "http://www.adidas.com",
+		"phone": "110",
+		"created_by": "",
+		"updated_by": "",
+		"brands":"",
+		"comment": [{
+			"id": 10101,
+			"created_at": "2014-10-21T04:00:00Z",
+			"updated_at": "2014-10-21T04:01:00Z",
+			"created_by": "test1",
+			"updated_by": "test1",
+			"content_type": 13,
+			"object_id": 101,
+			"text": "Comment1 Text...looooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooooong text",
+			"rating": 4
+		}, {
+			"id": 10102,
+			"created_at": "2014-10-21T04:00:00Z",
+			"updated_at": "2014-10-21T04:01:00Z",
+			"created_by": 201,
+			"updated_by": 201,
+			"content_type": 13,
+			"object_id": 101,
+			"text": "Comment12",
+			"rating": 2
+		}]
+	}]
+}

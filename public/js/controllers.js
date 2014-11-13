@@ -4,8 +4,8 @@
 
 	var appController = angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies']);
 
-	appController.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES', 'UserService', 'BrandService','AuthService', 'AUTH_EVENTS', 'TaxonomyService',
-		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES, UserService, BrandService,AuthService, AUTH_EVENTS, TaxonomyService) {
+	appController.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES', 'UserService', 'BrandService','AuthService','AUTH_EVENTS', 'TaxonomyService','AgencyService',
+		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES, UserService, BrandService,AuthService, AUTH_EVENTS, TaxonomyService,AgencyService) {
 			// add 'ie' classes to html
 			var isIE = !!navigator.userAgent.match(/MSIE/i);
 			isIE && angular.element($window.document.body).addClass('ie');
@@ -51,6 +51,7 @@
 
 			UserService.loadUsers();
 			BrandService.loadBrands();
+			AgencyService.loadAgencies();
 
 			$scope.app.getProvinceCityText = function(provinceId, cityId){
 				var provinceObj = _.find($scope.app.provinceList, function(province){

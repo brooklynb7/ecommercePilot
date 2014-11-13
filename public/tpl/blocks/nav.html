@@ -11,7 +11,7 @@
 		</a>
 	</li>
 	<!-- <li ng-class="{active:$state.includes('app.agency')}" ng-if="!isAdmin() && isApproved()">-->
-	<li ng-if="!isAdmin() && isApproved()">
+	<li  ui-sref-active="active" ng-if="!isAdmin() && isApproved()">
 		<a ui-sref="app.agency">
 			<i class="glyphicon glyphicon-briefcase icon"></i>
 			<span class="font-bold">经销商列表</span>
