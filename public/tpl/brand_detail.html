@@ -193,7 +193,10 @@
 					<ul class="list-group list-group-lg no-bg auto">
 						<li class="list-group-item clearfix" ng-repeat='comment in brand.comment'>							
 							<span class="clear">
-								<small class="text-muted clear text-ellipsis">({{comment.created_at}}) - {{comment.created_by}}</small>
+								<small class="text-muted clear text-ellipsis">
+									({{comment.created_at}}) - {{comment.created_by}}
+									<rating ng-model="comment.rating" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'"></rating>
+								</small>
 								<span>{{comment.text}}</span>
 							</span>
 						</li>
