@@ -25,8 +25,14 @@
 		},
 		setBrands: function(brandsJSON){
 			_setLocalStorage("brands", brandsJSON);
+		},
+		getAgencies: function(){
+			return _getLocalStorage("agencies");
+		},
+		setAgencies: function(agenciesJSON){
+			_setLocalStorage("agencies", agenciesJSON);
 		}
-	}
+	};
 
 	var appService = angular.module('app.services', ['ngResource']);
 
@@ -187,7 +193,6 @@
 
 			brandService.getBrandList = function() {
 				return Mock_BrandResource.get().$promise.then(function(res) {
-					console.log(dataStorage.getBrands());
 					return dataStorage.getBrands();
 					//return res.items;
 				});
@@ -199,12 +204,57 @@
 						return brand.id == brandId;
 					});
 				});
-			}
+			};
 
 			brandService.createBrand = function() {};
 			brandService.updateBrand = function() {};
 
 			return brandService;
+		}
+	]);
+
+	appService.factory('AgencyService', ['$resource',
+		function($resource) {
+			var Mock_AgencyResource = $resource('js/app/agency/agency.json');
+			var agencyService = {};
+
+			agencyService.loadAgencies = function(){
+				if(!dataStorage.getAgencies()){
+					Mock_AgencyResource.get().$promise.then(function(res) {
+						dataStorage.setAgencies(res.items);
+					});
+				}
+			};
+
+			agencyService.getAgencyList = function(){
+				return Mock_AgencyResource.get().$promise.then(function(res) {
+					return dataStorage.getAgencies();
+				});
+			};
+
+			agencyService.getAgency = function(agencyId) {
+				return Mock_AgencyResource.get().$promise.then(function(res) {
+					var agencies = dataStorage.getAgencies();
+					return _.find(agencies, function(agency){
+						return agency.id == agencyId;
+					});
+				});
+			};
+
+			agencyService.addComment = function(agencyId, commentJSON){
+				var agencies = dataStorage.getAgencies();
+				var agency = _.find(agencies, function(agency){
+					return agency.id == agencyId;
+				});
+				if(!agency.comment){
+					agency.comment = [];
+				}
+				agency.comment.push(commentJSON);
+				dataStorage.setAgencies(agencies);
+				return commentJSON;
+			};
+
+			return agencyService;
 		}
 	]);
 

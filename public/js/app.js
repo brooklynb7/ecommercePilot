@@ -25,9 +25,9 @@ var app = angular.module('app', [
 				$rootScope.$state = $state;
 				$rootScope.$stateParams = $stateParams;
 				//Config login module
-				$rootScope.$on('$stateChangeStart', function(e, nextState, currentState) {					
+				$rootScope.$on('$stateChangeStart', function(e, nextState, currentState) {
 					/*var authorizedRoles = nextState.data ? nextState.data.authorizedRoles : null;
-					if (!AuthService.isAuthorized(authorizedRoles)) {							
+					if (!AuthService.isAuthorized(authorizedRoles)) {
 						if (AuthService.isAuthenticated()) {
 							// user is not allowed
 							//e.preventDefault();
@@ -89,6 +89,10 @@ var app = angular.module('app', [
 								}
 							]
 						}
+					})
+					.state('app.agency.detail', {
+						url:'/{agencyId:[0-9]{1,9}}',
+						templateUrl: 'tpl/agency_detail.html'
 					})
 					.state('app.agency.workCenter', {
 						url: '/workcenter',
