@@ -262,6 +262,11 @@ Map.prototype.generatePoint = function(lng, lat, infoObj, selectCityFn) {
 	var marker = new BMap.Marker(point);
 	marker.addEventListener("click", function() {
 		selectCityFn(infoObj);
+		var $dataRow = $("#" + infoObj.id);
+		var $table = $($dataRow.parent().parent());
+		var thisOffsetTop = $dataRow.offset().top;
+		$table.scrollTop(0);
+		$table.scrollTop($dataRow.offset().top - $table.offset().top);
 	});
 	this.map.addOverlay(marker);
 

@@ -19,7 +19,7 @@
 						<div class="row-row">
 							<div class="padder" style='height:600px;overflow-y:auto'>
 								<div class="list-group">
-									<a ng-repeat="city in brand.selling_cities" class="list-group-item b-l-3x hover-anchor" ng-class="{'hover': city.selected }" ng-click="selectCity(city)">
+									<a id="{{city.id}}" ng-repeat="city in brand.selling_cities" class="list-group-item b-l-3x hover-anchor" ng-class="{'hover': city.selected }" ng-click="selectCity(city)">
 										<span class="block text-ellipsis">{{ city.name }}</span>
 										<small class="text-muted">{{ city.address }}</small>
 										<div>
