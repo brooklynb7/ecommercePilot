@@ -197,7 +197,7 @@
 					$scope.map = new Map();
 					console.log($scope.brand)
 					_.each($scope.brand.selling_cities, function(city) {						
-						city.point = $scope.map.generatePoint(city.lon, city.lat, city);
+						city.point = $scope.map.generatePoint(city.lon, city.lat, city, $scope.selectCity);
 					});
 					$scope.map.centerZoom();
 					$scope.map.centerToPoint($scope.map.points[0]);
@@ -255,13 +255,13 @@ var Map = function() {
 	//this.map.setCurrentCity("北京");   
 	//this.map.addControl(new BMap.NavigationControl());
 };
-Map.prototype.generatePoint = function(lng, lat, infoObj) {
+Map.prototype.generatePoint = function(lng, lat, infoObj, selectCityFn) {
 	var that = this;
 	var point = new BMap.Point(lng, lat);
 	this.points.push(point);
 	var marker = new BMap.Marker(point);
 	marker.addEventListener("click", function() {
-
+		selectCityFn(infoObj);
 	});
 	this.map.addOverlay(marker);
 
