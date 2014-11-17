@@ -1,81 +1,31 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm fade-in-up" ui-view>
+<div class="hbox hbox-auto-xs hbox-auto-sm fade-in-up" ng-init="app.fullScreen = false;" ui-view>
 	<div class="col">
 		<div class="wrapper-md">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="row row-sm text-center">
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a ui-sref="app.home.brand" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">特色产品</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
+					<div ng-controller="CategoryBrandController">
+						<form class="m-b-md">
+							<div class="input-group">
+								<input type="text" class="form-control input-lg" ng-model="searchKey" placeholder="搜索种类"/>
+								<span class="input-group-btn">
+									<button class="btn btn-lg btn-dark">
+										<i class="fa fa-search"></i> 搜索种类
+									</button>
 								</span>
-							</a>
+							</div>
+						</form>
+
+						<div class="row row-sm text-center">
+							<div class="col-md-2 col-sm-6 col-xs-12" ng-repeat="categorybrand in categoryResults | filter:searchKey">
+								<a ui-sref="{{categorybrand.brandurl}}({id:categorybrand.id})" class="block tile panel padder-v bg-info item">
+									<span class="text-white font-thin h2 block">{{categorybrand.categoryName}}</span>
+									<span class="bottom text-right w-full">
+										<i class="fa fa-bars text-muted m-r-sm"></i>
+									</span>
+								</a>
+							</div>
 						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a ui-sref="app.home.brand" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">儿童青少年家具</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a ui-sref="app.home.brand" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">红木家具</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a ui-sref="app.home.brand" class="block tile panel padder-v bg-info item righ">
-								<span class="text-white font-thin h2 block">软床床垫</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a ui-sref="app.home.brand" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">实木家具</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a ui-sref="app.home.brand" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">软装饰品</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a ui-sref="app.home.brand" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">沙发</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a ui-sref="app.home.brand" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">新古典后现代</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a ui-sref="app.home.brand" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">办公、酒店</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
+
 					</div>
 				</div>
 			</div>

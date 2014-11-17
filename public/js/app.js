@@ -71,7 +71,7 @@ var app = angular.module('app', [
 						templateUrl: 'tpl/home.html'
 					})
 					.state('app.home.brand', {
-						url: '/brand',
+						url: '/brand/{id:[0-9]{1,9}}',
 						templateUrl: 'tpl/brand_list.html'
 					})
 					.state('app.mall', {
@@ -116,6 +116,10 @@ var app = angular.module('app', [
 					.state('app.brand.manage', {
 						url: '/manage',
 						templateUrl: 'tpl/brand_manage.html'
+					})
+					.state('app.brand.profile', {
+						url: '/profile',
+						templateUrl: 'tpl/brand_profile.html'
 					})
 					.state('app.brand.search', {
 						url: '/search',

@@ -267,7 +267,34 @@
 			//test apo
 			UserService.getUserList().then(function(users) {});
 
+		}
+	]);
 
+	appController.controller('CategoryBrandController', ['$scope', '$http',
+		function($scope, $http) {
+			$scope.categoryResults = [];
+			$http.get('js/app/brand/categorybrand.json').success(function(data){
+				$scope.categoryResults = data;
+			});
+		}
+	]);
+
+	appController.controller('BrandListController', ['$scope', '$http', '$stateParams',
+		function($scope, $http, $stateParams) {
+			$scope.brandLists = [];
+			var index = $stateParams.id;
+			$http.get('js/app/brand/categorybrand.json').success(function(data){
+				$scope.brandLists = data[index - 1].brands;
+			});
+		}
+	]);
+
+	appController.controller('ProductListController', ['$scope', '$http', '$stateParams',
+		function($scope, $http, $stateParams) {
+			$scope.products = [];
+			$http.get('js/app/brand/products.json').success(function(data){
+				$scope.products = data;
+			});
 		}
 	]);
 })();

@@ -52,7 +52,7 @@
 			"name": "上海虹桥店"
 		}],
 		"expanding_cities": ["上海市", "江苏省扬州市", "浙江省杭州市"],
-		"created_by": "",
+		"created_by": "test2",
 		"updated_by": "",
 		"comment": [{
 			"id": 10101,
@@ -90,7 +90,7 @@
 		"category": [1, 3],
 		"selling_cities": [],
 		"expanding_cities": ["北京市"],
-		"created_by": "",
+		"created_by": "test2",
 		"updated_by": ""
 	}, {
 		"id": "3",
@@ -267,23 +267,6 @@
 		"name": "星月家具",
 		"description": "Test desc",
 		"logo": "img/furniture/10007.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "12",
-		"name": "光明家具",
-		"description": "Test desc",
-		"logo": "img/furniture/10012.jpg",
 		"productseries_set": [],
 		"brand_agent": "",
 		"web_site": "http://www.nike.com",

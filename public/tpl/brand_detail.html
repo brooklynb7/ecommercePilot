@@ -185,36 +185,6 @@
 					</tbody>
 				</table>
 			</tab>
-			<tab>
-				<tab-heading>
-					评价
-				</tab-heading>
-				<div class="panel b-a">
-					<ul class="list-group list-group-lg no-bg auto">
-						<li class="list-group-item clearfix" ng-repeat='comment in brand.comment'>							
-							<span class="clear">
-								<small class="text-muted clear text-ellipsis">
-									({{comment.created_at}}) - {{comment.created_by}}
-									<rating ng-model="comment.rating" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'"></rating>
-								</small>
-								<span>{{comment.text}}</span>
-							</span>
-						</li>
-					</ul>
-					<div class="clearfix panel-footer">
-						<div>
-							<form class="m-b-none" ng-submit="addComment(newComment)">
-								<div class="input-group">
-									<input type="text" class="form-control" ng-model='newComment.text' placeholder="说些什么">
-									<span class="input-group-btn">
-										<input type='submit' class="btn btn-default" value='评价'/>
-									</span>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>  
-			</tab>
 		</tabset>
 	</div>
 </div>

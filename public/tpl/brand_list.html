@@ -3,94 +3,30 @@
 		<div class="wrapper-md">
 			<div class="row">
 				<div class="col-md-12">
-					<div class="row row-sm text-center">
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">源氏木语</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
+					<div ng-controller="BrandListController">
+						<form class="m-b-md">
+							<div class="input-group">
+								<input type="text" class="form-control input-lg" ng-model="searchKey" placeholder="搜索种类"/>
+								<span class="input-group-btn">
+									<button class="btn btn-lg btn-dark">
+										<i class="fa fa-search"></i> 搜索种类
+									</button>
 								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">洛兰格</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">森岳家</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item righ">
-								<span class="text-white font-thin h2 block">洪鑫家居</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">王氏豪庭</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">达美家居</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">喜梦宝</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">艾芙迪</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">贝尼尼</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">七彩人生</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
-						</div>
-						<div class="col-md-2 col-sm-6 col-xs-12">
-							<a href="#/app/brand/1" class="block tile panel padder-v bg-info item">
-								<span class="text-white font-thin h2 block">华谊家具</span>
-								<span class="bottom text-right w-full">
-									<i class="fa fa-bars text-muted m-r-sm"></i>
-								</span>
-							</a>
+							</div>
+						</form>
+						<div class="row row-sm text-center">
+							<div class="item col-md-2 col-sm-6 col-xs-12" ng-repeat="brand in brandLists | filter:searchKey">
+								<!--<a ui-sref="{{brand.product}}" class="block tile panel padder-v bg-info item">
+									<span class="text-white font-thin h2 block">{{brand.brandName}}</span>
+									<span class="bottom text-right w-full">
+										<i class="fa fa-bars text-muted m-r-sm"></i>
+									</span>
+								</a>-->
+								<a href="#/app/brand/1" class="block tile panel padder-v item">
+									<img ng-src="{{brand.brandLogo}}" style="width:189px; height:90px;" title="{{brand.brandName}}">
+
+								</a>
+							</div>
 						</div>
 					</div>
 				</div>
