@@ -195,7 +195,8 @@
 				if ($scope.city) {
 					$scope.city.selected = true;
 					$scope.map = new Map();
-					_.each($scope.brand.selling_cities, function(city) {
+					console.log($scope.brand)
+					_.each($scope.brand.selling_cities, function(city) {						
 						city.point = $scope.map.generatePoint(city.lon, city.lat, city);
 					});
 					$scope.map.centerZoom();

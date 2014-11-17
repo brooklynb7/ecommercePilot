@@ -22,6 +22,21 @@
 									<a ng-repeat="city in brand.selling_cities" class="list-group-item b-l-3x hover-anchor" ng-class="{'hover': city.selected }" ng-click="selectCity(city)">
 										<span class="block text-ellipsis">{{ city.name }}</span>
 										<small class="text-muted">{{ city.address }}</small>
+										<div>
+											电话:{{city.phone}}
+										</div>
+										<div>
+											服务:
+											<rating ng-model="city.rating.service" readonly="true" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'"></rating>
+										</div>
+										<div>
+											品质:
+											<rating ng-model="city.rating.quality" readonly="true" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'"></rating>
+										</div>
+										<div>
+											价格:
+											<rating ng-model="city.rating.price" readonly="true" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'"></rating>
+										</div>
 									</a>
 								</div>
 							</div>
