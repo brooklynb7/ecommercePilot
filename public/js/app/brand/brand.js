@@ -216,7 +216,9 @@
 			$scope.brand = {};
 			$scope.city = {};
 			$scope.map = null;
-			$scope.newComment = {};
+			$scope.newComment = {
+				rating: 0
+			};
 
 			BrandService.getBrand($stateParams.brandId).then(function(brand) {
 				$scope.brand = brand;
@@ -224,7 +226,6 @@
 				if ($scope.city) {
 					$scope.city.selected = true;
 					$scope.map = new Map();
-					console.log($scope.brand)
 					_.each($scope.brand.selling_cities, function(city) {						
 						city.point = $scope.map.generatePoint(city.lon, city.lat, city, $scope.selectCity);
 					});
@@ -249,8 +250,9 @@
 					$scope.brand.comment = [];
 				}
 				$scope.brand.comment.push(comment);
-				$scope.newComment = {};
-
+				$scope.newComment = {
+					rating: 0
+				};
 			};
 		}
 	]);
