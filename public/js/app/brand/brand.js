@@ -287,7 +287,9 @@
 			$scope.brand = {};
 			$scope.city = {};
 			$scope.map = null;
-			$scope.newComment = {};
+			$scope.newComment = {
+				rating: 0
+			};
 
 			BrandService.getBrand($stateParams.brandId).then(function(brand) {
 				$scope.brand = brand;
@@ -296,7 +298,7 @@
 					$scope.city.selected = true;
 					$scope.map = new Map();
 					_.each($scope.brand.selling_cities, function(city) {
-						city.point = $scope.map.generatePoint(city.lon, city.lat, city);
+						city.point = $scope.map.generatePoint(city.lon, city.lat, city, $scope.selectCity);
 					});
 					$scope.map.centerZoom();
 					$scope.map.centerToPoint($scope.map.points[0]);
@@ -319,8 +321,9 @@
 					$scope.brand.comment = [];
 				}
 				$scope.brand.comment.push(comment);
-				$scope.newComment = {};
-
+				$scope.newComment = {
+					rating: 0
+				};
 			};
 		}
 	]);
@@ -352,13 +355,18 @@ var Map = function() {
 	//this.map.setCurrentCity("北京");   
 	//this.map.addControl(new BMap.NavigationControl());
 };
-Map.prototype.generatePoint = function(lng, lat, infoObj) {
+Map.prototype.generatePoint = function(lng, lat, infoObj, selectCityFn) {
 	var that = this;
 	var point = new BMap.Point(lng, lat);
 	this.points.push(point);
 	var marker = new BMap.Marker(point);
 	marker.addEventListener("click", function() {
-
+		selectCityFn(infoObj);
+		var $dataRow = $("#" + infoObj.id);
+		var $table = $($dataRow.parent().parent());
+		var thisOffsetTop = $dataRow.offset().top;
+		$table.scrollTop(0);
+		$table.scrollTop($dataRow.offset().top - $table.offset().top);
 	});
 	this.map.addOverlay(marker);
 
