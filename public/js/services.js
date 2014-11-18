@@ -6,30 +6,30 @@
 	var getRestApiUrl = function(path) {
 		return service_path + path;
 	};
-	var _setLocalStorage = function(field, json){
+	var _setLocalStorage = function(field, json) {
 		localStorage.setItem(field, JSON.stringify(json));
 	};
-	var _getLocalStorage = function(field){
+	var _getLocalStorage = function(field) {
 		return JSON.parse(localStorage.getItem(field));
 	};
 
 	var dataStorage = {
-		getUsers: function(){
+		getUsers: function() {
 			return _getLocalStorage("users");
 		},
-		setUsers: function(usersJson){
+		setUsers: function(usersJson) {
 			_setLocalStorage("users", usersJson);
 		},
-		getBrands: function(){
-			return _getLocalStorage("brands");	
+		getBrands: function() {
+			return _getLocalStorage("brands");
 		},
-		setBrands: function(brandsJSON){
+		setBrands: function(brandsJSON) {
 			_setLocalStorage("brands", brandsJSON);
 		},
-		getAgencies: function(){
+		getAgencies: function() {
 			return _getLocalStorage("agencies");
 		},
-		setAgencies: function(agenciesJSON){
+		setAgencies: function(agenciesJSON) {
 			_setLocalStorage("agencies", agenciesJSON);
 		}
 	};
@@ -37,8 +37,8 @@
 	var appService = angular.module('app.services', ['ngResource']);
 
 	appService.service('Session', function() {
-		this.create = function(sessionId, userId, userRole) {
-			this.id = sessionId;
+		this.create = function(userId, userRole) {
+			this.id = new Date().valueOf();
 			this.userId = userId;
 			this.userRole = userRole;
 		};
@@ -54,12 +54,6 @@
 		function($resource, Session) {
 			var Mock_SignUpRsc = $resource('api/signup.json');
 			var Mock_SignInRsc = $resource('api/login.json');
-			var SignUpResource = $resource(getRestApiUrl('/user/register/'), {}, {
-				signup: {
-					method: 'POST',
-					params: {}
-				}
-			});
 			var SignInResource = $resource(getRestApiUrl('/user/login/'), {}, {
 				login: {
 					method: 'POST',
@@ -68,16 +62,6 @@
 			});
 
 			var authService = {};
-
-			authService.signup = function(userInfo) {
-				return SignUpResource.signup(userInfo).$promise.then(function(res) {
-					var users = dataStorage.getUsers();
-					users.push(userInfo);
-					dataStorage.setUsers(users);
-					//Session.create(userInfo.id, userInfo.id, userInfo.type);
-					return userInfo;
-				});
-			};
 
 			authService.login = function(credentials) {
 				return Mock_SignInRsc.query(credentials).$promise.then(function(res) {
@@ -97,7 +81,7 @@
 					if (credentials.username == 'admin') {
 						rst = res[4];
 					}
-					Session.create(rst.id, rst.id, rst.type);
+					Session.create(rst.id, rst.type);
 					return rst;
 				});
 
@@ -129,15 +113,40 @@
 		}
 	]);
 
-	appService.factory('UserService', ['$resource',
-		function($resource) {
-			var UserResource = $resource(getRestApiUrl('/user/:id'));
+	appService.factory('UserService', ['$resource', 'Session',
+		function($resource, Session) {
 			var Mock_UserResource = $resource('api/login.json');
+
+			var UserResource = $resource('/api/users/:user', {
+				user: "@user"
+			}, {
+				getCurrentUser: {
+					params: {
+						user: "current"
+					},
+					method: 'GET'
+				}
+			});
 
 			var userService = {};
 
-			userService.loadUsers = function(){
-				if(!dataStorage.getUsers()){
+			userService.getCurrentUser = function() {
+				return UserResource.getCurrentUser().$promise.then(function(user) {
+					console.log(user);
+					//Session.create(userInfo._id, userInfo.type);
+					return user;
+				});
+			};
+
+			userService.signup = function(userInfo) {
+				return UserResource.save(userInfo).$promise.then(function(user) {
+					Session.create(user._id, user.type);
+					return user;
+				});
+			};
+
+			userService.loadUsers = function() {
+				if (!dataStorage.getUsers()) {
 					Mock_UserResource.query().$promise.then(function(res) {
 						dataStorage.setUsers(res);
 					});
@@ -159,10 +168,10 @@
 				});
 			};
 
-			userService.getToBeApprovedUsers = function(){
+			userService.getToBeApprovedUsers = function() {
 				return UserResource.get().$promise.then(function(res) {
 					var users = dataStorage.getUsers();
-					return _.filter(users, function(user){
+					return _.filter(users, function(user) {
 						return user.profile && user.profile.approval == "B";
 					});
 				});
@@ -183,8 +192,8 @@
 
 			var brandService = {};
 
-			brandService.loadBrands = function(){
-				if(!dataStorage.getBrands()){
+			brandService.loadBrands = function() {
+				if (!dataStorage.getBrands()) {
 					Mock_BrandResource.get().$promise.then(function(res) {
 						dataStorage.setBrands(res.items);
 					});
@@ -200,7 +209,7 @@
 			brandService.getBrand = function(brandId) {
 				return Mock_BrandResource.get().$promise.then(function(res) {
 					var brands = dataStorage.getBrands();
-					return _.find(brands, function(brand){
+					return _.find(brands, function(brand) {
 						return brand.id == brandId;
 					});
 				});
@@ -219,8 +228,8 @@
 
 			brandService.updateBrand = function(updatedBrand) {
 				var brands = dataStorage.getBrands();
-				for(var i in brands){
-					if(brands[i].id == updatedBrand.id){
+				for (var i in brands) {
+					if (brands[i].id == updatedBrand.id) {
 						delete updatedBrand['selected'];
 						delete updatedBrand['editing'];
 						delete updatedBrand['$$hashKey'];
@@ -231,10 +240,10 @@
 				dataStorage.setBrands(brands);
 			};
 
-			brandService.deleteBrand = function(deletedBrand){
+			brandService.deleteBrand = function(deletedBrand) {
 				var brands = dataStorage.getBrands();
-				for(var j in brands){
-					if(brands[j].id == deletedBrand.id){
+				for (var j in brands) {
+					if (brands[j].id == deletedBrand.id) {
 						brands.splice(j, 1);
 						dataStorage.setBrands(brands);
 						break;
@@ -251,15 +260,15 @@
 			var Mock_AgencyResource = $resource('js/app/agency/agency.json');
 			var agencyService = {};
 
-			agencyService.loadAgencies = function(){
-				if(!dataStorage.getAgencies()){
+			agencyService.loadAgencies = function() {
+				if (!dataStorage.getAgencies()) {
 					Mock_AgencyResource.get().$promise.then(function(res) {
 						dataStorage.setAgencies(res.items);
 					});
 				}
 			};
 
-			agencyService.getAgencyList = function(){
+			agencyService.getAgencyList = function() {
 				return Mock_AgencyResource.get().$promise.then(function(res) {
 					return dataStorage.getAgencies();
 				});
@@ -268,18 +277,18 @@
 			agencyService.getAgency = function(agencyId) {
 				return Mock_AgencyResource.get().$promise.then(function(res) {
 					var agencies = dataStorage.getAgencies();
-					return _.find(agencies, function(agency){
+					return _.find(agencies, function(agency) {
 						return agency.id == agencyId;
 					});
 				});
 			};
 
-			agencyService.addComment = function(agencyId, commentJSON){
+			agencyService.addComment = function(agencyId, commentJSON) {
 				var agencies = dataStorage.getAgencies();
-				var agency = _.find(agencies, function(agency){
+				var agency = _.find(agencies, function(agency) {
 					return agency.id == agencyId;
 				});
-				if(!agency.comment){
+				if (!agency.comment) {
 					agency.comment = [];
 				}
 				agency.comment.push(commentJSON);

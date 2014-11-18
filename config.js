@@ -3,8 +3,10 @@ var config = {
 	dbConnection: "localhost:27017/poc"
 };
 
-var mongoskin = require('mongoskin');
-var db = mongoskin.db(config.dbConnection);
+/*var mongoskin = require('mongoskin');
+var db = mongoskin.db(config.dbConnection);*/
+
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://' + config.dbConnection);
 
 exports.config = config;
-exports.db = db;

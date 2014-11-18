@@ -26,7 +26,7 @@ var app = angular.module('app', [
 				$rootScope.$stateParams = $stateParams;
 				//Config login module
 				$rootScope.$on('$stateChangeStart', function(e, nextState, currentState) {
-					/*var authorizedRoles = nextState.data ? nextState.data.authorizedRoles : null;
+					var authorizedRoles = nextState.data ? nextState.data.authorizedRoles : null;
 					if (!AuthService.isAuthorized(authorizedRoles)) {
 						if (AuthService.isAuthenticated()) {
 							// user is not allowed
@@ -40,7 +40,7 @@ var app = angular.module('app', [
 								//$rootScope.$broadcast(AUTH_EVENTS.notAuthenticated);
 							}
 						}
-					}*/
+					}
 				});
 			}
 		]

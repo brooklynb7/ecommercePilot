@@ -1,5 +1,9 @@
 var userAPI = require('./api/user');
 
-module.exports = function(app) {
-	app.post('/api/signup', userAPI.signUp);
+module.exports = function(router) {
+	router.use(function(req, res, next) {
+		next();
+	});
+
+	userAPI(router);
 };

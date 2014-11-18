@@ -107,14 +107,9 @@
 			});
 
 			$scope.currentUser = {};
-			/*UserService.getUser(1).then(function(user) {
-				$scope.setCurrentUser(user);
-			});*/
 
-			AuthService.login({
-				username: "test2"
-			}).then(function(user) {
-				$scope.setCurrentUser(user);
+			UserService.getCurrentUser().then(function(user){
+				console.log(user);
 			});
 
 			$scope.userRoles = USER_ROLES;
@@ -225,8 +220,8 @@
 		}
 	]);
 
-	appController.controller('SignupFormController', ['$scope', '$http', '$state', '$rootScope', 'AUTH_EVENTS', 'AuthService',
-		function($scope, $http, $state, $rootScope, AUTH_EVENTS, AuthService) {
+	appController.controller('SignupFormController', ['$scope', '$http', '$state', '$rootScope', 'AUTH_EVENTS', 'UserService',
+		function($scope, $http, $state, $rootScope, AUTH_EVENTS, UserService) {
 			$scope.authError = null;
 			$scope.userInfo = {
 				"id": new Date().valueOf(),
@@ -242,8 +237,7 @@
 			};
 
 			$scope.signup = function(userInfo) {
-				AuthService.signup(userInfo).then(function(user) {
-					console.log(user);
+				UserService.signup(userInfo).then(function(user) {
 					$scope.setCurrentUser(user);
 					$state.go('app.page.profile');
 				}, function() {

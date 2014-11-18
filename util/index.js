@@ -68,6 +68,18 @@ exports.sendSysError = function(statueCode, error, response){
 	response.send(error);
 };
 
+/*REST API for ajax*/
+exports.returnNormalServiceResult = function(res, result, err) {
+	if (err) {
+		this.sendSysError(500, err, res);
+	} else {
+		res.setHeader("Content-Type", "application/json");
+		res.send({
+			result: result
+		});
+	}
+};
+
 exports.handleDaoCallback = exports.handleAsyncCallback = function(err, res, callback) {
 	if (err) {
 		this.sendSysError(500, err, res);
