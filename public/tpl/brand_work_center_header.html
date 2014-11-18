@@ -1,52 +1,29 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm fade-in-up" ui-view>
-	<!-- main -->
-	<div class="col" ng-init="app.fullScreen = false;" >
-		<!-- main header -->
-		<div class="bg-light lter b-b wrapper-md">
-			<ul class="nav">
-				<li style="display: inline-block" ui-sref-active="active" ng-if="!isAdmin() && isApproved()">
-					<a ui-sref="app.page.profile">
-						<span class="font-bold">公司信息</span>
-					</a>
-				</li>
-				<li style="display: inline-block" ui-sref-active="active" ng-if="!isAdmin() && isApproved()">
-					<a ui-sref="app.brand.manage">
-						<span class="font-bold">品牌维护</span>
-					</a>
-				</li>
-				<li style="display: inline-block" ui-sref-active="active" ng-if="!isAdmin() && isApproved()">
-					<a ui-sref="app.brand.productSeries">
-						<span class="font-bold">实体店信息</span>
-					</a>
-				</li>
-				<li style="display: inline-block" ui-sref-active="active" ng-if="!isAdmin() && isApproved()">
-					<a ui-sref="app.brand.sellingCity">
-						<span class="font-bold">实体店信息</span>
-					</a>
-				</li>
-				<li style="display: inline-block" ui-sref-active="active" ng-if="!isAdmin() && isApproved()">
-					<a ui-sref="app.brand.expandCity">
-						<span class="font-bold">招商城市</span>
-					</a>
-				</li>
-			</ul>
-		</div>
-		<!-- / main header -->
-		<div class="wrapper-md" >
-			<!-- stats -->
-			<div class="row">				
-				<div class="col-md-12">
-					<div class="row row-sm text-center" ng-if="!isApproved() ">						
-						<div class="col-xs-3">
-							<a href class="block tile panel padder-v bg-default item">
-								<span class="font-thin h2 block">账号审核中...</span>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!-- / stats -->
-		</div>
-	</div>
-	<!-- / main -->
+<div class="bg-light lter b-b wrapper-md" ui-view>
+	<ul class="nav">
+		<li style="display: inline-block" ui-sref-active="active" ng-if="isBrandAgent()">
+			<a ui-sref="app.brand.profile">
+				<span class="font-bold">公司信息</span>
+			</a>
+		</li>
+		<li style="display: inline-block" ui-sref-active="active" ng-if="isBrandAgent() && isApproved()">
+			<a ui-sref="app.brand.manage">
+				<span class="font-bold">品牌维护</span>
+			</a>
+		</li>
+		<li style="display: inline-block" ui-sref-active="active" ng-if="isBrandAgent() && isApproved()">
+			<a ui-sref="app.brand.productSeries">
+				<span class="font-bold">实体店信息</span>
+			</a>
+		</li>
+		<li style="display: inline-block" ui-sref-active="active" ng-if="isBrandAgent() && isApproved()">
+			<a ui-sref="app.brand.sellingCity">
+				<span class="font-bold">实体店信息</span>
+			</a>
+		</li>
+		<li style="display: inline-block" ui-sref-active="active" ng-if="isBrandAgent() && isApproved()">
+			<a ui-sref="app.brand.expandCity">
+				<span class="font-bold">招商城市</span>
+			</a>
+		</li>
+	</ul>
 </div>

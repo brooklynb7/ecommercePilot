@@ -179,17 +179,15 @@
 								</ul>
 								<div class="clearfix panel-footer">
 									<div>发表评论：
-										<form class="m-b-none" ng-submit="addComment(newComment)">
-											<div class="input-group">
-												<textarea class="form-control" rows="4" cols="40" ng-model='newComment.text' placeholder="……"></textarea>
-												<div>
-													<div class="m-b text-lg" ng-init="newComment.rating=5">
-														<rating ng-model="newComment.rating" max="5" state-on="'fa fa-starx text-warning'" state-off="'fa fa-star-o'"></rating>
-													</div>
-													<div class="input-group-btn">
-														<input type='submit' class="btn btn-default" value='提交'/>
-													</div>
-												</div>
+										<form ng-submit="addComment(newComment)">
+											<div>
+												<textarea class="form-control" rows="4" cols="40" ng-model='newComment.text' placeholder=""></textarea>
+											</div>
+											<div>
+												<rating ng-model="newComment.rating" max="5" state-on="'fa fa-starx text-warning'" state-off="'fa fa-star-o'"></rating>
+											</div>
+											<div>
+												<input type='submit' class="btn btn-default" value='提交'/>
 											</div>
 										</form>
 									</div>
@@ -199,36 +197,6 @@
 					</tr>
 					</tbody>
 				</table>
-			</tab>
-			<tab>
-				<tab-heading>
-					评价
-				</tab-heading>
-				<div class="panel b-a">
-					<ul class="list-group list-group-lg no-bg auto">
-						<li class="list-group-item clearfix" ng-repeat='comment in brand.comment'>							
-							<span class="clear">
-								<small class="text-muted clear text-ellipsis">
-									({{comment.created_at}}) - {{comment.created_by}}
-									<rating ng-model="comment.rating" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'"></rating>
-								</small>
-								<span>{{comment.text}}</span>
-							</span>
-						</li>
-					</ul>
-					<div class="clearfix panel-footer">
-						<div>
-							<form class="m-b-none" ng-submit="addComment(newComment)">
-								<div class="input-group">
-									<input type="text" class="form-control" ng-model='newComment.text' placeholder="说些什么">
-									<span class="input-group-btn">
-										<input type='submit' class="btn btn-default" value='评价'/>
-									</span>
-								</div>
-							</form>
-						</div>
-					</div>
-				</div>  
 			</tab>
 		</tabset>
 	</div>

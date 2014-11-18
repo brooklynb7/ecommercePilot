@@ -5,11 +5,27 @@
 			$scope.item = $filter('orderBy')($scope.items, 'first')[0];
 			$scope.item.selected = true;
 		});
-	}
+	};
+
+	function getMyBrandList(BrandService, $scope, $filter){
+		return BrandService.getBrandList().then(function(items){
+			$scope.items = [];
+			console.log(items);
+			for(var k in items){
+				if(items[k].created_by == $scope.currentUser.username ){
+					$scope.items.push(items[k]);
+				}
+			}
+			console.log($scope.items);
+			$scope.item = $filter('orderBy')($scope.items, 'first')[0];
+			$scope.item.selected = true;
+		})
+	};
 
 	app.controller('BrandManageCtrl', ['$scope', 'BrandService', '$filter',
 		function($scope, BrandService, $filter) {
-			getBrandList(BrandService, $scope, $filter);
+
+			getMyBrandList(BrandService, $scope, $filter);
 
 			$scope.getMaterialName = function() {
 				if ($scope.item) {
@@ -47,6 +63,7 @@
 			};
 
 			$scope.deleteItem = function(item) {
+				BrandService.deleteBrand(item);
 				$scope.items.splice($scope.items.indexOf(item), 1);
 				$scope.item = $filter('orderBy')($scope.items, 'first')[0];
 				if ($scope.item) $scope.item.selected = true;
@@ -54,7 +71,13 @@
 
 			$scope.createItem = function() {
 				var item = {};
+				item.created_by = $scope.currentUser.username;
+				item.id = Math.floor((Math.random() * 9900) + 100).toString();
+				item.productseries_set = [];
+				item.expanding_cities = [];
+				item.selling_cities = [];
 				$scope.items.push(item);
+				BrandService.createBrand(item);
 				$scope.selectItem(item);
 				$scope.item.editing = true;
 			};
@@ -66,6 +89,7 @@
 			};
 
 			$scope.doneEditing = function(item) {
+				BrandService.updateBrand(item);
 				item.editing = false;
 			};
 
@@ -89,7 +113,7 @@
 				$scope.newCity.city = $scope.province.cities[0].code;
 			}
 
-			getBrandList(BrandService, $scope, $filter)
+			getMyBrandList(BrandService, $scope, $filter)
 
 			$scope.selectItem = function(item) {
 				angular.forEach($scope.items, function(item) {
@@ -101,11 +125,13 @@
 
 			$scope.deleteCity = function(city) {
 				$scope.item.expanding_cities.splice($scope.item.expanding_cities.indexOf(city), 1);
+				BrandService.updateBrand($scope.item);
 			};
 
 			$scope.addCity = function(city) {
 				if (city) {
 					$scope.item.expanding_cities.push($scope.app.getProvinceCityText(city.province, city.city));
+					BrandService.updateBrand($scope.item);
 				}
 			};
 		}
@@ -115,7 +141,7 @@
 		function($scope, BrandService, $filter) {
 			$scope.newStore = {};
 
-			getBrandList(BrandService, $scope, $filter)
+			getMyBrandList(BrandService, $scope, $filter);
 
 			$scope.selectItem = function(item) {
 				angular.forEach($scope.items, function(item) {
@@ -127,11 +153,13 @@
 
 			$scope.deleteStore = function(store) {
 				$scope.item.selling_cities.splice($scope.item.selling_cities.indexOf(store), 1);
+				BrandService.updateBrand($scope.item);
 			};
 
 			$scope.addStore = function(store) {
 				if (store.name && store.city && store.address) {
 					$scope.item.selling_cities.push(store);
+					BrandService.updateBrand($scope.item);
 					$scope.newStore = {};
 				}
 			};
@@ -146,7 +174,7 @@
 				material_types: 1
 			};
 
-			getBrandList(BrandService, $scope, $filter)
+			getMyBrandList(BrandService, $scope, $filter);
 
 			$scope.selectItem = function(item) {
 				angular.forEach($scope.items, function(item) {
@@ -164,6 +192,7 @@
 				if (product.name && product.short_description && product.description) {
 					$scope.item.productseries_set.push(product);
 					$scope.newProduct = {};
+					BrandService.updateBrand($scope.item);
 				}
 			};
 		}
@@ -187,7 +216,9 @@
 			$scope.brand = {};
 			$scope.city = {};
 			$scope.map = null;
-			$scope.newComment = {};
+			$scope.newComment = {
+				rating: 0
+			};
 
 			BrandService.getBrand($stateParams.brandId).then(function(brand) {
 				$scope.brand = brand;
@@ -195,7 +226,6 @@
 				if ($scope.city) {
 					$scope.city.selected = true;
 					$scope.map = new Map();
-					console.log($scope.brand)
 					_.each($scope.brand.selling_cities, function(city) {						
 						city.point = $scope.map.generatePoint(city.lon, city.lat, city, $scope.selectCity);
 					});
@@ -220,14 +250,14 @@
 					$scope.brand.comment = [];
 				}
 				$scope.brand.comment.push(comment);
-				$scope.newComment = {};
-
+				$scope.newComment = {
+					rating: 0
+				};
 			};
 		}
 	]);
 
 	app.controller('CarouselCtrl', ['$scope', function($scope) {
-		console.log($scope.brand);
 		$scope.myInterval = 2000;
 		var slides = $scope.slides = [];
 		$scope.addSlide = function() {

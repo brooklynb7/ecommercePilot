@@ -1,0 +1,194 @@
+[
+  {
+    "id": "1",
+    "series": "卧房系列",
+    "product_alias": "达美家具 简约板式双人床1.5米1.8米 婚床 A811",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      {"dam": "js/app/brand/products/DAM001.jpg"},
+      {"dam": "js/app/brand/products/DAM002.jpg"},
+      {"dam": "js/app/brand/products/DAM003.jpg"},
+      {"dam": "js/app/brand/products/DAM004.jpg"},
+      {"dam": "js/app/brand/products/DAM005.jpg"},
+      {"dam": "js/app/brand/products/DAM006.jpg"},
+      {"dam": "js/app/brand/products/DAM007.jpg"}
+    ]
+  },
+  {
+    "id": "2",
+    "series": "客厅系列",
+    "product_alias": "达美家具 简约板式双人床1.5米1.8米 婚床 A811",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "3",
+    "series": "中式系列",
+    "product_alias": "达美家具 简约板式双人床1.5米1.8米 婚床 A811",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "4",
+    "series": "北美系列",
+    "product_alias": "达美家具 简约板式双人床1.5米1.8米 婚床 A811",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "5",
+    "series": "松木系列",
+    "product_alias": "达美家具 简约板式双人床1.5米1.8米 婚床 A811",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "6",
+    "series": "乌木系列",
+    "product_alias": "达美家具 简约板式双人床 A811",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "6",
+    "series": "乌木系列",
+    "product_alias": "达美家具 简约板式双人床 A812",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "6",
+    "series": "乌木系列",
+    "product_alias": "达美家具 简约板式双人床 A813",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "6",
+    "series": "乌木系列",
+    "product_alias": "达美家具 简约板式双人床 A814",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "6",
+    "series": "乌木系列",
+    "product_alias": "达美家具 简约板式双人床 A815",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "6",
+    "series": "乌木系列",
+    "product_alias": "达美家具 简约板式双人床 A816",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  },
+  {
+    "id": "6",
+    "series": "乌木系列",
+    "product_alias": "达美家具 简约板式双人床 A817",
+    "price": "1599.00",
+    "brand_name":"达美家具",
+    "product_images":[
+      "js/app/brand/products/DAM001.jpg",
+      "js/app/brand/products/DAM002.jpg",
+      "js/app/brand/products/DAM003.jpg",
+      "js/app/brand/products/DAM004.jpg",
+      "js/app/brand/products/DAM005.jpg",
+      "js/app/brand/products/DAM006.jpg",
+      "js/app/brand/products/DAM007.jpg"
+    ]
+  }
+]

@@ -166,7 +166,7 @@
 						return user.profile && user.profile.approval == "B";
 					});
 				});
-			}
+			};
 
 			return userService;
 		}
@@ -206,8 +206,41 @@
 				});
 			};
 
-			brandService.createBrand = function() {};
-			brandService.updateBrand = function() {};
+			brandService.createBrand = function(brand) {
+				var brands = dataStorage.getBrands();
+				var newBrand = {};
+				jQuery.extend(true, newBrand, brand);
+				delete newBrand['selected'];
+				delete newBrand['editing'];
+				delete newBrand['$$hashKey'];
+				brands.push(newBrand);
+				dataStorage.setBrands(brands);
+			};
+
+			brandService.updateBrand = function(updatedBrand) {
+				var brands = dataStorage.getBrands();
+				for(var i in brands){
+					if(brands[i].id == updatedBrand.id){
+						delete updatedBrand['selected'];
+						delete updatedBrand['editing'];
+						delete updatedBrand['$$hashKey'];
+						jQuery.extend(true, brands[i], updatedBrand);
+						break;
+					}
+				}
+				dataStorage.setBrands(brands);
+			};
+
+			brandService.deleteBrand = function(deletedBrand){
+				var brands = dataStorage.getBrands();
+				for(var j in brands){
+					if(brands[j].id == deletedBrand.id){
+						brands.splice(j, 1);
+						dataStorage.setBrands(brands);
+						break;
+					}
+				}
+			};
 
 			return brandService;
 		}
