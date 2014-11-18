@@ -280,10 +280,6 @@ var Map = function() {
 	this.map.enableScrollWheelZoom(true);
 	this.zoomSize = 14;
 	this.points = [];
-	/*this.map.centerAndZoom(new BMap.Point(116.404, 39.915), this.zoomSize);  // 初始化地图,设置中心点坐标和地图级别
-	this.map.addControl(new BMap.MapTypeControl());   //添加地图类型控件*/
-	//this.map.setCurrentCity("北京");   
-	//this.map.addControl(new BMap.NavigationControl());
 };
 Map.prototype.generatePoint = function(lng, lat, infoObj, selectCityFn) {
 	var that = this;
