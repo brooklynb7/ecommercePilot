@@ -9,10 +9,10 @@ delete /rest/brand/:id/selling_city/:id
 put /rest/brand/:id
 delete /rest/brand/:id/productseries_set/:id
 
-Æ·ÅÆĞèÒªÌí¼Ó×Ö¶Î:
-²úÆ·Ïß£¬²úÆ··ç¸ñ?£¬²ÄÁÏ£¬city code, required,
+Æ·ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½Ö¶ï¿½:
+ï¿½ï¿½Æ·ï¿½ß£ï¿½ï¿½ï¿½Æ·ï¿½ï¿½ï¿½?ï¿½ï¿½ï¿½ï¿½ï¿½Ï£ï¿½city code, required,
 selling city address, store, name?
 
 
-ÏÖÔÚuser£¬profile£¬brand-agent£¬sales-agentÓĞÒ»Ğ©Êı¾İÁË
-ÃÜÂëÄ¬ÈÏ¶¼ÊÇ1234
+ï¿½ï¿½ï¿½ï¿½userï¿½ï¿½profileï¿½ï¿½brand-agentï¿½ï¿½sales-agentï¿½ï¿½Ò»Ğ©ï¿½ï¿½ï¿½ï¿½ï¿½
+ï¿½ï¿½ï¿½ï¿½Ä¬ï¿½Ï¶ï¿½ï¿½ï¿½1234

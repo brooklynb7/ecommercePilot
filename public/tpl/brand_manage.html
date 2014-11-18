@@ -61,7 +61,7 @@
 							<form name="form" class="form-validation form-horizontal">                  
 								<div class="form-group">
 									<label class="col-sm-2 control-label">品牌名称</label>
-									<div class="col-sm-10">
+									<div class="col-sm-6">
 										<p class="form-control-static" ng-hide="item.editing">{{item.name}}</p>
 										<input type="text" class="form-control" ng-show="item.editing" ng-model='item.name' required>
 									</div>
@@ -69,15 +69,25 @@
 								<div class="line line-dashed b-b line-lg pull-in"></div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">品牌描述</label>
-									<div class="col-sm-10">
+									<div class="col-sm-6">
 										<p class="form-control-static" ng-hide="item.editing">{{item.description}}</p>
 										<input type="text" class="form-control"  ng-show="item.editing" ng-model='item.description' required>
 									</div>
 								</div>
 								<div class="line line-dashed b-b line-lg pull-in"></div>
 								<div class="form-group">
+									<label class="col-sm-2 control-label">品牌Logo</label>
+									<div class="col-sm-6">
+										<img src="" alt="TODO" ng-hide="item.editing">
+										<div ng-show="item.editing">
+											<input ui-jq="filestyle" type="file" data-icon="false" data-classButton="btn btn-default" data-classInput="form-control inline v-middle input-s">
+										</div>
+									</div>
+								</div>
+								<div class="line line-dashed b-b line-lg pull-in"></div>
+								<div class="form-group">
 									<label class="col-sm-2 control-label">产品风格</label>
-									<div class="col-sm-10">
+									<div class="col-sm-6">
 										<p class="form-control-static" ng-hide="item.editing">{{item.style}}</p>
 										<input type="text" class="form-control"  ng-show="item.editing" ng-model='item.style' required>
 									</div>
@@ -85,7 +95,7 @@
 								<div class="line line-dashed b-b line-lg pull-in"></div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">产品材料</label>
-									<div class="col-sm-10" ui-module="select2">
+									<div class="col-sm-6" ui-module="select2">
 										<p class="form-control-static" ng-hide="item.editing">{{getMaterialName()}}</p>
 										<select multiple  ng-show="item.editing" ui-select2 ng-model='item.material' class="form-control">
 											<option ng-repeat="item in app.materialList" value="{{item.id}}">{{item.name}}</option>
@@ -95,7 +105,7 @@
 								<div class="line line-dashed b-b line-lg pull-in"></div>
 								<div class="form-group">
 									<label class="col-sm-2 control-label">产品线</label>
-									<div class="col-sm-10"  ui-module="select2">
+									<div class="col-sm-6" ui-module="select2">
 										<p class="form-control-static" ng-hide="item.editing">{{getCategoryName()}}</p>
 										<select multiple  ng-show="item.editing" ui-select2 ng-model='item.category' class="form-control">
 											<option ng-repeat="item in app.categoryList" value="{{item.id}}">{{item.name}}</option>
@@ -104,8 +114,8 @@
 								</div>
 								<div class="line line-dashed b-b line-lg pull-in"></div>
 								<div class="form-group">
-									<label class="col-sm-2 control-label">工厂</label>
-									<div class="col-sm-10">
+									<label class="col-sm-2 control-label">工厂信息</label>
+									<div class="col-sm-6">
 										<p class="form-control-static" ng-hide="item.editing">{{item.factory}}</p>
 										<input type="text" class="form-control"  ng-show="item.editing" ng-model='item.factory' required>
 									</div>

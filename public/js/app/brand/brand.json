@@ -12,7 +12,7 @@
 			"selling_cities": null,
 			"expanding_cities": null,
 			"photos": ["img/furniture/10001.jpg", "img/furniture/10002.jpg"],
-			"material_types": null,
+			"material_types": [1,2],
 			"decoration_styles": null
 		}, {
 			"category": 2,

@@ -221,10 +221,10 @@
 				var brands = dataStorage.getBrands();
 				for(var i in brands){
 					if(brands[i].id == updatedBrand.id){
-						delete updatedBrand['selected'];
-						delete updatedBrand['editing'];
-						delete updatedBrand['$$hashKey'];
 						jQuery.extend(true, brands[i], updatedBrand);
+						delete brands[i]['selected'];
+						delete brands[i]['editing'];
+						delete brands[i]['$$hashKey'];
 						break;
 					}
 				}

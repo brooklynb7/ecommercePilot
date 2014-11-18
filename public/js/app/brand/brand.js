@@ -9,14 +9,10 @@
 
 	function getMyBrandList(BrandService, $scope, $filter){
 		return BrandService.getBrandList().then(function(items){
-			$scope.items = [];
-			console.log(items);
-			for(var k in items){
-				if(items[k].created_by == $scope.currentUser.username ){
-					$scope.items.push(items[k]);
-				}
-			}
-			console.log($scope.items);
+			$scope.items = _.filter(items, function(item){
+				return item.created_by == $scope.currentUser.username;
+			});
+
 			$scope.item = $filter('orderBy')($scope.items, 'first')[0];
 			$scope.item.selected = true;
 		})
@@ -111,9 +107,9 @@
 					return province.code == $scope.newCity.province;
 				});
 				$scope.newCity.city = $scope.province.cities[0].code;
-			}
+			};
 
-			getMyBrandList(BrandService, $scope, $filter)
+			getMyBrandList(BrandService, $scope, $filter);
 
 			$scope.selectItem = function(item) {
 				angular.forEach($scope.items, function(item) {
@@ -166,8 +162,8 @@
 		}
 	]);
 
-	app.controller('BrandProductSeriesCtrl', ['$scope', 'BrandService', '$filter',
-		function($scope, BrandService, $filter) {
+	app.controller('BrandProductSeriesCtrl', ['$scope', 'BrandService', '$filter', '$modal',
+		function($scope, BrandService, $filter, $modal) {
 			$scope.newProduct = {
 				decoration_styles: 1,
 				category: 1,
@@ -188,15 +184,90 @@
 				$scope.item.selling_cities.splice($scope.item.selling_cities.indexOf(store), 1);
 			};
 
-			$scope.addProduct = function(product) {
-				if (product.name && product.short_description && product.description) {
+			$scope.save = function(product) {
+				if (product.name) {
 					$scope.item.productseries_set.push(product);
-					$scope.newProduct = {};
 					BrandService.updateBrand($scope.item);
 				}
 			};
+
+			$scope.editProduct = function (product, brand) {
+
+				var modalInstance = $modal.open({
+					templateUrl: 'productEditModal.html',
+					controller: 'ProductEditModalCtrl',
+					resolve: {
+						product: function () {
+							return product;
+						},
+						BrandService: function () {
+							return BrandService;
+						},
+						brand: function () {
+							return brand;
+						}
+					}
+				});
+			}
+
+			$scope.viewProduct = function (product) {
+
+				var modalInstance = $modal.open({
+					templateUrl: 'productViewModal.html',
+					controller: 'ProductViewModalCtrl',
+					resolve: {
+						product: function () {
+							return product;
+						}
+					}
+				});
+
+			};
 		}
 	]);
+
+	app.controller('ProductEditModalCtrl',
+		function ($scope, $modalInstance, product, brand, BrandService) {
+
+		$scope.isNew = false;
+
+		if(!product) {
+			$scope.isNew = true;
+			product = {
+				decoration_styles: 1,
+				category: 1,
+				material_types: 1
+			};
+		}
+
+		$scope.tempProduct = _.clone(product);
+
+		$scope.save = function (updatedProduct) {
+			if (updatedProduct.name) {
+				if($scope.isNew){
+					brand.productseries_set.push(updatedProduct);
+				}
+				else{
+					product = _.extend(product, updatedProduct);
+				}
+				BrandService.updateBrand(brand);
+				$modalInstance.close();
+			}
+		};
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss(	'cancel');
+		};
+	});
+
+	app.controller('ProductViewModalCtrl', function ($scope, $modalInstance, product) {
+
+		$scope.selectedProduct = product;
+
+		$scope.cancel = function () {
+			$modalInstance.dismiss('cancel');
+		};
+	});
 
 	app.controller('BrandSearchCtrl', ['$scope', 'BrandService', '$filter',
 		function($scope, BrandService, $filter) {
@@ -267,7 +338,6 @@
 			$scope.addSlide();
 		}
 	}]);
-
 
 }());
 
