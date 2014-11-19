@@ -49,6 +49,19 @@
 				}
 			};
 
+			$scope.getStyleName = function() {
+				if ($scope.item) {
+					var text = "";
+					_.each($scope.item.style, function(style, idx) {
+						text += $scope.app.getStyleText(style);
+						if (idx < $scope.item.style.length - 1) {
+							text += ",";
+						}
+					});
+					return text;
+				}
+			};
+
 			$scope.selectItem = function(item) {
 				angular.forEach($scope.items, function(item) {
 					item.selected = false;
@@ -296,7 +309,7 @@
 			$scope.city = {};
 			$scope.map = null;
 			$scope.newComment = {
-				rating: 0
+				rating: 5
 			};
 
 			BrandService.getBrand($stateParams.brandId).then(function(brand) {
@@ -322,16 +335,18 @@
 				$scope.map.centerToPoint(city.point);
 			};
 
-			$scope.addComment = function(comment) {
+			$scope.addComment = function(comment, parent) { // parent could be brand or product
 				comment.created_at = new Date();
 				comment.created_by = $scope.currentUser.username;
-				if(!$scope.brand.comment){
-					$scope.brand.comment = [];
+				delete parent['$$hashKey'];
+				if(!parent.comments){
+					parent.comments = [];
 				}
-				$scope.brand.comment.push(comment);
+				parent.comments.push(comment);
 				$scope.newComment = {
-					rating: 0
+					rating: 5
 				};
+				BrandService.updateBrand($scope.brand);
 			};
 		}
 	]);

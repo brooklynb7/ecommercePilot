@@ -228,6 +228,7 @@
 						break;
 					}
 				}
+				console.log(brands);
 				dataStorage.setBrands(brands);
 			};
 

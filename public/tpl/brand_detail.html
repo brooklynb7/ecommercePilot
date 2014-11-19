@@ -111,21 +111,27 @@
 					<div class="form-group">
 						<label class="col-sm-2 text-right" >品牌分类</label>
 						<div class="col-sm-10">
-							<span>{{brand.category.join(",")}}</span>
+							<ul class="list-inline">
+								<li ng-repeat="c in brand.category"> {{app.getCategoryText(c)}} </li>
+							</ul>
 						</div>
 					</div>
 					<div class="line line-dashed b-b line-lg pull-in"></div>
 					<div class="form-group">
 						<label class="col-sm-2 text-right" >品牌风格</label>
 						<div class="col-sm-10">
-							<span>{{brand.style}}</span>
+							<ul class="list-inline">
+								<li ng-repeat="s in brand.style"> {{app.getStyleText(s)}} </li>
+							</ul>
 						</div>
 					</div>
 					<div class="line line-dashed b-b line-lg pull-in"></div>
 					<div class="form-group">
 						<label class="col-sm-2 text-right" >品牌材料</label>
 						<div class="col-sm-10">
-							<span>{{brand.material.join(',')}}</span>
+							<ul class="list-inline">
+								<li ng-repeat="m in brand.material"> {{app.getMaterialText(m)}} </li>
+							</ul>
 						</div>
 					</div>
 				</form>
@@ -134,7 +140,7 @@
 				<tab-heading>
 					产品系列
 				</tab-heading>
-				<table class="table m-b-none" ui-jq="footable" data-filter="#filter" data-page-size="1">
+				<table class="table" ui-jq="footable" data-page-size="1">
 					<thead>
 						<tr>
 							<td colspan="5" class="text-center">
@@ -147,19 +153,24 @@
 						<td class="col-md-8">
 							<table class="table table-striped col-md-8">
 								<tr><td>名称: </td><td>{{product.name}}</td></tr>
-								<tr><td>类别</td>
-								<td>
-									{{app.getCategoryText(product.category)}}
-								</td></tr>
-								<tr></tr><td>材料: </td>
-								<td>
-									{{app.getMaterialText(product.material_types)}}
-								</td></tr>
 								<tr>
-								<td>风格: </td>
-								<td>
-									{{app.getStyleText(product.decoration_styles)}}
-								</td></tr>
+									<td>类别</td>
+									<td>
+									{{app.getCategoryText(product.category)}}
+									</td>
+								</tr>
+								<tr>
+									<td>材料: </td>
+									<td>
+										{{app.getMaterialText(product.material_types)}}
+									</td>
+								</tr>
+								<tr>
+									<td>风格: </td>
+									<td>
+										{{app.getStyleText(product.decoration_styles)}}
+									</td>
+								</tr>
 
 								<tr><td>店铺面积: </td><td>{{product.shop_size}}</td></tr>
 								<tr><td>装修成本: </td><td>{{product.deco_cost}}</td></tr>
@@ -167,8 +178,8 @@
 								<tr><td>描述: </td><td>{{product.description}}</td></tr>
 							</table>
 
-							<hr>
-							<div ng-controller="CarouselCtrl" class="panel b-a col-lg-8" set-ng-animate="false">
+							<hr/>
+							<div ng-controller="CarouselCtrl" class="panel b-a" set-ng-animate="false">
 								<div class="panel-heading">
 									照片
 								</div>
@@ -182,13 +193,16 @@
 									</slide>
 								</carousel>
 							</div>
-							<!-- Comments for product Series, using brand comments data currently-->
-							<div class="panel col-lg-4">
+						</td>
+							<!-- Comments for product Series-->
+						<td class="col-md-4">
+							<div class="panel col-md-11">
 								<ul class="list-group list-group-lg no-bg auto">
-									<li class="list-group-item clearfix" ng-repeat='comment in brand.comment'>
+									<li class="list-group-item clearfix" ng-repeat='comment in product.comments'>
 										<span class="clear">
 											<div class="m-b text-lg pull-right">
-												<rating ng-model="comment.rating" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'" readonly="true"></rating>
+												<rating ng-model="comment.rating" max="5"
+														state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'" readonly="true"></rating>
 											</div>
 											<small class="text-muted clear text-ellipsis">({{comment.created_at}}) - {{comment.created_by}}</small>
 											<span>{{comment.text}}</span>
@@ -197,12 +211,12 @@
 								</ul>
 								<div class="clearfix panel-footer">
 									<div>发表评论：
-										<form ng-submit="addComment(newComment)">
+										<form ng-submit="addComment(newComment, product)">
 											<div>
 												<textarea class="form-control" rows="4" cols="40" ng-model='newComment.text' placeholder=""></textarea>
 											</div>
 											<div>
-												<rating ng-model="newComment.rating" max="5" state-on="'fa fa-starx text-warning'" state-off="'fa fa-star-o'"></rating>
+												<rating ng-model="newComment.rating" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'"></rating>
 											</div>
 											<div>
 												<input type='submit' class="btn btn-default" value='提交'/>
