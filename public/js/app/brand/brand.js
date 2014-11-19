@@ -205,10 +205,13 @@
 						},
 						brand: function () {
 							return brand;
+						},
+						app: function(){
+							return $scope.app;
 						}
 					}
 				});
-			}
+			};
 
 			$scope.viewProduct = function (product) {
 
@@ -218,6 +221,9 @@
 					resolve: {
 						product: function () {
 							return product;
+						},
+						app: function(){
+							return $scope.app;
 						}
 					}
 				});
@@ -226,42 +232,44 @@
 		}
 	]);
 
-	app.controller('ProductEditModalCtrl',
-		function ($scope, $modalInstance, product, brand, BrandService) {
+	app.controller('ProductEditModalCtrl', ['$scope', '$modalInstance', 'product', 'brand', 'BrandService', 'app',
+		function ($scope, $modalInstance, product, brand, BrandService, app) {
 
-		$scope.isNew = false;
+			$scope.isNew = false;
+			$scope.app = app;
 
-		if(!product) {
-			$scope.isNew = true;
-			product = {
-				decoration_styles: 1,
-				category: 1,
-				material_types: 1
+			if(!product) {
+				$scope.isNew = true;
+				product = {
+					decoration_styles: 1,
+					category: 1,
+					material_types: 1
+				};
+			}
+
+			$scope.tempProduct = _.clone(product);
+
+			$scope.save = function (updatedProduct) {
+				if (updatedProduct.name) {
+					if($scope.isNew){
+						brand.productseries_set.push(updatedProduct);
+					}
+					else{
+						product = _.extend(product, updatedProduct);
+					}
+					BrandService.updateBrand(brand);
+					$modalInstance.close();
+				}
+			};
+
+			$scope.cancel = function () {
+				$modalInstance.dismiss(	'cancel');
 			};
 		}
+	]);
 
-		$scope.tempProduct = _.clone(product);
-
-		$scope.save = function (updatedProduct) {
-			if (updatedProduct.name) {
-				if($scope.isNew){
-					brand.productseries_set.push(updatedProduct);
-				}
-				else{
-					product = _.extend(product, updatedProduct);
-				}
-				BrandService.updateBrand(brand);
-				$modalInstance.close();
-			}
-		};
-
-		$scope.cancel = function () {
-			$modalInstance.dismiss(	'cancel');
-		};
-	});
-
-	app.controller('ProductViewModalCtrl', function ($scope, $modalInstance, product) {
-
+	app.controller('ProductViewModalCtrl', function ($scope, $modalInstance, product, app) {
+		$scope.app = app;
 		$scope.selectedProduct = product;
 
 		$scope.cancel = function () {

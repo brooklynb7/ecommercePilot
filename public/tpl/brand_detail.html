@@ -144,11 +144,29 @@
 					</thead>
 					<tbody>
 					<tr ng-repeat="product in brand.productseries_set">
-						<td>
-							<div>名称: {{product.name}}</div>
-							<div>描述: {{product.description}}</div>
-							<div>材料: {{product.material_types}}</div>
-							<div>风格: {{product.decoration_styles}}</div>
+						<td class="col-md-8">
+							<table class="table table-striped col-md-8">
+								<tr><td>名称: </td><td>{{product.name}}</td></tr>
+								<tr><td>类别</td>
+								<td>
+									{{app.getCategoryText(product.category)}}
+								</td></tr>
+								<tr></tr><td>材料: </td>
+								<td>
+									{{app.getMaterialText(product.material_types)}}
+								</td></tr>
+								<tr>
+								<td>风格: </td>
+								<td>
+									{{app.getStyleText(product.decoration_styles)}}
+								</td></tr>
+
+								<tr><td>店铺面积: </td><td>{{product.shop_size}}</td></tr>
+								<tr><td>装修成本: </td><td>{{product.deco_cost}}</td></tr>
+								<tr><td>货物成本: </td><td>{{product.product_cost}}</td></tr>
+								<tr><td>描述: </td><td>{{product.description}}</td></tr>
+							</table>
+
 							<hr>
 							<div ng-controller="CarouselCtrl" class="panel b-a col-lg-8" set-ng-animate="false">
 								<div class="panel-heading">

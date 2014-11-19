@@ -84,6 +84,16 @@
 				return "";
 			};
 
+			$scope.app.getStyleText = function(id){
+				var styleObj = _.find($scope.app.decorationStyleList, function(style){
+					return style.id == id;
+				});
+				if(styleObj) {
+					return styleObj.name;
+				}
+				return "";
+			};
+
 			TaxonomyService.getCategoryList({
 				//root:"True"
 			}).then(function(categoryList) {
