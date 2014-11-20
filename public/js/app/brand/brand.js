@@ -326,6 +326,7 @@
 				}
 			});
 
+
 			$scope.selectCity = function(city) {
 				angular.forEach($scope.brand.selling_cities, function(city) {
 					city.selected = false;
@@ -346,6 +347,7 @@
 				$scope.newComment = {
 					rating: 5
 				};
+				console.log($scope.brand);
 				BrandService.updateBrand($scope.brand);
 			};
 		}

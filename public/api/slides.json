@@ -1,0 +1,26 @@
+{
+    "slides" : [
+        {"id" : "101", "name" : "源氏木语", "logo" : "model/data/slide/10001.jpg"},
+        {"id" : "102", "name" : "达美家居", "logo" : "model/data/slide/10002.jpg"},
+        {"id" : "103", "name" : "洛兰格",   "logo" : "model/data/slide/10003.jpg"},
+        {"id" : "104", "name" : "艾芙迪",   "logo" : "model/data/slide/10004.jpg"},
+        {"id" : "105", "name" : "森岳家",   "logo" : "model/data/slide/10005.jpg"},
+        {"id" : "106", "name" : "喜梦宝",   "logo" : "model/data/slide/10006.jpg"},
+        {"id" : "107", "name" : "洪鑫家居", "logo" : "model/data/slide/10007.jpg"},
+        {"id" : "108", "name" : "皇浩至尊", "logo" : "model/data/slide/10008.jpg"},
+        {"id" : "109", "name" : "沃克家居", "logo" : "model/data/slide/10009.jpg"},
+        {"id" : "110", "name" : "槟榔家具", "logo" : "model/data/slide/10010.jpg"},
+        {"id" : "111", "name" : "王氏豪庭", "logo" : "model/data/slide/10011.jpg"},
+        {"id" : "112", "name" : "贝尼尼",   "logo" : "model/data/slide/10012.jpg"},
+        {"id" : "113", "name" : "华日家具", "logo" : "model/data/slide/10001.jpg"},
+        {"id" : "114", "name" : "奥萬大",   "logo" : "model/data/slide/10002.jpg"},
+        {"id" : "115", "name" : "华谊家具", "logo" : "model/data/slide/10003.jpg"},
+        {"id" : "116", "name" : "温歌桦",   "logo" : "model/data/slide/10004.jpg"},
+        {"id" : "117", "name" : "七彩人生", "logo" : "model/data/slide/10005.jpg"},
+        {"id" : "118", "name" : "艾尚木语", "logo" : "model/data/slide/10006.jpg"},
+        {"id" : "119", "name" : "帝诺维琛", "logo" : "model/data/slide/10007.jpg"},
+        {"id" : "120", "name" : "尚品家具", "logo" : "model/data/slide/10008.jpg"},
+        {"id" : "121", "name" : "曲美家具", "logo" : "model/data/slide/10009.jpg"},
+        {"id" : "122", "name" : "北山家具", "logo" : "model/data/slide/10010.jpg"}
+    ]
+}

@@ -18,6 +18,8 @@ var app = angular.module('app', [
 		'app.services',
 		'app.directives',
 		'app.controllers'
+		//"ngTouch",
+		//'angular-carousel'
 	])
 	.run(
 		['$rootScope', '$state', '$stateParams', '$location', 'AuthService', 'AUTH_EVENTS',

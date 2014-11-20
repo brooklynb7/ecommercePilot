@@ -12,7 +12,9 @@
 <div class="app-content" ng-class="{'h-full': app.fullScreen }">
 	<div ui-butterbar></div>
 	<a href class="off-screen-toggle hide" ui-toggle-class="off-screen" data-target=".app-aside" ></a>
-	<div style="width: 100%;text-align: center;font-size: 20px;padding: 12px;background-color: #eee;">广告通栏 1000*200</div>
+	<div style="width: 100%; text-align: center;font-size: 15px;padding: 12px;background-color: #eee;">
+		<div ng-include="'tpl/adv_publication.html'"></div>
+	</div>
 	<div class="app-content-body fade-in-up" ng-class="{'h-full': app.fullScreen,'app-content-full':app.fullScreen }" ui-view></div>
 </div>
 <!-- /content -->

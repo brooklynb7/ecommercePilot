@@ -31,6 +31,12 @@
 		},
 		setAgencies: function(agenciesJSON){
 			_setLocalStorage("agencies", agenciesJSON);
+		},
+		getPublications: function(){
+			return _getLocalStorage("publications");
+		},
+		setPublications: function(publicationsJSON){
+			_setLocalStorage("publications", publicationsJSON);
 		}
 	};
 
@@ -69,6 +75,12 @@
 
 			var authService = {};
 
+			var SlidesResource = $resource('api/slides.json');
+			authService.slides = function() {
+				return SlidesResource.get().$promise.then(function(slide) {
+					return slide;
+				});
+			};
 			authService.signup = function(userInfo) {
 				return SignUpResource.signup(userInfo).$promise.then(function(res) {
 					var users = dataStorage.getUsers();
@@ -206,6 +218,13 @@
 				});
 			};
 
+			brandService.findBrand = function(brandId) {
+				var brands = dataStorage.getBrands();
+				return _.find(brands, function(brand){
+					return brand.id == brandId;
+				});
+			};
+
 			brandService.createBrand = function(brand) {
 				var brands = dataStorage.getBrands();
 				var newBrand = {};
@@ -221,7 +240,13 @@
 				var brands = dataStorage.getBrands();
 				for(var i in brands){
 					if(brands[i].id == updatedBrand.id){
-						jQuery.extend(true, brands[i], updatedBrand);
+
+						for(var x in updatedBrand.selling_cities){
+							delete updatedBrand.selling_cities[x]["point"];
+						}
+						_.extend(brands[i], updatedBrand);
+
+
 						delete brands[i]['selected'];
 						delete brands[i]['editing'];
 						delete brands[i]['$$hashKey'];
@@ -334,4 +359,30 @@
 			return taxonomyService;
 		}
 	]);
+
+	appService.factory('PublicationService', ['$resource', function($resource){
+		var publicationResource = $resource('js/app/brand/publication.json');
+		var publicationService = {};
+
+		publicationService.loadPublications = function(){
+			if(!dataStorage.getPublications()){
+				publicationResource.get().$promise.then(function(res) {
+					dataStorage.setPublications(res.publications);
+				});
+			}
+		};
+		publicationService.getPublications = function(){
+			//return publicationResource.get().$promise.then(function(res) {
+			//	return dataStorage.getPublications();
+			//	//return res.results;
+			//});
+			return dataStorage.getPublications();
+		};
+
+		publicationService.addPublication = function(publication){
+			//TODO
+		};
+
+		return publicationService;
+	}])
 })();

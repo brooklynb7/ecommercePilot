@@ -1,0 +1,52 @@
+{
+  "count": 9,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 1,
+      "name": "\u5bb6\u5177",
+      "super": null
+    },
+    {
+      "id": 2,
+      "name": "\u5730\u677f",
+      "super": null
+    },
+    {
+      "id": 3,
+      "name": "\u536b\u6d74",
+      "super": null
+    },
+    {
+      "id": 4,
+      "name": "\u7535\u5668",
+      "super": null
+    },
+    {
+      "id": 5,
+      "name": "\u6a71\u67dc",
+      "super": null
+    },
+    {
+      "id": 6,
+      "name": "\u5ba2\u5385\u5bb6\u5177",
+      "super": 1
+    },
+    {
+      "id": 7,
+      "name": "\u5367\u5ba4\u5bb6\u5177",
+      "super": 1
+    },
+    {
+      "id": 8,
+      "name": "\u9732\u5929\u5bb6\u5177",
+      "super": 1
+    },
+    {
+      "id": 9,
+      "name": "\u74f7\u7816",
+      "super": null
+    }
+  ]
+}

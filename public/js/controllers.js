@@ -4,8 +4,8 @@
 
 	var appController = angular.module('app.controllers', ['pascalprecht.translate', 'ngCookies']);
 
-	appController.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES', 'UserService', 'BrandService','AuthService','AUTH_EVENTS', 'TaxonomyService','AgencyService',
-		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES, UserService, BrandService,AuthService, AUTH_EVENTS, TaxonomyService,AgencyService) {
+	appController.controller('AppCtrl', ['$scope', '$rootScope', '$state', '$translate', '$localStorage', '$window', 'USER_ROLES', 'UserService', 'BrandService','AuthService','AUTH_EVENTS', 'TaxonomyService','AgencyService', 'PublicationService',
+		function($scope, $rootScope, $state, $translate, $localStorage, $window, USER_ROLES, UserService, BrandService,AuthService, AUTH_EVENTS, TaxonomyService,AgencyService, PublicationService) {
 			// add 'ie' classes to html
 			var isIE = !!navigator.userAgent.match(/MSIE/i);
 			isIE && angular.element($window.document.body).addClass('ie');
@@ -46,12 +46,14 @@
 				categoryList: [],
 				provinceList: [],
 				materialList: [],
-				decorationStyleList: []
+				decorationStyleList: [],
+				slidesImages: []
 			};
 
 			UserService.loadUsers();
 			BrandService.loadBrands();
 			AgencyService.loadAgencies();
+			PublicationService.loadPublications();
 
 			$scope.app.getProvinceCityText = function(provinceId, cityId){
 				var provinceObj = _.find($scope.app.provinceList, function(province){
@@ -125,6 +127,10 @@
 				username: "test2"
 			}).then(function(user) {
 				$scope.setCurrentUser(user);
+			});
+
+			AuthService.slides().then(function(image) {
+				$scope.app.slidesImage = image.slides;
 			});
 
 			$scope.userRoles = USER_ROLES;
@@ -280,6 +286,25 @@
 		}
 	]);
 
+	appController.controller('HomeController', ['$scope',
+		function($scope) {
+			$scope.intervals = 2000;
+			$scope.slides = [];
+			$scope.addSlide = function() {
+				for(var i = 0; i < $scope.app.slidesImage.length; i++){
+					$scope.slides.push({
+						image : $scope.app.slidesImage[i].logo,
+							name : $scope.app.slidesImage[i].name
+					});
+				}
+			};
+
+			for (var a = 0; a < 1; a++) {
+				$scope.addSlide();
+			}
+		}
+	]);
+
 	appController.controller('CategoryBrandController', ['$scope', '$http',
 		function($scope, $http) {
 			$scope.categoryResults = [];
@@ -307,4 +332,38 @@
 			});
 		}
 	]);
+
+	appController.controller('PublicationController', ['$scope', 'PublicationService', '$interval', 'BrandService',
+		function($scope, PublicationService, $interval,BrandService) {
+
+			$scope.interval = 4000;
+			$scope.publications = PublicationService.getPublications();
+
+			var count = $scope.publications.length;
+			$scope.currentPub = $scope.publications[0];
+
+			for(var pub in $scope.publications){
+				var brand = BrandService.findBrand($scope.publications[pub].brand);
+				$scope.publications[pub].brand_name = brand.name;
+				$scope.publications[pub].brand_url = "#app/brand/" + brand.id;
+				//$scope.publications[pub].brand_name = currentBrand.name;
+				//$scope.publications[pub].brand_url = "#app/brand/" + currentBrand.id;
+			}
+
+			var stop = $interval(nextPub, $scope.interval);
+
+			function nextPub(){
+				if($scope.currentPub == $scope.publications[count-1]){
+					$scope.currentPub = $scope.publications[0];
+				}
+				else{
+					$scope.currentPub =  $scope.publications[$scope.publications.indexOf($scope.currentPub)+1];
+				}
+			}
+
+			$
+			//TODO Destroy
+		}
+	]);
+
 })();
