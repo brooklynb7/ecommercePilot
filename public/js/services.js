@@ -246,7 +246,6 @@
 						}
 						_.extend(brands[i], updatedBrand);
 
-
 						delete brands[i]['selected'];
 						delete brands[i]['editing'];
 						delete brands[i]['$$hashKey'];
@@ -380,7 +379,9 @@
 		};
 
 		publicationService.addPublication = function(publication){
-			//TODO
+			var pubs = dataStorage.getPublications();
+			pubs.push(publication);
+			dataStorage.setPublications(pubs);
 		};
 
 		return publicationService;

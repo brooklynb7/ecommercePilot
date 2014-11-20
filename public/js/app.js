@@ -18,8 +18,6 @@ var app = angular.module('app', [
 		'app.services',
 		'app.directives',
 		'app.controllers'
-		//"ngTouch",
-		//'angular-carousel'
 	])
 	.run(
 		['$rootScope', '$state', '$stateParams', '$location', 'AuthService', 'AUTH_EVENTS',
@@ -66,7 +64,19 @@ var app = angular.module('app', [
 					.state('app', {
 						abstract: true,
 						url: '/app',
-						templateUrl: 'tpl/app.html'
+						templateUrl: 'tpl/app.html',
+						resolve: {
+							deps: ['$ocLazyLoad',
+								function( $ocLazyLoad){
+									return $ocLazyLoad.load('toaster').then(
+										function(){
+											return $ocLazyLoad.load('js/modules/toaster/ctrl.js');
+										}
+									);
+								}
+							]
+						}
+
 					})
 					.state('app.home', {
 						url: '/home',

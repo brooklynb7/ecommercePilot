@@ -57,37 +57,55 @@
 				<div class="cell">
 					<div class="cell-inner">
 						<div class="wrapper-lg">
-							<form name="form" class="form-inline ng-pristine ng-valid form-validation" style='margin-bottom:10px' role="form">
-								<div class="form-group">
-									<select class="form-control" ng-model='newCity.province' ng-change="changeProvince()">
-										<option ng-repeat="item in app.provinceList" value="{{item.code}}">{{item.name}}</option>
-									</select>
+							<!--<div class="col-md-6">-->
+								<form name="form" class="form-inline ng-pristine ng-valid form-validation" style='margin-bottom:10px' role="form">
+									<div class="form-group">
+										<select class="form-control" ng-model='newCity.province' ng-change="changeProvince()">
+											<option ng-repeat="item in app.provinceList" value="{{item.code}}">{{item.name}}</option>
+										</select>
+									</div>
+									<div class="form-group">
+										<select class="form-control" ng-model='newCity.city' >
+											<option ng-repeat="item in province.cities" value="{{item.code}}">{{item.name}}</option>
+										</select>
+									</div>
+									<button type="submit" class="btn btn-info" ng-click='addCity(newCity)' ng-disabled='form.$invalid'>添加</button>
+								</form>
+								<div class="panel panel-default">
+									<div class="panel-heading">
+										城市列表
+									</div>
+									<div class="table-responsive">
+										<table class="table table-striped b-t b-light">
+											<tbody>
+												<tr ng-repeat="city in item.expanding_cities">
+													<td style="width:20px;">
+														<a href ng-click="deleteCity(city)"><i class="fa fa-times text-danger"></i></a>
+													</td>
+													<td>{{city}}</td>
+												</tr>
+											</tbody>
+										</table>
+									</div>
 								</div>
-								<div class="form-group">
-									<select class="form-control" ng-model='newCity.city' >
-										<option ng-repeat="item in province.cities" value="{{item.code}}">{{item.name}}</option>
-									</select>
-								</div>								
-								<button type="submit" class="btn btn-info" ng-click='addCity(newCity)' ng-disabled='form.$invalid'>添加</button>
-								<button class="btn-rounded btn-primary btn-group-lg pull-right" ng-click="publishBrand()">
-									发布招商讯息
-								</button>
-							</form>
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									城市列表
-								</div>
-								<div class="table-responsive">
-									<table class="table table-striped b-t b-light">
-										<tbody>
-											<tr ng-repeat="city in item.expanding_cities">
-												<td style="width:20px;">
-													<a href ng-click="deleteCity(city)"><i class="fa fa-times text-danger"></i></a>
-												</td>
-												<td>{{city}}</td>
-											</tr>
-										</tbody>
-									</table>
+							<!--</div>-->
+							<div ng-controller="PublicationController">
+								<toaster-container toaster-options="{'position-class': 'toast-bottom-right', 'close-button':true}"></toaster-container>
+								<div class="row">
+									<div class="col-sm-6">
+										<div class="panel panel-default">
+											<div class="panel-heading font-bold">发布招商信息</div>
+											<div class="panel-body">
+												<div class="form-group">
+													<textarea class="form-control" placeholder="输入广告消息内容" rows="5" ng-model="pub_text"></textarea>
+												</div>
+												<button class="btn btn-info btn-block text-center" ng-click="save(item)">
+													发布
+												</button>
+											</div>
+										</div>
+									</div>
+
 								</div>
 							</div>
 						</div>

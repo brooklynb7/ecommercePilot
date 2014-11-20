@@ -333,8 +333,8 @@
 		}
 	]);
 
-	appController.controller('PublicationController', ['$scope', 'PublicationService', '$interval', 'BrandService',
-		function($scope, PublicationService, $interval,BrandService) {
+	appController.controller('PublicationController', ['$scope', 'PublicationService', '$interval', 'BrandService', 'toaster',
+		function($scope, PublicationService, $interval, BrandService, toaster) {
 
 			$scope.interval = 4000;
 			$scope.publications = PublicationService.getPublications();
@@ -361,8 +361,19 @@
 				}
 			}
 
-			$
-			//TODO Destroy
+			$scope.save = function(brand){
+				var today = new Date();
+				var month_later = new Date();
+				month_later.setMonth(today.getMonth()+1)
+				var pub = {
+					brand: brand.id,
+					text: $scope.pub_text,
+					created_at: today,
+					valid_to: month_later
+				};
+				PublicationService.addPublication(pub);
+				toaster.pop('success', brand.name, "招商消息已创建");
+			}
 		}
 	]);
 
