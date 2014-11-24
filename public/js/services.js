@@ -37,7 +37,30 @@
 		},
 		setPublications: function(publicationsJSON){
 			_setLocalStorage("publications", publicationsJSON);
+		},
+
+
+		/*************************************************************************************************************/
+		getCategoryBrands: function(){
+			return _getLocalStorage("categoryBrands");
+		},
+		setCategoryBrands: function(categoryBrandsJSON){
+			_setLocalStorage("categoryBrands", categoryBrandsJSON);
+		},
+		setStyles: function(styleJSON){
+			_setLocalStorage("styles", styleJSON);
+		},
+		getStyles: function(){
+			return _getLocalStorage("styles");
+		},
+		setMaterials: function(materialJSON){
+			_setLocalStorage("materials", materialJSON);
+		},
+		getMaterials: function(){
+			return _getLocalStorage("materials");
 		}
+		/*************************************************************************************************************/
+
 	};
 
 	var appService = angular.module('app.services', ['ngResource']);
@@ -94,21 +117,26 @@
 			authService.login = function(credentials) {
 				return Mock_SignInRsc.query(credentials).$promise.then(function(res) {
 					var rst = {};
-					if (credentials.username == 'test1') {
-						rst = res[0];
-					}
-					if (credentials.username == 'test2') {
-						rst = res[1];
-					}
-					if (credentials.username == 'test3') {
-						rst = res[2];
-					}
-					if (credentials.username == 'test4') {
-						rst = res[3];
-					}
-					if (credentials.username == 'admin') {
-						rst = res[4];
-					}
+					//if (credentials.username == 'test1') {
+					//	rst = res[0];
+					//}
+					//if (credentials.username == 'test2') {
+					//	rst = res[1];
+					//}
+					//if (credentials.username == 'test3') {
+					//	rst = res[2];
+					//}
+					//if (credentials.username == 'test4') {
+					//	rst = res[3];
+					//}
+					//if (credentials.username == 'admin') {
+					//	rst = res[4];
+					//}
+
+					rst = _.find(res, function(obj){
+						return obj.username == credentials.username;
+					});
+
 					Session.create(rst.id, rst.id, rst.type);
 					return rst;
 				});
@@ -266,6 +294,55 @@
 					}
 				}
 			};
+
+
+			/********************************************************************************************************/
+			brandService.loadCategoryBrands = function(){
+				if(!dataStorage.getCategoryBrands()){
+					Mock_BrandResource.get().$promise.then(function(res) {
+						dataStorage.setCategoryBrands(res.category);
+					});
+				}
+			};
+
+			brandService.getCategoryBrandList = function() {
+				return Mock_BrandResource.get().$promise.then(function(res) {
+					return dataStorage.getCategoryBrands();
+				});
+			};
+
+			var Mock_StyleResource = $resource('js/app/brand/style.json');
+
+			brandService.loadStyles = function(){
+				if(!dataStorage.getStyles()){
+					Mock_StyleResource.get().$promise.then(function(res) {
+						dataStorage.setStyles(res.results);
+					});
+				}
+			};
+
+			brandService.getStyleList = function() {
+				return Mock_StyleResource.get().$promise.then(function(res) {
+					return dataStorage.getStyles();
+				});
+			};
+
+			var Mock_MaterialResource = $resource('js/app/brand/material.json');
+
+			brandService.loadMaterials = function(){
+				if(!dataStorage.getMaterials()){
+					Mock_MaterialResource.get().$promise.then(function(res) {
+						dataStorage.setMaterials(res.results);
+					});
+				}
+			};
+
+			brandService.getMaterialList = function() {
+				return Mock_MaterialResource.get().$promise.then(function(res) {
+					return dataStorage.getMaterials();
+				});
+			};
+			/********************************************************************************************************/
 
 			return brandService;
 		}

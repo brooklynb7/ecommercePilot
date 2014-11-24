@@ -8,22 +8,22 @@
 	  "password" : "yeswood",
 	  "email": "yeswood-admin@yeswood.com",
 	  "profile": {
-			"address" : "上海市普陀区真北路1263号新长征商务大厦17楼 （增值中心）",
+			"address" : "上海市普陀区真北路1263号新长征商务大厦17楼",
 			"phone": "4000-213-213",
 			"approval": "A"
 	  }
 	},
   	{
 		"id" : "2",
-		"name" : "源氏木语",
+		"name" : "曲美",
 		"type": "B",
 		"is_active" : true,
-		"username" : "yeswood",
-		"password" : "yeswood",
+		"username" : "qumei",
+		"password" : "123",
 		"email": "yeswood-admin@yeswood.com",
 		"profile": {
-		  "address" : "",
-		  "phone": "",
+		  "address" : "上海市普陀区真北路1263号新长征商务大厦17楼",
+		  "phone": "4000-213-213",
 		  "approval": "A"
 		}
 	},
@@ -39,20 +39,6 @@
 			"address": "上海市普陀区真北路1263号新长征商务大厦17楼 （增值中心）",
 			"phone": "4000-213-213",
 			"approval": "A"
-		}
-	},
-	{
-		"id" : "3",
-		"name" : "北山家具",
-		"type" : "S",
-		"is_active": true,
-		"username": "besign",
-		"email": "besign-amdin@besign.com",
-		"password": "besign",
-		"profile":{
-		  "address": "",
-		  "phone": "",
-		  "approval": "C"
 		}
 	},
 	{

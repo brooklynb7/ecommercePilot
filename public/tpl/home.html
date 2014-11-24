@@ -1,31 +1,52 @@
-<div class="hbox hbox-auto-xs hbox-auto-sm fade-in-up" ng-init="app.fullScreen = false;" ui-view>
-	<div class="col">
-		<div class="wrapper-md">
-			<div class="row">
-				<div class="col-md-12">
-					<div ng-controller="CategoryBrandController">
-						<form class="m-b-md">
-							<div class="input-group">
-								<input type="text" class="form-control input-lg" ng-model="searchKey" placeholder="搜索种类"/>
-								<span class="input-group-btn">
-									<button class="btn btn-lg btn-dark">
-										<i class="fa fa-search"></i> 搜索种类
-									</button>
-								</span>
-							</div>
-						</form>
+<div ng-init="app.fullScreen = false;" ui-view>
+	<div class="hbox hbox-auto-xs hbox-auto-sm" ng-controller="CategoryBrandsCtrl">
+		<div class="col w-lg dk b-r bg-auto">
+			<div class="wrapper-md dker b-b">
+<!--
+				<div class="input-group">
+					<input type="text" class="form-control input-lg" ng-model="searchCategory" placeholder="查找种类">
+					<div class="input-group-btn">
+						<button type="button" class="btn btn-lg btn-dark">
+							<i class="fa fa-search"></i> 查找种类
+						</button>
+					</div>
+				</div>
+-->
+			</div>
+			<div class="wrapper-md">
+				<ul class="list-group list-group-sp">
+					<li class="list-group-item text-center bg-info item" ng-repeat="category in categorys | filter:searchCategory">
+						<a  class="text-white font-thin h3 block" ng-click="searchCategoryBrands(category)">{{category.name}}
+					<span class="bottom text-right w-full">
+						<i class="fa fa-bars text-muted m-r-sm"></i>
+					</span>
+						</a>
+					</li>
 
-						<div class="row row-sm text-center">
-							<div class="col-md-2 col-sm-6 col-xs-12" ng-repeat="categorybrand in categoryResults | filter:searchKey">
-								<a ui-sref="{{categorybrand.brandurl}}({id:categorybrand.id})" class="block tile panel padder-v bg-info item">
-									<span class="text-white font-thin h2 block">{{categorybrand.categoryName}}</span>
-									<span class="bottom text-right w-full">
-										<i class="fa fa-bars text-muted m-r-sm"></i>
-									</span>
-								</a>
-							</div>
-						</div>
+				</ul>
+			</div>
+		</div>
+		<div class="col">
+			<div class="wrapper-md dker b-b" ng-init="app.settings.container = false;">
+				<div class="input-group">
 
+					<input type="text" class="form-control input-lg" ng-model="brandName" placeholder="搜索品牌">
+					<div class="input-group-btn">
+						<button type="submit" class="btn btn-lg btn-dark" ng-click="focusBrand(this.brandName)">
+							<i class="fa fa-search"></i> 搜索品牌
+						</button>
+					</div>
+
+				</div>
+			</div>
+			<!-- show search results for user input -->
+			<div class="wrapper-md">
+				<div class="row row-sm text-center">
+					<div ng-hide="brands">查找无结果</div>
+					<div class="col-md-2 col-sm-6 col-xs-12"  ng-repeat="brand in brands" ng-click="focusBrand(category)">
+						<a ui-sref="app.brand.detail({brandId:brand.id})" class="text-white block panel item">
+							<img ng-src="{{brand.logo}}" style="width:100%;height: 80px" title="{{brand.name}}"/>
+						</a>
 					</div>
 				</div>
 			</div>
