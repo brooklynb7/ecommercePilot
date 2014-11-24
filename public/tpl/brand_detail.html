@@ -7,6 +7,46 @@
 			{{brand.name || "Loading..."}}
 		</h1>
 	</div>
+
+	<div class="wrapper-md row">
+
+
+		<div class="col-md-6 col-xs-12">
+			<ul class="list-group">
+				<li class="list-group-item disabled">基本信息</li>
+				<li class="list-group-item">{{brand.description}}</li>
+				<li class="list-group-item">
+					<span class="pull-left">网站：</span>
+					<a href="{{brand.web_site}}">{{brand.web_site}}</a>
+				</li>
+				<li class="list-group-item">
+					<span class="pull-left">电话：</span>
+					{{brand.phone}}
+				</li>
+			</ul>
+		</div>
+		<div class="col-md-6 col-xs-12">
+			<ul class="list-group">
+				<li class="list-group-item disabled">分类信息</li>
+				<li class="list-group-item"><span class="pull-left">分类：</span>
+					<ul class="list-inline">
+						<li ng-repeat="c in brand.category"> {{app.getCategoryText(c)}} </li>
+					</ul>
+				</li>
+				<li class="list-group-item"><span class="pull-left">风格：</span>
+					<ul class="list-inline">
+						<li ng-repeat="s in brand.style"> {{app.getStyleText(s)}} </li>
+					</ul>
+				</li>
+				<li class="list-group-item"><span class="pull-left">材料：</span>
+					<ul class="list-inline">
+						<li ng-repeat="m in brand.material"> {{app.getMaterialText(m)}} </li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+
 	<div class="wrapper-md">
 		<tabset class="tab-container">
 			<tab>
@@ -56,10 +96,10 @@
 				<!-- /column -->
 			</tab>
 			<tab>
-				<tab-heading>
+				<tab-heading ng-click='openExpandingCity()'>
 					招商城市
 				</tab-heading>
-				<div class="panel panel-default">
+				<!-- <div class="panel panel-default">
 					<div class="panel-heading">
 						城市列表
 					</div>								
@@ -72,70 +112,35 @@
 							</tbody>
 						</table>
 					</div>
+				</div> -->
+				<!-- column -->
+				<div class="col w-lg lt b-r">
+					<div class="vbox">
+						<div class="row-row">
+							<div class="padder" style='height:600px;overflow-y:auto'>
+								<div class="list-group">
+									<a id="{{expandingCity.id}}" ng-repeat="expandingCity in brand.expanding_cities" class="list-group-item b-l-3x hover-anchor" ng-class="{'hover': expandingCity.selected }" ng-click="selectExpandingCity(expandingCity)">
+										<span class="block text-ellipsis">{{ expandingCity.name }}</span>
+										<!--<span class="block text-ellipsis">{{ expandingCity.lon }}</span>
+										<span class="block text-ellipsis">{{ expandingCity.lat }}</span>-->
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+				<!-- /column -->
+
+				<!-- column -->
+				<div class="col" style="width:80%">
+					<div class="vbox">
+						<div class="row-row">
+							<div id='baiduMapForExpandingCity' style="width:100%; height:600px;"></div>
+						</div>
+					</div>
+				</div>
+				<!-- /column -->
 			</tab>
-			<tab>
-				<tab-heading>
-					品牌信息
-				</tab-heading>
-				<form class="form-horizontal" method="get">
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<div class="form-group">
-						<label class="col-sm-2 text-right" >品牌名称</label>
-						<div class="col-sm-10">
-							<span>{{brand.name}}</span>
-						</div>
-					</div>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<div class="form-group">
-						<label class="col-sm-2 text-right" >品牌描述</label>
-						<div class="col-sm-10">
-							<span>{{brand.description}}</span>
-						</div>
-					</div>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<div class="form-group">
-						<label class="col-sm-2 text-right" >品牌网站</label>
-						<div class="col-sm-10">
-							<span>{{brand.web_site}}</span>
-						</div>
-					</div>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<div class="form-group">
-						<label class="col-sm-2 text-right" >品牌电话</label>
-						<div class="col-sm-10">
-							<span>{{brand.phone}}</span>
-						</div>
-					</div>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<div class="form-group">
-						<label class="col-sm-2 text-right" >品牌分类</label>
-						<div class="col-sm-10">
-							<ul class="list-inline">
-								<li ng-repeat="c in brand.category"> {{app.getCategoryText(c)}} </li>
-							</ul>
-						</div>
-					</div>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<div class="form-group">
-						<label class="col-sm-2 text-right" >品牌风格</label>
-						<div class="col-sm-10">
-							<ul class="list-inline">
-								<li ng-repeat="s in brand.style"> {{app.getStyleText(s)}} </li>
-							</ul>
-						</div>
-					</div>
-					<div class="line line-dashed b-b line-lg pull-in"></div>
-					<div class="form-group">
-						<label class="col-sm-2 text-right" >品牌材料</label>
-						<div class="col-sm-10">
-							<ul class="list-inline">
-								<li ng-repeat="m in brand.material"> {{app.getMaterialText(m)}} </li>
-							</ul>
-						</div>
-					</div>
-				</form>
-			</tab>			
 			<tab>
 				<tab-heading>
 					产品系列
@@ -152,7 +157,7 @@
 					<tr ng-repeat="product in brand.productseries_set">
 						<td class="col-md-8">
 							<table class="table table-striped col-md-8">
-								<tr><td>名称: </td><td>{{product.name}}</td></tr>
+								<tr><td class="col-md-2">名称: </td><td>{{product.name}}</td></tr>
 								<tr>
 									<td>类别</td>
 									<td>
@@ -172,10 +177,23 @@
 									</td>
 								</tr>
 
-								<tr><td>店铺面积: </td><td>{{product.shop_size}}</td></tr>
-								<tr><td>装修成本: </td><td>{{product.deco_cost}}</td></tr>
+								<tr><td>店铺所需面积: </td><td>{{product.shop_size}}</td></tr>
+								<tr><td>店铺装修成本: </td><td>{{product.deco_cost}}</td></tr>
 								<tr><td>货物成本: </td><td>{{product.product_cost}}</td></tr>
 								<tr><td>描述: </td><td>{{product.description}}</td></tr>
+								<tr><td>在营店铺: </td>
+									<td>
+										<a ng-click="changeProductShowCity()" ng-hide="productShowCity"><i class="fa fa-bold fa-angle-double-down"></i>展开</a>
+										<a ng-click="changeProductShowCity()" ng-show="productShowCity"><i class="fa fa-bold fa-angle-double-up"></i>收起</a>
+										<ul ng-show="productShowCity" class="list-group">
+											<li class="list-group-item" ng-repeat="city in brand.selling_cities">
+												<a ng-click="viewCity(city)">{{city.name}}</a>
+											</li>
+										</ul>
+									</td>
+								</tr>
+
+
 							</table>
 
 							<hr/>
@@ -264,47 +282,6 @@
 						</td>
 					</tr>
 				</table>
-				<!--<div class="line pull-in"></div>-->
-				<!--<article class="media">-->
-					<!--<div class="pull-left">-->
-					  <!--<span class="fa-stack fa-lg">-->
-						  <!--<i class="fa fa-bold fa-location-arrow"></i>-->
-					  <!--</span>-->
-					<!--</div>-->
-					<!--<div class="media-body">-->
-						<!--{{city.address}}-->
-					<!--</div>-->
-				<!--</article>-->
-				<!--<div class="line pull-in"></div>-->
-				<!--<article class="media">-->
-					<!--<div class="pull-left">-->
-					  <!--<span class="fa-stack fa-lg">-->
-						  <!--<i class="fa fa-bold icon-size-fullscreen"></i>-->
-					  <!--</span>-->
-					<!--</div>-->
-					<!--<div class="media-body">-->
-						<!--{{city.phone}}-->
-					<!--</div>-->
-				<!--</article>-->
-				<!--<div class="line pull-in"></div>-->
-				<!--<article class="media">-->
-					<!--<div class="pull-left">-->
-					  <!--<span class="fa-stack fa-lg">-->
-						<!--&lt;!&ndash;<i class="fa fa-circle fa-stack-2x"></i>&ndash;&gt;-->
-						<!--&lt;!&ndash;<i class="fa fa-bold fa-stack-1x text-white"></i>&ndash;&gt;-->
-						  <!--<i class="fa fa-bold fa-shopping-cart"></i>-->
-					  <!--</span>-->
-					<!--</div>-->
-					<!--<div class="media-body">-->
-						<!--在营产品系列-->
-						<!--<div ng-repeat="product in products">-->
-							<!--<small class="block m-t-xs">{{product.name}}</small>-->
-							<!--<em class="text-xs"> <span class="text-danger">2013年12月</span></em>-->
-						<!--</div>-->
-					<!--</div>-->
-				<!--</article>-->
-				<!--<div class="line pull-in"></div>-->
-
 			</div>
 		</div>
         <script src="js/app.js"/>

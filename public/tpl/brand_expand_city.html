@@ -78,11 +78,11 @@
 									<div class="table-responsive">
 										<table class="table table-striped b-t b-light">
 											<tbody>
-												<tr ng-repeat="city in item.expanding_cities">
+												<tr ng-repeat="city in item.expanding_cities track by $index">
 													<td style="width:20px;">
 														<a href ng-click="deleteCity(city)"><i class="fa fa-times text-danger"></i></a>
 													</td>
-													<td>{{city}}</td>
+													<td>{{city.name}}</td>
 												</tr>
 											</tbody>
 										</table>

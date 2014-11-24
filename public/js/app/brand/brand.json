@@ -34,9 +34,9 @@
       "productseries_set": [
         {
           "category": 1,
-          "name": "源氏木语 Y0116 经典柚木客厅套装",
+          "name": "源氏木语 纯实木床 橡木卧室家具 环保双人床 Y0116",
           "short_description": "12",
-          "description": "12",
+          "description": "1.整个产品为100%纯实木，没有任何人造板材、没有贴皮，没有指接板，货真价实。",
           "selling_cities": null,
           "expanding_cities": null,
           "material_types": [
@@ -44,9 +44,9 @@
             2
           ],
           "decoration_styles": null,
-          "shop_size": "28-40平方米",
-          "deco_cost": "20-30万",
-          "product_cost": "13万",
+          "shop_size": "60-80平方米",
+          "deco_cost": "15-25万",
+          "product_cost": "8万",
           "photos": [
             "model/data/product/yeswood/Y0116/DAM001.jpg",
             "model/data/product/yeswood/Y0116/DAM002.jpg",
@@ -59,7 +59,7 @@
         },
         {
           "category": 2,
-          "name": "源氏木语 Y0118 橡木卧室家具系列",
+          "name": "源氏木语 纯实木床 橡木卧室家具 环保双人床 Y0117",
           "short_description": "122",
           "description": "122",
           "selling_cities": null,
@@ -72,11 +72,22 @@
           "product_cost": "5-7万"
         }
       ],
-      "expanding_cities": [
-        "上海市",
-        "江苏省扬州市",
-        "浙江省杭州市"
-      ],
+      "expanding_cities": [{
+        "id": 1,
+        "name": "上海市",
+        "lon": "121.48789948569",
+        "lat": "31.249161710015"
+      }, {
+        "id": 2,
+        "name": "浙江省杭州市",
+        "lon": "120.21937541572",
+        "lat": "30.259244461536"
+      }, {
+        "id": 3,
+        "name": "江苏省扬州市",
+        "lon": "119.42777755117",
+        "lat": "32.408505254568"
+      }],
       "selling_cities": [
         {
           "id": "city5",
