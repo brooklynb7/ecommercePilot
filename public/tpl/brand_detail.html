@@ -232,4 +232,43 @@
 			</tab>
 		</tabset>
 	</div>
+
+	<!--view product-->
+    <script type="text/ng-template" id="productViewModal.html">
+        <div class="modal-header" data-ng-app="app">
+            <a class="pull-right" ng-click="cancel()"><i class="fa fa-remove"></i></a>
+            <h4 class="modal-title">查看产品系列</h4>
+        </div>
+                <div class="modal-body">
+                    <table class="table table-striped">
+                        <tr><td>名称: </td><td>{{selectedProduct.name}}</td></tr>
+                        <tr><td>类别: </td><td>{{app.getCategoryText(selectedProduct.category)}}</td></tr>
+                        <tr><td>材料: </td><td>{{app.getMaterialText(selectedProduct.material_types)}}</td></tr>
+                        <tr><td>风格: </td><td>{{app.getStyleText(selectedProduct.decoration_styles)}}</td></tr>
+                        <tr><td>店铺面积: </td><td>{{selectedProduct.shop_size}}</td></tr>
+                        <tr><td>装修成本: </td><td>{{selectedProduct.deco_cost}}</td></tr>
+                        <tr><td>货物成本: </td><td>{{selectedProduct.product_cost}}</td></tr>
+                        <tr><td>描述: </td><td>{{selectedProduct.description}}</td></tr>
+                    </table>
+
+                    <div ng-controller="CarouselCtrl" class="" set-ng-animate="false">
+                        <div class="panel-heading">
+                            照片
+                        </div>
+                        <carousel interval="myInterval">
+                            <slide ng-repeat="slide in slides" active="slide.active">
+                                <img ng-src="{{slide.image}}" class="img-full">
+                                <div class="carousel-caption">
+                                    <h4>系列名称</h4>
+                                    <p>{{slide.description}}</p>
+                                </div>
+                            </slide>
+                        </carousel>
+                    </div>
+
+                </div>
+        </div>
+
+        <script src="js/app.js"/>
+    </script>
 </div>
