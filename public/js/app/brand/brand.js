@@ -483,6 +483,7 @@ Map.prototype.generatePoint = function(lng, lat, infoObj, selectCityFn) {
 		var thisOffsetTop = $dataRow.offset().top;
 		$table.scrollTop(0);
 		$table.scrollTop($dataRow.offset().top - $table.offset().top);
+
 	});
 	this.map.addOverlay(marker);
 
