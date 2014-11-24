@@ -7,9 +7,9 @@
 		});
 	};
 
-	function getMyBrandList(BrandService, $scope, $filter){
-		return BrandService.getBrandList().then(function(items){
-			$scope.items = _.filter(items, function(item){
+	function getMyBrandList(BrandService, $scope, $filter) {
+		return BrandService.getBrandList().then(function(items) {
+			$scope.items = _.filter(items, function(item) {
 				return item.created_by == $scope.currentUser.username;
 			});
 
@@ -105,8 +105,8 @@
 		}
 	]);
 
-	app.controller('BrandExpandCityCtrl', ['$scope', 'BrandService', '$filter',
-		function($scope, BrandService, $filter) {
+	app.controller('BrandExpandCityCtrl', ['$scope', 'BrandService', '$filter','$http',
+		function($scope, BrandService, $filter,$http) {
 			$scope.newCity = {
 				province: "100011",
 				city: "110100"
@@ -139,8 +139,21 @@
 
 			$scope.addCity = function(city) {
 				if (city) {
-					$scope.item.expanding_cities.push($scope.app.getProvinceCityText(city.province, city.city));
-					BrandService.updateBrand($scope.item);
+					var newCity = {
+						id: new Date().valueOf(),
+						name: $scope.app.getProvinceCityText(city.province, city.city),
+						lat: "",
+						lon: ""
+					};
+					var url = "http://api.map.baidu.com/geocoder/v2/?ak=fxEBGc46DmIt6oK2yjk4GC57&output=json&address=%E5%8C%97%E4%BA%AC%E5%B8%82&callback=JSON_CALLBACK";
+
+					$http.jsonp(url).success(function(data) {
+						var location = data.result.location;
+						newCity.lat = location.lat;
+						newCity.lon = location.lng;
+						$scope.item.expanding_cities.push(newCity);
+						BrandService.updateBrand($scope.item);
+					});
 				}
 			};
 		}
@@ -204,38 +217,38 @@
 				}
 			};
 
-			$scope.editProduct = function (product, brand) {
+			$scope.editProduct = function(product, brand) {
 
 				var modalInstance = $modal.open({
 					templateUrl: 'productEditModal.html',
 					controller: 'ProductEditModalCtrl',
 					resolve: {
-						product: function () {
+						product: function() {
 							return product;
 						},
-						BrandService: function () {
+						BrandService: function() {
 							return BrandService;
 						},
-						brand: function () {
+						brand: function() {
 							return brand;
 						},
-						app: function(){
+						app: function() {
 							return $scope.app;
 						}
 					}
 				});
 			};
 
-			$scope.viewProduct = function (product) {
+			$scope.viewProduct = function(product) {
 
 				var modalInstance = $modal.open({
 					templateUrl: 'productViewModal.html',
 					controller: 'ProductViewModalCtrl',
 					resolve: {
-						product: function () {
+						product: function() {
 							return product;
 						},
-						app: function(){
+						app: function() {
 							return $scope.app;
 						}
 					}
@@ -246,12 +259,12 @@
 	]);
 
 	app.controller('ProductEditModalCtrl', ['$scope', '$modalInstance', 'product', 'brand', 'BrandService', 'app',
-		function ($scope, $modalInstance, product, brand, BrandService, app) {
+		function($scope, $modalInstance, product, brand, BrandService, app) {
 
 			$scope.isNew = false;
 			$scope.app = app;
 
-			if(!product) {
+			if (!product) {
 				$scope.isNew = true;
 				product = {
 					decoration_styles: 1,
@@ -262,12 +275,11 @@
 
 			$scope.tempProduct = _.clone(product);
 
-			$scope.save = function (updatedProduct) {
+			$scope.save = function(updatedProduct) {
 				if (updatedProduct.name) {
-					if($scope.isNew){
+					if ($scope.isNew) {
 						brand.productseries_set.push(updatedProduct);
-					}
-					else{
+					} else {
 						product = _.extend(product, updatedProduct);
 					}
 					BrandService.updateBrand(brand);
@@ -275,17 +287,17 @@
 				}
 			};
 
-			$scope.cancel = function () {
-				$modalInstance.dismiss(	'cancel');
+			$scope.cancel = function() {
+				$modalInstance.dismiss('cancel');
 			};
 		}
 	]);
 
-	app.controller('ProductViewModalCtrl', function ($scope, $modalInstance, product, app) {
+	app.controller('ProductViewModalCtrl', function($scope, $modalInstance, product, app) {
 		$scope.app = app;
 		$scope.selectedProduct = product;
 
-		$scope.cancel = function () {
+		$scope.cancel = function() {
 			$modalInstance.dismiss('cancel');
 		};
 	});
@@ -303,11 +315,13 @@
 		}
 	]);
 
-	app.controller('BrandDetailCtrl', ['$scope', 'BrandService', '$filter', '$stateParams','$modal',
+	app.controller('BrandDetailCtrl', ['$scope', 'BrandService', '$filter', '$stateParams', '$modal',
 		function($scope, BrandService, $filter, $stateParams, $modal) {
 			$scope.brand = {};
 			$scope.city = {};
+			$scope.expandingCity = {};
 			$scope.map = null;
+			$scope.expandingCityMap = null;
 			$scope.newComment = {
 				rating: 5
 			};
@@ -317,24 +331,39 @@
 				$scope.city = $scope.brand.selling_cities[0];
 				if ($scope.city) {
 					$scope.city.selected = true;
-					$scope.map = new Map();
+					$scope.map = new Map("baiduMap");
 					_.each($scope.brand.selling_cities, function(city) {
-						city.point = $scope.map.generatePoint(city, $scope);
+						city.point = $scope.map.generatePoint(city, $scope.selectCity, $scope.viewProduct);
 					});
 					$scope.map.centerZoom();
 					$scope.map.centerToPoint($scope.map.points[0]);
 				}
+
+				$scope.expandingCity = $scope.brand.expanding_cities[0];
+				if ($scope.expandingCity) {
+					$scope.expandingCity.selected = true;
+					$scope.expandingCityMap = new Map("baiduMapForExpandingCity");
+					$scope.expandingCityMap.zoomSize = 6;
+					_.each($scope.brand.expanding_cities, function(city) {
+						city.point = $scope.expandingCityMap.generatePoint(city, $scope.selectExpandingCity);
+					});
+					$scope.expandingCityMap.centerZoom(new BMap.Point(116.404, 39.915));
+				}
 			});
 
-			$scope.viewProduct = function () {
+			$scope.openExpandingCity = function(){
+				$scope.expandingCityMap.centerZoom(new BMap.Point(100.404, 39.915));
+			};
+
+			$scope.viewProduct = function() {
 				var modalInstance = $modal.open({
 					templateUrl: 'productViewModal.html',
 					controller: 'ProductViewModalCtrl',
 					resolve: {
-						product: function () {
+						product: function() {
 							return $scope.brand.productseries_set[0];
 						},
-						app: function(){
+						app: function() {
 							return $scope.app;
 						}
 					}
@@ -350,11 +379,20 @@
 				$scope.map.centerToPoint(city.point);
 			};
 
+			$scope.selectExpandingCity = function(city) {
+				angular.forEach($scope.brand.expanding_cities, function(city) {
+					city.selected = false;
+				});
+				$scope.expandingCity = city;
+				$scope.expandingCity.selected = true;
+				$scope.expandingCityMap.centerToPoint(city.point);
+			};
+
 			$scope.addComment = function(comment, parent) { // parent could be brand or product
 				comment.created_at = new Date();
 				comment.created_by = $scope.currentUser.username;
 				delete parent['$$hashKey'];
-				if(!parent.comments){
+				if (!parent.comments) {
 					parent.comments = [];
 				}
 				parent.comments.push(comment);
@@ -384,8 +422,8 @@
 }());
 
 
-var Map = function() {
-	this.map = new BMap.Map("baiduMap");
+var Map = function(id) {
+	this.map = new BMap.Map(id);
 	this.map.enableScrollWheelZoom(true);
 	this.zoomSize = 14;
 	this.points = [];
@@ -394,20 +432,25 @@ var Map = function() {
 	//this.map.setCurrentCity("北京");   
 	//this.map.addControl(new BMap.NavigationControl());
 };
-Map.prototype.generatePoint = function(infoObj, $scope) {
+Map.prototype.generatePoint = function(infoObj, selectCityFn, viewProductFn) {
 	var that = this;
 	var point = new BMap.Point(infoObj.lon, infoObj.lat);
 	this.points.push(point);
 	var marker = new BMap.Marker(point);
+	point.marker = marker;
 
-	var handlePointClick = function(){
-		$scope.selectCity(infoObj);
+	var handlePointClick = function() {
+		if(selectCityFn){
+			selectCityFn(infoObj);
+		}
 		var $dataRow = $("#" + infoObj.id);
 		var $table = $($dataRow.parent().parent());
 		var thisOffsetTop = $dataRow.offset().top;
 		$table.scrollTop(0);
 		$table.scrollTop($dataRow.offset().top - $table.offset().top);
-		$scope.viewProduct();
+		if(viewProductFn){
+			viewProduct()
+		}
 	};
 
 	marker.addEventListener("click", function() {
@@ -432,10 +475,11 @@ Map.prototype.generatePoint = function(infoObj, $scope) {
 
 	return point;
 };
-Map.prototype.centerZoom = function() {
-	if (this.points.length > 0) {
-		this.map.centerAndZoom(this.points[0], this.zoomSize);
+Map.prototype.centerZoom = function(point) {
+	if(!point && this.points.length > 0){
+		point = this.points[0];
 	}
+	this.map.centerAndZoom(point, this.zoomSize);
 };
 
 Map.prototype.centerToPoint = function(point) {

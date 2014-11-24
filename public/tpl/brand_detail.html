@@ -56,10 +56,10 @@
 				<!-- /column -->
 			</tab>
 			<tab>
-				<tab-heading>
+				<tab-heading ng-click='openExpandingCity()'>
 					招商城市
 				</tab-heading>
-				<div class="panel panel-default">
+				<!-- <div class="panel panel-default">
 					<div class="panel-heading">
 						城市列表
 					</div>								
@@ -72,7 +72,34 @@
 							</tbody>
 						</table>
 					</div>
+				</div> -->
+				<!-- column -->
+				<div class="col w-lg lt b-r">
+					<div class="vbox">
+						<div class="row-row">
+							<div class="padder" style='height:600px;overflow-y:auto'>
+								<div class="list-group">
+									<a id="{{expandingCity.id}}" ng-repeat="expandingCity in brand.expanding_cities" class="list-group-item b-l-3x hover-anchor" ng-class="{'hover': expandingCity.selected }" ng-click="selectExpandingCity(expandingCity)">
+										<span class="block text-ellipsis">{{ expandingCity.name }}</span>
+										<span class="block text-ellipsis">{{ expandingCity.lon }}</span>
+										<span class="block text-ellipsis">{{ expandingCity.lat }}</span>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
+				<!-- /column -->
+
+				<!-- column -->
+				<div class="col" style="width:80%">
+					<div class="vbox">
+						<div class="row-row">
+							<div id='baiduMapForExpandingCity' style="width:100%; height:600px;"></div>
+						</div>
+					</div>
+				</div>
+				<!-- /column -->
 			</tab>
 			<tab>
 				<tab-heading>

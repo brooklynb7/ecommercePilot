@@ -12,11 +12,11 @@
 			"selling_cities": null,
 			"expanding_cities": null,
 			"photos": ["img/furniture/10001.jpg", "img/furniture/10002.jpg"],
-			"material_types": [1,2],
+			"material_types": [1, 2],
 			"decoration_styles": null,
-		  	"shop_size":"60-80平方米",
-		  	"deco_cost":"15-25万",
-		  	"product_cost":"8万"
+			"shop_size": "60-80平方米",
+			"deco_cost": "15-25万",
+			"product_cost": "8万"
 		}, {
 			"category": 2,
 			"name": "Test product 2",
@@ -27,9 +27,9 @@
 			"photos": null,
 			"material_types": null,
 			"decoration_styles": null,
-			"shop_size":"35-40平方米",
-			"deco_cost":"16-18万",
-			"product_cost":"5-7万"
+			"shop_size": "35-40平方米",
+			"deco_cost": "16-18万",
+			"product_cost": "5-7万"
 		}],
 		"brand_agent": "",
 		"web_site": "http://www.qumei.com",
@@ -39,72 +39,87 @@
 		"factory": "",
 		"category": [1, 2],
 		"selling_cities": [{
-			"id":"city5",
+			"id": "city5",
 			"city": "上海市",
-			"name":"上海真北商场(一期)",
-			"phone":"021-52504588",
+			"name": "上海真北商场(一期)",
+			"phone": "021-52504588",
 			"address": "上海市普陀区真北路1208号",
 			"lon": 121.39224917262,
 			"lat": 31.246157723193,
 			"rating": {
-				"service":"4",
-				"price":"4",
-				"quality":"5"
+				"service": "4",
+				"price": "4",
+				"quality": "5"
 			}
-		},{
-			"id":"city1",
+		}, {
+			"id": "city1",
 			"city": "上海市",
-			"name":"上海真北商场(二期)",
-			"phone":"021-32510888",
+			"name": "上海真北商场(二期)",
+			"phone": "021-32510888",
 			"address": "上海市普陀区真北路1108号",
 			"lon": 121.39116069583,
 			"lat": 31.243674485254,
 			"rating": {
-				"service":"4",
-				"price":"4",
-				"quality":"5"
+				"service": "4",
+				"price": "4",
+				"quality": "5"
 			}
-		},{
-			"id":"city2",
+		}, {
+			"id": "city2",
 			"city": "上海市",
-			"name":"上海浦东沪南商场",
-			"phone":"021-20257688",
+			"name": "上海浦东沪南商场",
+			"phone": "021-20257688",
 			"address": "上海市浦东新区临御路518号",
 			"lon": 121.63848131409,
 			"lat": 31.230895349134,
 			"rating": {
-				"service":"5",
-				"price":"3",
-				"quality":"4"
+				"service": "5",
+				"price": "3",
+				"quality": "4"
 			}
-		},{
-			"id":"city3",
+		}, {
+			"id": "city3",
 			"city": "上海市",
-			"name":"上海汶水商场",
-			"phone":"021-61496666",
+			"name": "上海汶水商场",
+			"phone": "021-61496666",
 			"address": "上海市宝山区汶水路1555号",
 			"lon": 121.42729404684,
 			"lat": 31.295155081625,
 			"rating": {
-				"service":"3",
-				"price":"3",
-				"quality":"4"
+				"service": "3",
+				"price": "3",
+				"quality": "4"
 			}
-		},{
-			"id":"city4",
+		}, {
+			"id": "city4",
 			"city": "上海市",
-			"name":"上海市闵行区吴中路商场",
-			"phone":"021-66551888",
+			"name": "上海市闵行区吴中路商场",
+			"phone": "021-66551888",
 			"address": "上海市闵行区吴中路1388号",
 			"lon": 121.38188182873,
 			"lat": 31.179998800019,
 			"rating": {
-				"service":"4",
-				"price":"5",
-				"quality":"3"
+				"service": "4",
+				"price": "5",
+				"quality": "3"
 			}
 		}],
-		"expanding_cities": ["上海市", "江苏省扬州市", "浙江省杭州市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "上海市",
+			"lon": "121.48789948569",
+			"lat": "31.249161710015"
+		}, {
+			"id": 2,
+			"name": "浙江省杭州市",
+			"lon": "120.21937541572",
+			"lat": "30.259244461536"
+		}, {
+			"id": 3,
+			"name": "江苏省扬州市",
+			"lon": "119.42777755117",
+			"lat": "32.408505254568"
+		}],
 		"created_by": "yeswood",
 		"updated_by": "",
 		"comment": [{
@@ -142,7 +157,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "yeswood",
 		"updated_by": ""
 	}, {
@@ -159,7 +179,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -176,7 +201,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -193,7 +223,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -210,7 +245,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -227,7 +267,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -244,7 +289,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -261,7 +311,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -278,7 +333,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -295,7 +355,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -312,7 +377,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}, {
@@ -329,7 +399,12 @@
 		"factory": "",
 		"category": [1, 3],
 		"selling_cities": [],
-		"expanding_cities": ["北京市"],
+		"expanding_cities": [{
+			"id": 1,
+			"name": "北京市",
+			"lon": "116.39564503788",
+			"lat": "39.92998577808"
+		}],
 		"created_by": "",
 		"updated_by": ""
 	}]
