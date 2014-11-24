@@ -5,7 +5,7 @@
 			$scope.item = $filter('orderBy')($scope.items, 'first')[0];
 			$scope.item.selected = true;
 		});
-	};
+	}
 
 	function getMyBrandList(BrandService, $scope, $filter){
 		return BrandService.getBrandList().then(function(items){
@@ -16,7 +16,7 @@
 			$scope.item = $filter('orderBy')($scope.items, 'first')[0];
 			$scope.item.selected = true;
 		})
-	};
+	}
 
 	app.controller('BrandManageCtrl', ['$scope', 'BrandService', '$filter',
 		function($scope, BrandService, $filter) {
@@ -367,6 +367,97 @@
 		}
 	}]);
 
+	/*****************************************************************************************************************/
+	app.controller('CategoryBrandsCtrl', ['$scope', '$stateParams', '$filter', 'BrandService',
+		function($scope, $stateParams, $filter, BrandService) {
+			var all_brands = [];
+			$scope.categorys = [];
+			BrandService.getCategoryBrandList().then(function(category) {
+				$scope.categorys = category;
+			});
+
+			$scope.brands = [];
+			BrandService.getBrandList().then(function(items) {
+				$scope.brands = items;
+				all_brands = items;
+			});
+
+			$scope.styles = [];
+			BrandService.getStyleList().then(function(results) {
+				$scope.styles = results;
+			});
+
+			$scope.materials = [];
+			BrandService.getMaterialList().then(function(results) {
+				$scope.materials = results;
+			});
+
+			$scope.searchCategoryBrands = function(category){
+				$scope.brands = _.filter(all_brands, function(obj){
+						return _.contains(obj.category, parseInt(category.id));
+					}
+				)
+			};
+
+			$scope.focusBrand = function(brandName){
+
+				for(var b = 0; b < all_brands.length; b++){
+					for(var bs = 0; bs < all_brands[b].style.length; bs++){
+						var styleName = [];
+						var styleFullids = all_brands[b].style.join(",");
+						for(var s = 0; s < $scope.styles.length; s++){
+							if(styleFullids.indexOf($scope.styles[s].id.toString()) > -1){
+								styleName.push($scope.styles[s].name);
+							}
+						}
+						all_brands[b]['style_text'] = styleName;
+					}
+
+					for(var bc = 0; bc < all_brands[b].category.length; bc++){
+						var categoryName = [];
+						var categoryFullids = all_brands[b].category.join(",");
+						for(var c = 0; c < $scope.categorys.length; c++){
+							if(categoryFullids.indexOf($scope.categorys[c].id.toString()) > -1){
+								categoryName.push($scope.categorys[c].name);
+							}
+						}
+						all_brands[b]['category_text'] = categoryName;
+					}
+
+					for(var bm = 0; bm < $scope.materials.length; bm++){
+						var materialName = [];
+						var materialFullids = all_brands[b].material.join(",");
+						for(var m = 0; m < $scope.materials.length; m++){
+							if(materialFullids.indexOf($scope.materials[m].id.toString()) > -1){
+								materialName.push($scope.materials[m].name);
+							}
+						}
+						all_brands[b]['material_text'] = materialName;
+					}
+				}
+
+				/**************** test brands object values **************/
+				for(var i = 0; i < $scope.brands.length; i++){
+					console.log("brand name >> " + $scope.brands[i]);
+				}
+				/**************** test brands object values **************/
+
+				if(brandName == ""){
+					$scope.brands = all_brands;
+				}
+				else{
+					$scope.brands = $filter('filter')(all_brands, brandName, false);
+					/*if($scope.brands.length == 0){
+						BrandService.getBrandList().then(function(items) {
+							$scope.brands = items;
+						});
+					}*/
+				}
+			};
+		}
+	]);
+	/*****************************************************************************************************************/
+
 }());
 
 
@@ -420,6 +511,6 @@ Map.prototype.centerToPoint = function(point) {
 	this.map.panTo(point);
 	$.each(this.points, function() {
 		that.map.removeOverlay(this.labelAddress);
-	})
+	});
 	this.map.addOverlay(point.labelAddress);
 };

@@ -1,336 +1,680 @@
 {
-	"items": [{
-		"id": "1",
-		"name": "曲美家具",
-		"description": "中国驰名家具品牌",
-		"logo": "api/brand/10021.jpg",
-		"productseries_set": [{
-			"category": 1,
-			"name": "现代简约系列",
-			"short_description": "12",
-			"description": "12",
-			"selling_cities": null,
-			"expanding_cities": null,
-			"photos": ["img/furniture/10001.jpg", "img/furniture/10002.jpg"],
-			"material_types": [1,2],
-			"decoration_styles": null,
-		  	"shop_size":"60-80平方米",
-		  	"deco_cost":"15-25万",
-		  	"product_cost":"8万"
-		}, {
-			"category": 2,
-			"name": "Test product 2",
-			"short_description": "122",
-			"description": "122",
-			"selling_cities": null,
-			"expanding_cities": null,
-			"photos": null,
-			"material_types": null,
-			"decoration_styles": null,
-			"shop_size":"35-40平方米",
-			"deco_cost":"16-18万",
-			"product_cost":"5-7万"
-		}],
-		"brand_agent": "",
-		"web_site": "http://www.qumei.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [1, 2],
-		"factory": "",
-		"category": [1, 2],
-		"selling_cities": [{
-			"id":"city5",
-			"city": "上海市",
-			"name":"上海真北商场(一期)",
-			"phone":"021-52504588",
-			"address": "上海市普陀区真北路1208号",
-			"lon": 121.39224917262,
-			"lat": 31.246157723193,
-			"rating": {
-				"service":"4",
-				"price":"4",
-				"quality":"5"
-			}
-		},{
-			"id":"city1",
-			"city": "上海市",
-			"name":"上海真北商场(二期)",
-			"phone":"021-32510888",
-			"address": "上海市普陀区真北路1108号",
-			"lon": 121.39116069583,
-			"lat": 31.243674485254,
-			"rating": {
-				"service":"4",
-				"price":"4",
-				"quality":"5"
-			}
-		},{
-			"id":"city2",
-			"city": "上海市",
-			"name":"上海浦东沪南商场",
-			"phone":"021-20257688",
-			"address": "上海市浦东新区临御路518号",
-			"lon": 121.63848131409,
-			"lat": 31.230895349134,
-			"rating": {
-				"service":"5",
-				"price":"3",
-				"quality":"4"
-			}
-		},{
-			"id":"city3",
-			"city": "上海市",
-			"name":"上海汶水商场",
-			"phone":"021-61496666",
-			"address": "上海市宝山区汶水路1555号",
-			"lon": 121.42729404684,
-			"lat": 31.295155081625,
-			"rating": {
-				"service":"3",
-				"price":"3",
-				"quality":"4"
-			}
-		},{
-			"id":"city4",
-			"city": "上海市",
-			"name":"上海市闵行区吴中路商场",
-			"phone":"021-66551888",
-			"address": "上海市闵行区吴中路1388号",
-			"lon": 121.38188182873,
-			"lat": 31.179998800019,
-			"rating": {
-				"service":"4",
-				"price":"5",
-				"quality":"3"
-			}
-		}],
-		"expanding_cities": ["上海市", "江苏省扬州市", "浙江省杭州市"],
-		"created_by": "yeswood",
-		"updated_by": "",
-		"comment": [{
-			"id": 10101,
-			"created_at": "2014-10-21T04:00:00Z",
-			"updated_at": "2014-10-21T04:01:00Z",
-			"created_by": "test1",
-			"updated_by": "test1",
-			"content_type": 13,
-			"object_id": 101,
-			"text": "Comment1 Text...",
-			"rating": 4
-		}, {
-			"id": 10102,
-			"created_at": "2014-10-21T04:00:00Z",
-			"updated_at": "2014-10-21T04:01:00Z",
-			"created_by": 201,
-			"updated_by": 201,
-			"content_type": 13,
-			"object_id": 101,
-			"text": "Comment12",
-			"rating": 2
-		}]
-	}, {
-		"id": "2",
-		"name": "光明家具",
-		"description": "Test desc",
-		"logo": "api/brand/10007.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "yeswood",
-		"updated_by": ""
-	}, {
-		"id": "3",
-		"name": "曲美家具",
-		"description": "Test desc",
-		"logo": "img/furniture/10003.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "4",
-		"name": "华日家具",
-		"description": "Test desc",
-		"logo": "api/brand/10019.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "5",
-		"name": "喜梦宝家具",
-		"description": "Test desc",
-		"logo": "api/brand/10020.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "6",
-		"name": "大连华丰家具集团有限公司",
-		"description": "Test desc",
-		"logo": "img/furniture/10006.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "7",
-		"name": "联邦",
-		"description": "Test desc",
-		"logo": "api/brand/10017.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "8",
-		"name": "曲美家具",
-		"description": "Test desc",
-		"logo": "api/brand/10016.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "19",
-		"name": "华日家具",
-		"description": "Test desc",
-		"logo": "api/brand/10015.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "20",
-		"name": "喜梦宝家具",
-		"description": "Test desc",
-		"logo": "api/brand/10014.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "9",
-		"name": "南洋胡氏家具",
-		"description": "Test desc",
-		"logo": "api/brand/10012.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "10",
-		"name": "光明家具",
-		"description": "Test desc",
-		"logo": "api/brand/10010.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}, {
-		"id": "11",
-		"name": "星月家具",
-		"description": "Test desc",
-		"logo": "api/brand/10011.jpg",
-		"productseries_set": [],
-		"brand_agent": "",
-		"web_site": "http://www.nike.com",
-		"phone": "110",
-		"style": "Test",
-		"material": [],
-		"factory": "",
-		"category": [1, 3],
-		"selling_cities": [],
-		"expanding_cities": ["北京市"],
-		"created_by": "",
-		"updated_by": ""
-	}]
+  "items": [
+    {
+      "id": "1",
+      "name": "源氏木语",
+      "logo": "model/data/logo/10001.jpg",
+      "description": "源氏木语 纯实木床 橡木卧室家具",
+      "phone": "4000-213-213",
+      "style": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "material": [
+        1,
+        2
+      ],
+      "category": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "web_site": "http://www.yeswood.com",
+      "factory": "上海市浦东新区源氏生产车间",
+      "created_by": "yeswood",
+      "updated_by": "yeswood",
+      "brand_agent": "源氏木语",
+      "productseries_set": [
+        {
+          "category": 1,
+          "name": "源氏木语 纯实木床 橡木卧室家具 环保双人床 Y0116",
+          "short_description": "12",
+          "description": "12",
+          "selling_cities": null,
+          "expanding_cities": null,
+          "material_types": [
+            1,
+            2
+          ],
+          "decoration_styles": null,
+          "shop_size": "60-80平方米",
+          "deco_cost": "15-25万",
+          "product_cost": "8万",
+          "photos": [
+            "model/data/product/yeswood/Y0116/DAM001.jpg",
+            "model/data/product/yeswood/Y0116/DAM002.jpg",
+            "model/data/product/yeswood/Y0116/DAM003.jpg",
+            "model/data/product/yeswood/Y0116/DAM004.jpg",
+            "model/data/product/yeswood/Y0116/DAM005.jpg",
+            "model/data/product/yeswood/Y0116/DAM006.jpg",
+            "model/data/product/yeswood/Y0116/DAM007.jpg"
+          ]
+        },
+        {
+          "category": 2,
+          "name": "源氏木语 纯实木床 橡木卧室家具 环保双人床 Y0117",
+          "short_description": "122",
+          "description": "122",
+          "selling_cities": null,
+          "expanding_cities": null,
+          "photos": null,
+          "material_types": null,
+          "decoration_styles": null,
+          "shop_size": "35-40平方米",
+          "deco_cost": "16-18万",
+          "product_cost": "5-7万"
+        }
+      ],
+      "expanding_cities": [
+        "上海市",
+        "江苏省扬州市",
+        "浙江省杭州市"
+      ],
+      "selling_cities": [
+        {
+          "id": "city5",
+          "city": "上海市",
+          "name": "上海真北商场(一期)",
+          "phone": "021-52504588",
+          "address": "上海市普陀区真北路1208号",
+          "lon": 121.39224917262,
+          "lat": 31.246157723193,
+          "rating": {
+            "service": "4",
+            "price": "4",
+            "quality": "5"
+          }
+        },
+        {
+          "id": "city1",
+          "city": "上海市",
+          "name": "上海真北商场(二期)",
+          "phone": "021-32510888",
+          "address": "上海市普陀区真北路1108号",
+          "lon": 121.39116069583,
+          "lat": 31.243674485254,
+          "rating": {
+            "service": "4",
+            "price": "4",
+            "quality": "5"
+          }
+        },
+        {
+          "id": "city2",
+          "city": "上海市",
+          "name": "上海浦东沪南商场",
+          "phone": "021-20257688",
+          "address": "上海市浦东新区临御路518号",
+          "lon": 121.63848131409,
+          "lat": 31.230895349134,
+          "rating": {
+            "service": "5",
+            "price": "3",
+            "quality": "4"
+          }
+        },
+        {
+          "id": "city3",
+          "city": "上海市",
+          "name": "上海汶水商场",
+          "phone": "021-61496666",
+          "address": "上海市宝山区汶水路1555号",
+          "lon": 121.42729404684,
+          "lat": 31.295155081625,
+          "rating": {
+            "service": "3",
+            "price": "3",
+            "quality": "4"
+          }
+        },
+        {
+          "id": "city4",
+          "city": "上海市",
+          "name": "上海市闵行区吴中路商场",
+          "phone": "021-66551888",
+          "address": "上海市闵行区吴中路1388号",
+          "lon": 121.38188182873,
+          "lat": 31.179998800019,
+          "rating": {
+            "service": "4",
+            "price": "5",
+            "quality": "3"
+          }
+        }
+      ],
+      "comment": [
+        {
+          "id": 10101,
+          "created_at": "2014-10-21T04:00:00Z",
+          "updated_at": "2014-10-21T04:01:00Z",
+          "created_by": "test1",
+          "updated_by": "test1",
+          "content_type": 13,
+          "object_id": 101,
+          "text": "宝贝收到了，已经用了一天才来评价的，质量真的挺好的，比我之前市场买的优惠多了，很大气！值得大家购买！",
+          "rating": 4
+        },
+        {
+          "id": 10102,
+          "created_at": "2014-10-21T04:00:00Z",
+          "updated_at": "2014-10-21T04:01:00Z",
+          "created_by": 201,
+          "updated_by": 201,
+          "content_type": 13,
+          "object_id": 101,
+          "text": "快递很快，包装也很好，服务很周到，床质量不错，做工精细，摆在屋里很高档，非常喜欢，以后有需要还会来买的。",
+          "rating": 2
+        }
+      ]
+    },
+    {
+      "id": "2",
+      "name": "达美家居",
+      "logo": "model/data/logo/10002.jpg",
+      "description": "达美家居 纯实木床 橡木卧室家具",
+      "phone": "4000-213-213",
+      "style": [12],
+      "material": [2],
+      "category": [3],
+      "web_site": "http://www.dam.com",
+      "factory": "上海市浦东新区达美生产车间",
+      "created_by": "dam",
+      "updated_by": "dam",
+      "brand_agent": "达美家居"
+    },
+    {
+      "id": "3",
+      "name": "洛兰格",
+      "logo": "model/data/logo/10003.jpg",
+      "description": "洛兰格 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "phone": "4000-213-213",
+      "style": [
+        1,
+        2,
+        3
+      ],
+      "material": [3],
+      "category": [4],
+      "web_site": "http://www.luoange.com",
+      "factory": "上海市浦东新区洛兰格生产车间",
+      "created_by": "luoange",
+      "updated_by": "luoange",
+      "brand_agent": "洛兰格"
+    },
+    {
+      "id": "4",
+      "name": "艾芙迪",
+      "logo": "model/data/logo/10004.jpg",
+      "description": "艾芙迪 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        1,
+        2
+      ],
+      "material": [4],
+      "category": [5],
+      "created_by": "fdchina",
+      "updated_by": "fdchina"
+    },
+    {
+      "id": "5",
+      "name": "森岳家具",
+      "logo": "model/data/logo/10005.jpg",
+      "description": "森岳家具 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [5],
+      "category": [6],
+      "created_by": "senyue",
+      "updated_by": "senyue"
+    },
+    {
+      "id": "6",
+      "name": "喜梦宝",
+      "logo": "model/data/logo/10006.jpg",
+      "description": "喜梦宝 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [6],
+      "category": [7],
+      "created_by": "xmb",
+      "updated_by": "xmb"
+    },
+    {
+      "id": "7",
+      "name": "洪鑫家居",
+      "logo": "model/data/logo/10007.jpg",
+      "description": "洪鑫家居 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [7],
+      "category": [8],
+      "created_by": "hongxin",
+      "updated_by": "hongxin"
+    },
+    {
+      "id": "8",
+      "name": "皇浩至尊",
+      "logo": "model/data/logo/10008.jpg",
+      "description": "皇浩至尊 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [8],
+      "category": [
+        1,
+        2
+      ],
+      "created_by": "huanghao",
+      "updated_by": "huanghao"
+    },
+    {
+      "id": "9",
+      "name": "沃克家居",
+      "logo": "model/data/logo/10009.jpg",
+      "description": "沃克家居 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [9],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "mmall",
+      "updated_by": "mmall"
+    },
+    {
+      "id": "10",
+      "name": "槟榔家具",
+      "logo": "model/data/logo/10010.png",
+      "description": "槟榔家具 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [10],
+      "category": [
+        5,
+        6
+      ],
+      "created_by": "roling",
+      "updated_by": "roling"
+    },
+    {
+      "id": "11",
+      "name": "王氏豪庭",
+      "logo": "model/data/logo/10011.jpg",
+      "description": "王氏豪庭 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        1,
+        2
+      ],
+      "category": [
+        7,
+        8
+      ],
+      "created_by": "wangshihangting",
+      "updated_by": "wangshihangting"
+    },
+    {
+      "id": "12",
+      "name": "贝尼尼",
+      "logo": "model/data/logo/10012.jpg",
+      "description": "贝尼尼 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        3,
+        4
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "nibeibei",
+      "updated_by": "nibeibei"
+    },
+    {
+      "id": "13",
+      "name": "华日家具",
+      "logo": "model/data/logo/10013.jpg",
+      "description": "华日家具 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        5,
+        6
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "huari",
+      "updated_by": "huari"
+    },
+    {
+      "id": "14",
+      "name": "奥萬大",
+      "logo": "model/data/logo/10014.jpg",
+      "description": "奥萬大 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        7,
+        8
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "aogeda",
+      "updated_by": "aogeda"
+    },
+    {
+      "id": "15",
+      "name": "华谊家具",
+      "logo": "model/data/logo/10015.jpg",
+      "description": "华谊家具 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        9,
+        10
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "huayi",
+      "updated_by": "huayi"
+    },
+    {
+      "id": "16",
+      "name": "温歌桦",
+      "logo": "model/data/logo/10016.jpg",
+      "description": "温歌桦 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        1,
+        2,
+        3
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "wengehua",
+      "updated_by": "wengehua"
+    },
+    {
+      "id": "17",
+      "name": "七彩人生",
+      "logo": "model/data/logo/10017.jpg",
+      "description": "七彩人生 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        4,
+        5,
+        6
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "qicairensheng",
+      "updated_by": "qicairensheng"
+    },
+    {
+      "id": "18",
+      "name": "艾尚木语",
+      "logo": "model/data/logo/10018.png",
+      "description": "艾尚木语 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        7,
+        8,
+        9
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "aishang",
+      "updated_by": "aishang"
+    },
+    {
+      "id": "19",
+      "name": "帝诺维琛",
+      "logo": "model/data/logo/10019.jpg",
+      "description": "帝诺维琛 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        2,
+        3,
+        4
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "diruo",
+      "updated_by": "diruo"
+    },
+    {
+      "id": "20",
+      "name": "尚品家具",
+      "logo": "model/data/logo/10020.jpg",
+      "description": "尚品家具 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        5,
+        6,
+        7
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "shangpin",
+      "updated_by": "shangpin"
+    },
+    {
+      "id": "21",
+      "name": "曲美家具",
+      "logo": "model/data/logo/10021.jpg",
+      "description": "曲美家具 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [
+        4,
+        5,
+        6
+      ],
+      "material": [
+        7,
+        8,
+        9
+      ],
+      "category": [
+        3,
+        4
+      ],
+      "created_by": "qumei",
+      "updated_by": "qumei"
+    },
+    {
+      "id": "22",
+      "name": "北山家具",
+      "logo": "model/data/logo/10022.jpg",
+      "description": "北山家具 纯实木床 橡木卧室家具",
+      "keyword": "",
+      "style": [12],
+      "material": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11
+      ],
+      "category": [
+        9,
+        10
+      ],
+      "created_by": "beishan",
+      "updated_by": "beishan"
+    }
+  ],
+  "category": [
+    {
+      "id": "1",
+      "name": "床类",
+      "keyword": "实木床|皮质床|布艺床|板式床|折叠床|铁艺床",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    },
+    {
+      "id": "2",
+      "name": "柜类",
+      "keyword": "电视柜|衣柜|床头柜|书柜|餐边柜|斗柜|鞋柜",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    },
+    {
+      "id": "3",
+      "name": "床垫",
+      "keyword": "乳胶床垫|棕垫|弹簧床垫",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    },
+    {
+      "id": "4",
+      "name": "沙发",
+      "keyword": "布艺沙发|皮艺沙发|实木沙发|沙发床|懒人沙发",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    },
+    {
+      "id": "5",
+      "name": "桌类",
+      "keyword": "办公椅|电脑桌|办公隔断|餐桌|书桌|梳妆台",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    },
+    {
+      "id": "6",
+      "name": "椅凳",
+      "keyword": "餐椅|休闲椅躺椅|凳",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    },
+    {
+      "id": "7",
+      "name": "架箱类",
+      "keyword": "衣帽架|书架|鞋架",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    },
+    {
+      "id": "8",
+      "name": "办公家具",
+      "keyword": "办公椅|老板台|电脑桌|会议桌|办公沙发|屏风隔断",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    },
+    {
+      "id": "9",
+      "name": "青少年家具",
+      "keyword": "儿童床|高低|子母床|儿童成套家具|儿童书桌|儿童床头柜|儿童衣柜|儿童书柜",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    },
+    {
+      "id": "10",
+      "name": "卫浴洁具",
+      "keyword": "座便器|卫洗丽|花洒|龙头|台盆|浴室柜|浴缸|淋浴房|水槽",
+      "created_by": "2014/11/17",
+      "updated_by": "admin"
+    }
+  ]
 }

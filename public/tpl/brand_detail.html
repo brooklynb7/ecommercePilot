@@ -1,7 +1,7 @@
 <div ng-controller="BrandDetailCtrl">
 	<div class="bg-light lter b-b wrapper-md" ng-init="app.fullScreen = false;">
 		<h1 class="m-n font-thin h3">
-			<a ui-sref="app.brand">
+			<a ui-sref="app.home">
 				<i class="icon-arrow-left i-sm m-r-sm"></i>
 			</a>
 			{{brand.name || "Loading..."}}
@@ -219,7 +219,7 @@
 												<rating ng-model="newComment.rating" max="5" state-on="'fa fa-star text-warning'" state-off="'fa fa-star-o'"></rating>
 											</div>
 											<div>
-												<button class="btn btn-default" value='提交' ng-click="addComment(newComment, product)"/>
+												<input type="button" class="btn btn-default" value='提交' ng-click="addComment(newComment, product)">
 											</div>
 										</form>
 									</div>

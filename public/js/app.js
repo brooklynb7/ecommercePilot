@@ -80,7 +80,14 @@ var app = angular.module('app', [
 					})
 					.state('app.home', {
 						url: '/home',
-						templateUrl: 'tpl/home.html'
+						templateUrl: 'tpl/home.html',
+						resolve: {
+							deps: ['uiLoad',
+								function(uiLoad) {
+									return uiLoad.load(['js/app/brand/brand.js']);
+								}
+							]
+						}
 					})
 					.state('app.home.brand', {
 						url: '/brand/{id:[0-9]{1,9}}',

@@ -55,6 +55,13 @@
 			AgencyService.loadAgencies();
 			PublicationService.loadPublications();
 
+			/*******************************************************************************************************/
+			BrandService.loadCategoryBrands();
+			BrandService.loadStyles();
+			BrandService.loadMaterials();
+			AgencyService.loadAgencies();
+			/*******************************************************************************************************/
+
 			$scope.app.getProvinceCityText = function(provinceId, cityId){
 				var provinceObj = _.find($scope.app.provinceList, function(province){
 					return province.code == provinceId;
@@ -124,7 +131,7 @@
 			});*/
 
 			AuthService.login({
-				username: "test2"
+				username: "yeswood"
 			}).then(function(user) {
 				$scope.setCurrentUser(user);
 			});
@@ -174,7 +181,7 @@
 
 			var showNotAuthorized = function() {
 				alert("Not Authorized");
-			}
+			};
 
 			//listen to events of unsuccessful logins, to run the login dialog
 			$rootScope.$on(AUTH_EVENTS.notAuthorized, showNotAuthorized);
@@ -364,7 +371,7 @@
 			$scope.save = function(brand){
 				var today = new Date();
 				var month_later = new Date();
-				month_later.setMonth(today.getMonth()+1)
+				month_later.setMonth(today.getMonth()+1);
 				var pub = {
 					brand: brand.id,
 					text: $scope.pub_text,
