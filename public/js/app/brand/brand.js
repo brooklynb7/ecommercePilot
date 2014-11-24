@@ -303,8 +303,8 @@
 		}
 	]);
 
-	app.controller('BrandDetailCtrl', ['$scope', 'BrandService', '$filter', '$stateParams',
-		function($scope, BrandService, $filter, $stateParams) {
+	app.controller('BrandDetailCtrl', ['$scope', 'BrandService', '$filter', '$stateParams','$modal',
+		function($scope, BrandService, $filter, $stateParams, $modal) {
 			$scope.brand = {};
 			$scope.city = {};
 			$scope.map = null;
@@ -319,13 +319,27 @@
 					$scope.city.selected = true;
 					$scope.map = new Map();
 					_.each($scope.brand.selling_cities, function(city) {
-						city.point = $scope.map.generatePoint(city.lon, city.lat, city, $scope.selectCity);
+						city.point = $scope.map.generatePoint(city, $scope);
 					});
 					$scope.map.centerZoom();
 					$scope.map.centerToPoint($scope.map.points[0]);
 				}
 			});
 
+			$scope.viewProduct = function () {
+				var modalInstance = $modal.open({
+					templateUrl: 'productViewModal.html',
+					controller: 'ProductViewModalCtrl',
+					resolve: {
+						product: function () {
+							return $scope.brand.productseries_set[0];
+						},
+						app: function(){
+							return $scope.app;
+						}
+					}
+				});
+			};
 
 			$scope.selectCity = function(city) {
 				angular.forEach($scope.brand.selling_cities, function(city) {
@@ -380,18 +394,24 @@ var Map = function() {
 	//this.map.setCurrentCity("北京");   
 	//this.map.addControl(new BMap.NavigationControl());
 };
-Map.prototype.generatePoint = function(lng, lat, infoObj, selectCityFn) {
+Map.prototype.generatePoint = function(infoObj, $scope) {
 	var that = this;
-	var point = new BMap.Point(lng, lat);
+	var point = new BMap.Point(infoObj.lon, infoObj.lat);
 	this.points.push(point);
 	var marker = new BMap.Marker(point);
-	marker.addEventListener("click", function() {
-		selectCityFn(infoObj);
+
+	var handlePointClick = function(){
+		$scope.selectCity(infoObj);
 		var $dataRow = $("#" + infoObj.id);
 		var $table = $($dataRow.parent().parent());
 		var thisOffsetTop = $dataRow.offset().top;
 		$table.scrollTop(0);
 		$table.scrollTop($dataRow.offset().top - $table.offset().top);
+		$scope.viewProduct();
+	};
+
+	marker.addEventListener("click", function() {
+		handlePointClick();
 	});
 	this.map.addOverlay(marker);
 
@@ -404,6 +424,9 @@ Map.prototype.generatePoint = function(lng, lat, infoObj, selectCityFn) {
 		color: "#0075c7"
 	};
 	point.labelAddress.setStyle(labelStyle);
+	point.labelAddress.addEventListener("click", function() {
+		handlePointClick();
+	});
 
 	//this.map.addOverlay(point.labelAddress);
 
