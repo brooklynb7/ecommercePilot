@@ -290,6 +290,15 @@
 		};
 	});
 
+	app.controller('SellingCityViewModalCtrl', function( $scope, $modalInstance, city, products){
+		$scope.city = city;
+		$scope.products = products;
+		console.log($scope.products);
+		$scope.cancel = function () {
+			$modalInstance.dismiss('cancel');
+		};
+	});
+
 	app.controller('BrandSearchCtrl', ['$scope', 'BrandService', '$filter',
 		function($scope, BrandService, $filter) {
 			$scope.searchKey = "";
@@ -326,17 +335,19 @@
 				}
 			});
 
-			$scope.viewProduct = function () {
+			$scope.viewCity = function (selectedCity) {
+				console.log($scope.brand.productseries_set);
 				var modalInstance = $modal.open({
-					templateUrl: 'productViewModal.html',
-					controller: 'ProductViewModalCtrl',
+					templateUrl: 'sellingCityOnMapViewModal.html',
+					controller: 'SellingCityViewModalCtrl',
 					resolve: {
-						product: function () {
-							return $scope.brand.productseries_set[0];
+						city: function () {
+							return selectedCity;
 						},
-						app: function(){
-							return $scope.app;
+						products: function() {
+							return $scope.brand.productseries_set;
 						}
+
 					}
 				});
 			};
@@ -498,7 +509,7 @@ Map.prototype.generatePoint = function(infoObj, $scope) {
 		var thisOffsetTop = $dataRow.offset().top;
 		$table.scrollTop(0);
 		$table.scrollTop($dataRow.offset().top - $table.offset().top);
-		$scope.viewProduct();
+		$scope.viewCity($scope.city);
 	};
 
 	marker.addEventListener("click", function() {

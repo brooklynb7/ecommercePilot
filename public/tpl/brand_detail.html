@@ -234,41 +234,79 @@
 	</div>
 
 	<!--view product-->
-    <script type="text/ng-template" id="productViewModal.html">
-        <div class="modal-header" data-ng-app="app">
-            <a class="pull-right" ng-click="cancel()"><i class="fa fa-remove"></i></a>
-            <h4 class="modal-title">查看产品系列</h4>
-        </div>
-                <div class="modal-body">
-                    <table class="table table-striped">
-                        <tr><td>名称: </td><td>{{selectedProduct.name}}</td></tr>
-                        <tr><td>类别: </td><td>{{app.getCategoryText(selectedProduct.category)}}</td></tr>
-                        <tr><td>材料: </td><td>{{app.getMaterialText(selectedProduct.material_types)}}</td></tr>
-                        <tr><td>风格: </td><td>{{app.getStyleText(selectedProduct.decoration_styles)}}</td></tr>
-                        <tr><td>店铺面积: </td><td>{{selectedProduct.shop_size}}</td></tr>
-                        <tr><td>装修成本: </td><td>{{selectedProduct.deco_cost}}</td></tr>
-                        <tr><td>货物成本: </td><td>{{selectedProduct.product_cost}}</td></tr>
-                        <tr><td>描述: </td><td>{{selectedProduct.description}}</td></tr>
-                    </table>
+    <script type="text/ng-template" id="sellingCityOnMapViewModal.html">
 
-                    <div ng-controller="CarouselCtrl" class="" set-ng-animate="false">
-                        <div class="panel-heading">
-                            照片
-                        </div>
-                        <carousel interval="myInterval">
-                            <slide ng-repeat="slide in slides" active="slide.active">
-                                <img ng-src="{{slide.image}}" class="img-full">
-                                <div class="carousel-caption">
-                                    <h4>系列名称</h4>
-                                    <p>{{slide.description}}</p>
-                                </div>
-                            </slide>
-                        </carousel>
-                    </div>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<a class="pull-right" ng-click="cancel()"><i class="fa fa-remove"></i></a>
+				<h5 class="modal-title">{{city.name}}</h5>
+			</div>
+			<div class="panel-body">
 
-                </div>
-        </div>
+				<table class="table table-striped">
+					<tr>
+						<td class="col-md-3">
+							<i class="fa fa-bold fa-location-arrow"></i> 地址
+						</td>
+						<td clas="col-md-8">
+							{{city.address}}
+						</td>
+					</tr>
+					<tr><td><i class="fa fa-bold fa-phone"></i> 电话</td><td>{{city.phone}}</td></tr>
+					<tr><td><i class="fa fa-bold icon-size-fullscreen"></i> 面积</td><td>40平方米</td></tr>
+					<tr><td><i class="fa fa-bold fa-shopping-cart"></i> 在营产品</td>
+						<td>
+							<ul>
+								<li ng-repeat="product in products">
+									{{product.name}}
+								</li>
+							</ul>
+						</td>
+					</tr>
+				</table>
+				<!--<div class="line pull-in"></div>-->
+				<!--<article class="media">-->
+					<!--<div class="pull-left">-->
+					  <!--<span class="fa-stack fa-lg">-->
+						  <!--<i class="fa fa-bold fa-location-arrow"></i>-->
+					  <!--</span>-->
+					<!--</div>-->
+					<!--<div class="media-body">-->
+						<!--{{city.address}}-->
+					<!--</div>-->
+				<!--</article>-->
+				<!--<div class="line pull-in"></div>-->
+				<!--<article class="media">-->
+					<!--<div class="pull-left">-->
+					  <!--<span class="fa-stack fa-lg">-->
+						  <!--<i class="fa fa-bold icon-size-fullscreen"></i>-->
+					  <!--</span>-->
+					<!--</div>-->
+					<!--<div class="media-body">-->
+						<!--{{city.phone}}-->
+					<!--</div>-->
+				<!--</article>-->
+				<!--<div class="line pull-in"></div>-->
+				<!--<article class="media">-->
+					<!--<div class="pull-left">-->
+					  <!--<span class="fa-stack fa-lg">-->
+						<!--&lt;!&ndash;<i class="fa fa-circle fa-stack-2x"></i>&ndash;&gt;-->
+						<!--&lt;!&ndash;<i class="fa fa-bold fa-stack-1x text-white"></i>&ndash;&gt;-->
+						  <!--<i class="fa fa-bold fa-shopping-cart"></i>-->
+					  <!--</span>-->
+					<!--</div>-->
+					<!--<div class="media-body">-->
+						<!--在营产品系列-->
+						<!--<div ng-repeat="product in products">-->
+							<!--<small class="block m-t-xs">{{product.name}}</small>-->
+							<!--<em class="text-xs"> <span class="text-danger">2013年12月</span></em>-->
+						<!--</div>-->
+					<!--</div>-->
+				<!--</article>-->
+				<!--<div class="line pull-in"></div>-->
 
+			</div>
+		</div>
         <script src="js/app.js"/>
     </script>
 </div>
